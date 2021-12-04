@@ -1,0 +1,54 @@
+package io.github.nichetoolkit.jts.configure;
+
+import io.github.nichetoolkit.jts.shape.ShapeReader;
+import io.github.nichetoolkit.jts.shape.ShapeWriter;
+import io.github.nichetoolkit.jts.shape.simple.SimpleShapeFactory;
+import io.github.nichetoolkit.jts.shape.ShapeFactory;
+import io.github.nichetoolkit.jts.shape.ShapefileUtils;
+import io.github.nichetoolkit.jts.shape.simple.SimpleShapeReader;
+import io.github.nichetoolkit.jts.shape.simple.SimpleShapeWriter;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * <p>JtsShapeAutoConfigure</p>
+ * @author Cyan (snow22314@outlook.com)
+ * @version v1.0.0
+ */
+@Slf4j
+@Configuration
+@ComponentScan(basePackages = {"io.github.nichetoolkit.jts.shape"})
+@ConditionalOnProperty(value = "nichetoolkit.jts.shape.enabled", havingValue = "true")
+public class JtsShapeAutoConfigure {
+    public JtsShapeAutoConfigure() {
+        log.debug("================= jts-shape-auto-configure initiated ！ ===================");
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(ShapeReader.class)
+    public ShapeReader shapeReader() {
+        return new SimpleShapeReader();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(ShapeWriter.class)
+    public ShapeWriter shapeWriter() {
+        return new SimpleShapeWriter();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(ShapeFactory.class)
+    public ShapeFactory shapeFactory(ShapeProperties shapeProperties, ShapeReader shapeReader,ShapeWriter shapeWriter) {
+        SimpleShapeFactory shapeFactory = new SimpleShapeFactory(shapeProperties.toConfig(),shapeReader,shapeWriter);
+        ShapefileUtils.initShapeFactory(shapeFactory);
+        return shapeFactory;
+    }
+
+
+
+
+}

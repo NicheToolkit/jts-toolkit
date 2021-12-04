@@ -1,0 +1,93 @@
+{
+  "groups": [
+    {
+      "name": "nichetoolkit.jts",
+      "sourceType": "io.github.nichetoolkit.jts.configure.JtsJacksonProperties",
+      "type": "io.github.nichetoolkit.jts.configure.JtsJacksonProperties"
+    },
+    {
+      "name": "nichetoolkit.jts.shape",
+      "sourceType": "io.github.nichetoolkit.jts.configure.ShapeProperties",
+      "type": "io.github.nichetoolkit.jts.configure.ShapeProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "nichetoolkit.jts.enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "nichetoolkit jts auto configure enabled."
+    },
+    {
+      "name": "nichetoolkit.jts.jackson.enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "nichetoolkit jts jackson auto configure enabled ."
+    },
+    {
+      "name": "nichetoolkit.jts.shape.enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "nichetoolkit shape auto configure enabled ."
+    },
+    {
+      "name": "nichetoolkit.jts.shape.space.root-path",
+      "type": "java.lang.String",
+      "sourceType": "java.lang.String",
+      "description": "nichetoolkit space root path ."
+    },
+    {
+      "name": "nichetoolkit.jts.shape.space.cache-path",
+      "type": "java.lang.String",
+      "sourceType": "java.lang.String",
+      "description": "nichetoolkit space cache path ."
+    },
+    {
+      "name": "nichetoolkit.jts.shape.space.zip-path",
+      "type": "java.lang.String",
+      "sourceType": "java.lang.String",
+      "description": "nichetoolkit space zip path ."
+    }
+  ],
+  "hints": [
+    {
+      "name": "nichetoolkit.jts.enabled",
+      "values": [
+        {
+          "value": false,
+          "description": "nichetoolkit jts auto configure enabled false."
+        },
+        {
+          "value": true,
+          "description": "nichetoolkit jts auto configure enabled true."
+        }
+      ]
+    },
+    {
+      "name": "nichetoolkit.jts.jackson.enabled",
+      "values": [
+        {
+          "value": false,
+          "description": "nichetoolkit jts jackson auto configure enabled false."
+        },
+        {
+          "value": true,
+          "description": "nichetoolkit jts jackson auto configure enabled true."
+        }
+      ]
+    },
+    {
+      "name": "nichetoolkit.jts.shape.enabled",
+      "values": [
+        {
+          "value": false,
+          "description": "nichetoolkit shape auto configure enabled false."
+        },
+        {
+          "value": true,
+          "description": "nichetoolkit shape auto configure enabled true."
+        }
+      ]
+    }
+  ]
+}
