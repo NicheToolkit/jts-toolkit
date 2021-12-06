@@ -4,22 +4,20 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.github.nichetoolkit</groupId>
-        <artifactId>rest-toolkit-parent</artifactId>
+        <artifactId>jts-toolkit-parent</artifactId>
         <version>1.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>jts-toolkit-parent</artifactId>
+    <artifactId>jts-toolkit-utils</artifactId>
     <version>1.0.1-SNAPSHOT</version>
+    <name>jts-toolkit-utils</name>
+    <description>jts toolkit utils project for Spring Boot</description>
 
-    <modules>
-        <module>jts-toolkit-utils</module>
-        <module>jts-toolkit-test-web</module>
-    </modules>
-
-    <name>jts-toolkit-parent</name>
-    <packaging>pom</packaging>
-    <description>Jts toolkit project for Spring Boot</description>
-    <url>https://github.com/NicheToolkit/jts-toolkit</url>
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
 
     <licenses>
         <license>
@@ -52,24 +50,40 @@
         </repository>
     </distributionManagement>
 
-    <repositories>
-        <repository>
-            <id>osgeo-maven-releases</id>
-            <name>osgeo maven centrals</name>
-            <url>https://repo.osgeo.org/repository/release/</url>
-        </repository>
-    </repositories>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
 
-    <properties>
-        <java.version>1.8</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <geotools.version>25.0</geotools.version>
-    </properties>
+        <dependency>
+            <groupId>io.github.nichetoolkit</groupId>
+            <artifactId>rest-toolkit-utils</artifactId>
+            <version>${toolkit.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-geojson</artifactId>
+            <version>${geotools.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-shapefile</artifactId>
+            <version>${geotools.version}</version>
+        </dependency>
+
+    </dependencies>
 
     <build>
         <finalName>${project.artifactId}</finalName>
         <resources>
+            <resource>
+                <filtering>false</filtering>
+                <directory>src/main/resources</directory>
+            </resource>
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
@@ -155,10 +169,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${compiler-plugin.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>8</source>
+                    <target>8</target>
                     <encoding>utf-8</encoding>
                 </configuration>
             </plugin>
