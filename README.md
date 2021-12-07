@@ -26,7 +26,7 @@
 
 ## 使用方式
 
-参考[jts-toolkit-test-web](https://github.com/NicheToolkit/rest-toolkit/tree/master/jts-toolkit-test-web)模块.
+参考[jts-toolkit-test-web](https://github.com/NicheToolkit/jts-toolkit/tree/master/jts-toolkit-test-web)模块.
 
 
  ## 依赖参考
