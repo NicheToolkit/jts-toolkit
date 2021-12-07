@@ -14,8 +14,6 @@ import static io.github.nichetoolkit.jts.JtsGeojson.COORDINATES;
  * <p>MultiPointParser</p>
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
- * @group cyan.tool.kit
- * @date 14:41 2020/9/22
  */
 public class MultiPointParser extends JtsParser<MultiPoint> {
 
