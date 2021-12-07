@@ -15,15 +15,9 @@ import java.util.Map;
  */
 public abstract class ShapeFactory<T extends Shapefile> {
 
-    protected ShapeConfig shapeConfig;
-
     protected ShapeReader<T> shapeReader;
 
     protected ShapeWriter<T> shapeWriter;
-
-    public ShapeFactory(ShapeConfig shapeConfig) {
-        this.shapeConfig = shapeConfig;
-    }
 
     public ShapeFactory(ShapeReader<T> shapeReader) {
         this.shapeReader = shapeReader;
@@ -33,28 +27,9 @@ public abstract class ShapeFactory<T extends Shapefile> {
         this.shapeWriter = shapeWriter;
     }
 
-    public ShapeFactory(ShapeConfig shapeConfig, ShapeReader<T> shapeReader) {
-        this.shapeConfig = shapeConfig;
-        this.shapeReader = shapeReader;
-    }
-
-    public ShapeFactory(ShapeConfig shapeConfig, ShapeWriter<T> shapeWriter) {
-        this.shapeConfig = shapeConfig;
-        this.shapeWriter = shapeWriter;
-    }
-
-    public ShapeFactory(ShapeConfig shapeConfig, ShapeReader<T> shapeReader, ShapeWriter<T> shapeWriter) {
-        this.shapeConfig = shapeConfig;
+    public ShapeFactory(ShapeReader<T> shapeReader, ShapeWriter<T> shapeWriter) {
         this.shapeReader = shapeReader;
         this.shapeWriter = shapeWriter;
-    }
-
-    public ShapeConfig getShapeConfig() {
-        return shapeConfig;
-    }
-
-    public void setShapeConfig(ShapeConfig shapeConfig) {
-        this.shapeConfig = shapeConfig;
     }
 
     public abstract List<T> read(File shapefile) throws RestException;

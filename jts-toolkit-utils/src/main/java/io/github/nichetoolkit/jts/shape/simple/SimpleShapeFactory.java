@@ -1,19 +1,16 @@
 package io.github.nichetoolkit.jts.shape.simple;
 
-import io.github.nichetoolkit.jts.shape.ShapeConfig;
 import io.github.nichetoolkit.jts.shape.ShapeFactory;
 import io.github.nichetoolkit.jts.shape.ShapeReader;
 import io.github.nichetoolkit.jts.shape.ShapeWriter;
 import io.github.nichetoolkit.rest.RestException;
-import io.github.nichetoolkit.rest.util.common.GeneralUtils;
 import org.geotools.geometry.jts.Geometries;
 import org.springframework.beans.factory.InitializingBean;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Collection;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>ShapeReaderFactory</p>
@@ -33,8 +30,8 @@ public class SimpleShapeFactory extends ShapeFactory<SimpleShapefile> implements
         INSTANCE = this;
     }
 
-    public SimpleShapeFactory(ShapeConfig shapeConfig, ShapeReader<SimpleShapefile> shapeReader, ShapeWriter<SimpleShapefile> shapeWriter) {
-        super(shapeConfig, shapeReader, shapeWriter);
+    public SimpleShapeFactory(ShapeReader<SimpleShapefile> shapeReader, ShapeWriter<SimpleShapefile> shapeWriter) {
+        super(shapeReader, shapeWriter);
     }
 
     @Override

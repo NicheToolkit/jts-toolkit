@@ -104,6 +104,7 @@ public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
             typeBuilder.add(Shapefile.THE_GEOM, geometries == Geometries.GEOMETRY ? Geometries.MULTIPOLYGON.getBinding() : geometries.getBinding());
         }
         if (GeneralUtils.isNotEmpty(attributeClassMap)) {
+            this.attributeClassMap = attributeClassMap;
             for (Map.Entry<String, Class> entry : attributeClassMap.entrySet()) {
                 typeBuilder.add(entry.getKey(), entry.getValue());
             }
@@ -116,8 +117,8 @@ public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
     public ShapefileDataStore dataStore(Map<String, Serializable> params, SimpleFeatureTypeBuilder typeBuilder) throws RestException {
         try {
             ShapefileDataStore dataStore = (ShapefileDataStore) new ShapefileDataStoreFactory().createNewDataStore(params);
-            dataStore.setCharset(Charset.forName(JtsConstants.SHAPE_ENCODING));
             dataStore.createSchema(typeBuilder.buildFeatureType());
+            dataStore.setCharset(Charset.forName(JtsConstants.SHAPE_ENCODING));
             this.params = params;
             this.dataStore = dataStore;
             log.debug("shape writer set up data store type builder success! params: {}.", JsonUtils.parseJson(params));
@@ -265,14 +266,11 @@ public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
 
     @Override
     public void write(SimpleFeature feature, SimpleShapefile shapefile) throws RestException {
-        feature.setDefaultGeometry(shapefile.getGeometry());
         feature.setAttribute(Shapefile.THE_GEOM, shapefile.getGeometry());
-        feature.setAttribute("sdomain", "21321564");
-        feature.setAttribute("realtime", "213211256");
-        if (GeneralUtils.isNotEmpty(shapefile.getProperties())) {
+        if (GeneralUtils.isNotEmpty(shapefile.getProperties()) && GeneralUtils.isNotEmpty(this.attributeClassMap)) {
             shapefile.getProperties().entrySet().stream().filter(entry -> {
                 String key = entry.getKey();
-                return GeneralUtils.isNotEmpty(key);
+                return GeneralUtils.isNotEmpty(key) && this.attributeClassMap.containsKey(key);
             }).forEach(entry -> feature.setAttribute(entry.getKey(), entry.getValue()));
         }
     }

@@ -14,8 +14,6 @@ public interface ShapeService {
 
     void upload(MultipartFile file) throws RestException;
 
-    void upload(MultipartFile[] files) throws RestException;
-
     void download(String uuid, String filename) throws RestException;
 
     boolean download(String uuid) throws RestException;

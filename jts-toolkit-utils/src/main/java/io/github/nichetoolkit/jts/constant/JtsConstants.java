@@ -15,6 +15,8 @@ public class JtsConstants {
     public static final String SHAPE_ENCODING = "UTF-8";
     public static final String PARAM_URL = "url";
 
+    public static final String NAME_PREFIX = "_";
+
     public static final String ZIP_EXT = ".zip";
     public static final String SHP_EXT = ".shp";
     public static final String DBF_EXT = ".dbf";

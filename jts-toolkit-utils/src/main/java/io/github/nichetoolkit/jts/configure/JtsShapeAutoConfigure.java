@@ -1,10 +1,8 @@
 package io.github.nichetoolkit.jts.configure;
 
-import io.github.nichetoolkit.jts.shape.ShapeReader;
-import io.github.nichetoolkit.jts.shape.ShapeWriter;
-import io.github.nichetoolkit.jts.shape.simple.SimpleShapeFactory;
 import io.github.nichetoolkit.jts.shape.ShapeFactory;
 import io.github.nichetoolkit.jts.shape.ShapefileUtils;
+import io.github.nichetoolkit.jts.shape.simple.SimpleShapeFactory;
 import io.github.nichetoolkit.jts.shape.simple.SimpleShapeReader;
 import io.github.nichetoolkit.jts.shape.simple.SimpleShapeWriter;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +29,7 @@ public class JtsShapeAutoConfigure {
     @Bean
     @ConditionalOnMissingBean(ShapeFactory.class)
     public ShapeFactory shapeFactory(JtsShapeProperties shapeProperties) {
-        SimpleShapeFactory shapeFactory = new SimpleShapeFactory(shapeProperties.toConfig(),new SimpleShapeReader(),new SimpleShapeWriter());
+        SimpleShapeFactory shapeFactory = new SimpleShapeFactory(new SimpleShapeReader(),new SimpleShapeWriter());
         ShapefileUtils.initShapeFactory(shapeFactory,shapeProperties);
         return shapeFactory;
     }

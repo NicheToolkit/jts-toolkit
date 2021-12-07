@@ -31,21 +31,27 @@ public class ShapeController {
     @Autowired
     private ShapeService shapeService;
 
+    @PostMapping("/upload")
+    public ResponseEntity upload(@RequestPart(value = "file") MultipartFile file) throws Exception {
+        shapeService.upload(file);
+        return RestResult.ok("成功");
+    }
+
     @GetMapping("/download/path")
-    public ResponseEntity downloadGetShape(@RequestParam(value = "filename") String filename) throws Exception {
+    public ResponseEntity downloadPath(@RequestParam(value = "filename") String filename) throws Exception {
         String uuid = RandomUtils.uuid();
         shapeService.download(uuid,filename);
         return RestResult.ok("成功",uuid);
     }
 
     @GetMapping("/download/load")
-    public ResponseEntity loadShape(@RequestParam("uuid") String uuid) throws Exception {
+    public ResponseEntity downloadLoad(@RequestParam("uuid") String uuid) throws Exception {
         boolean isOver = shapeService.download(uuid);
         return RestResult.ok("成功",isOver);
     }
 
     @GetMapping("/download/file")
-    public void downloadShape(@RequestParam("uuid") String uuid, HttpServletResponse response) throws Exception {
+    public void downloadFile(@RequestParam("uuid") String uuid, HttpServletResponse response) throws Exception {
         shapeService.download(uuid, response);
     }
 

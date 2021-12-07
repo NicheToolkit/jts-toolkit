@@ -2,6 +2,8 @@ package io.github.nichetoolkit.jts.shape;
 
 import io.github.nichetoolkit.jts.configure.JtsShapeProperties;
 import io.github.nichetoolkit.jts.constant.JtsConstants;
+import io.github.nichetoolkit.jts.shape.simple.SimpleShapeFactory;
+import io.github.nichetoolkit.jts.shape.simple.SimpleShapefile;
 import io.github.nichetoolkit.rest.RestErrorStatus;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.error.natives.FileErrorException;
@@ -10,11 +12,23 @@ import io.github.nichetoolkit.rest.error.often.StreamReadException;
 import io.github.nichetoolkit.rest.error.often.StreamWriteException;
 import io.github.nichetoolkit.rest.helper.CloseableHelper;
 import io.github.nichetoolkit.rest.helper.StreamHelper;
+import io.github.nichetoolkit.rest.util.common.CollectUtils;
 import io.github.nichetoolkit.rest.util.common.FileUtils;
 import io.github.nichetoolkit.rest.util.common.GeneralUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.geotools.data.FeatureWriter;
+import org.geotools.data.Transaction;
+import org.geotools.data.shapefile.ShapefileDataStore;
+import org.geotools.data.shapefile.ShapefileDataStoreFactory;
+import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
 import org.geotools.geometry.jts.Geometries;
+import org.geotools.referencing.crs.DefaultGeographicCRS;
+import org.opengis.feature.simple.SimpleFeature;
+import org.opengis.feature.simple.SimpleFeatureType;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
+import sun.java2d.pipe.SpanShapeRenderer;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -30,38 +44,64 @@ import java.util.zip.ZipOutputStream;
  * @version v1.0.0
  */
 @Slf4j
-public class ShapefileUtils {
-    private static ShapeFactory SHAPE_FACTORY = null;
-    private static JtsShapeProperties PROPERTIES = null;
+public class ShapefileUtils implements InitializingBean {
+    @Autowired
+    private ShapeFactory<SimpleShapefile> shapeFactory;
+    @Autowired
+    private JtsShapeProperties properties;
 
-    public static void initShapeFactory(ShapeFactory shapeFactory,JtsShapeProperties properties) {
-        SHAPE_FACTORY = shapeFactory;
-        PROPERTIES = properties;
+    private static ShapefileUtils INSTANCE = null;
+
+    public static ShapefileUtils getInstance() {
+        return INSTANCE;
     }
 
-    public static File shapeFile(MultipartFile shape) throws RestException {
-        if (GeneralUtils.isEmpty(SHAPE_FACTORY)) {
-            log.error("the shape factory need to initialize!");
-            throw new FieldNullException("shape space","please initialize the shape file factory!");
-        }
-        File shapeZipFile = cacheShapeFile(shape, SHAPE_FACTORY.getShapeConfig().getCacheSpace());
-        return unzipShapeFile(shapeZipFile,SHAPE_FACTORY.getShapeConfig().getZipSpace());
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        INSTANCE = this;
     }
 
-    public static File cacheShapeFile(MultipartFile shape) throws RestException {
-        if (GeneralUtils.isEmpty(SHAPE_FACTORY)) {
-            log.error("the shape factory need to initialize!");
-            throw new FieldNullException("shape space","please initialize the shape file factory!");
-        }
-        return cacheShapeFile(shape,SHAPE_FACTORY.getShapeConfig().getCacheSpace());
+    public static List<SimpleShapefile> readShapeFile(String uuid, MultipartFile file) throws RestException {
+        File shapeFile = ShapefileUtils.shapeFile(uuid,file);
+        return INSTANCE.shapeFactory.read(shapeFile);
     }
 
-    public static File unzipShapeFile(File shapeZipFile) throws RestException {
-        if (GeneralUtils.isEmpty(SHAPE_FACTORY)) {
-            log.error("the shape factory need to initialize!");
-            throw new FieldNullException("shape space","please initialize the shape file factory!");
+    public static File writeShapeFile(String uuid, String filename, Map<Geometries, List<SimpleShapefile>> geometriesListMap) throws RestException {
+       return writeShapeFile(uuid,filename,null, geometriesListMap);
+    }
+
+
+
+    public static File writeShapeFile(String uuid, String filename, Map<String, Class> attributeClassMap, Map<Geometries, List<SimpleShapefile>> geometriesListMap) throws RestException {
+        String shapePath = INSTANCE.properties.getSpace().getShapePath(uuid);
+        String zipPath = INSTANCE.properties.getSpace().getZipPath(uuid);
+        Map<String, List<File>> zipFileMap = new HashMap<>();
+        for (Map.Entry<Geometries, List<SimpleShapefile>> innerEntry : geometriesListMap.entrySet()) {
+            Geometries geometries = innerEntry.getKey();
+            List<SimpleShapefile> shapefiles = innerEntry.getValue();
+            String shapeFilename = filename.concat(JtsConstants.NAME_PREFIX).concat(geometries.getSimpleName().toLowerCase());
+            String templatePath = shapePath.concat(File.separator).concat(shapeFilename).concat(JtsConstants.SHP_EXT);
+            File templateFile = FileUtils.createFile(templatePath);
+            File shapeFile;
+            if (GeneralUtils.isNotEmpty(attributeClassMap)) {
+                shapeFile = INSTANCE.shapeFactory.write(templateFile, geometries, attributeClassMap, shapefiles);
+            } else {
+                shapeFile = INSTANCE.shapeFactory.write(templateFile, geometries, shapefiles);
+            }
+            File zipShapeFile = ShapefileUtils.zipShapeFile(uuid, shapeFile);
+            CollectUtils.collect(filename, zipShapeFile, zipFileMap);
         }
-        return unzipShapeFile(shapeZipFile,SHAPE_FACTORY.getShapeConfig().getZipSpace());
+        return ShapefileUtils.zipFiles(zipPath, zipFileMap);
+    }
+
+    public static void clear(String uuid) throws RestException {
+        String cachePath = INSTANCE.properties.getSpace().getCachePath(uuid);
+        FileUtils.clear(cachePath);
+    }
+
+    public static File shapeFile(String uuid, MultipartFile shape) throws RestException {
+        File shapeZipFile = cacheShapeFile(shape, INSTANCE.properties.getSpace().getCachePath(uuid));
+        return unzipShapeFile(shapeZipFile,INSTANCE.properties.getSpace().getZipPath(uuid));
     }
 
     public static File cacheShapeFile(MultipartFile shape, String cachePath) throws RestException {
@@ -73,7 +113,7 @@ public class ShapefileUtils {
     }
 
     public static File zipShapeFile(String uuid,File shapeFile) throws RestException {
-        String zipPath = PROPERTIES.getSpace().getZipPath(uuid);
+        String zipPath = INSTANCE.properties.getSpace().getZipPath(uuid);
         String parentPath = shapeFile.getParentFile().getPath();
         String shapeName = shapeFile.getName().substring(0, shapeFile.getName().lastIndexOf("."));
         List<File> shapeFiles = Arrays.asList(
