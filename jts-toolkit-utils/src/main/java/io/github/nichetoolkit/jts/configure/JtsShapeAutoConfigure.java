@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Slf4j
 @Configuration
-@ComponentScan(basePackages = {"io.github.nichetoolkit.jts.shape"})
+@ComponentScan(basePackages = {"io.github.nichetoolkit.jts"})
 @ConditionalOnProperty(value = "nichetoolkit.jts.shape.enabled", havingValue = "true")
 public class JtsShapeAutoConfigure {
     public JtsShapeAutoConfigure() {
@@ -28,8 +28,10 @@ public class JtsShapeAutoConfigure {
 
     @Bean
     @ConditionalOnMissingBean(ShapeFactory.class)
-    public ShapeFactory shapeFactory() {
-        return new SimpleShapeFactory(new SimpleShapeReader(),new SimpleShapeWriter());
+    public ShapeFactory shapeFactory(JtsShapeProperties properties) {
+        SimpleShapeFactory shapeFactory = new SimpleShapeFactory(new SimpleShapeReader(), new SimpleShapeWriter());
+        ShapefileUtils.initShapefile(shapeFactory,properties);
+        return shapeFactory;
     }
 
 

@@ -15,9 +15,12 @@ import io.github.nichetoolkit.rest.util.common.CollectUtils;
 import io.github.nichetoolkit.rest.util.common.FileUtils;
 import io.github.nichetoolkit.rest.util.common.GeneralUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FilenameUtils;
 import org.geotools.geometry.jts.Geometries;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
@@ -33,37 +36,35 @@ import java.util.zip.ZipOutputStream;
  * @version v1.0.0
  */
 @Slf4j
-public class ShapefileUtils implements InitializingBean {
-    @Autowired
-    private ShapeFactory<SimpleShapefile> shapeFactory;
-    @Autowired
-    private JtsShapeProperties properties;
+public class ShapefileUtils {
+    private static ShapeFactory<SimpleShapefile> SHAPE_FACTORY;
+    private static JtsShapeProperties PROPERTIES;
 
-    private static ShapefileUtils INSTANCE = null;
-
-    public static ShapefileUtils getInstance() {
-        return INSTANCE;
-    }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        INSTANCE = this;
+    public static void initShapefile(ShapeFactory<SimpleShapefile> shapeFactory,JtsShapeProperties properties) {
+        SHAPE_FACTORY = shapeFactory;
+        PROPERTIES = properties;
     }
 
     public static List<SimpleShapefile> readShapeFile(String uuid, MultipartFile file) throws RestException {
+        if (GeneralUtils.isEmpty(SHAPE_FACTORY)) {
+            log.error("the shape factory  need to initialize!");
+            throw new FieldNullException("shape space","please initialize the shape file factory !");
+        }
         File shapeFile = ShapefileUtils.shapeFile(uuid,file);
-        return INSTANCE.shapeFactory.read(shapeFile);
+        return SHAPE_FACTORY.read(shapeFile);
     }
 
     public static File writeShapeFile(String uuid, String filename, Map<Geometries, List<SimpleShapefile>> geometriesListMap) throws RestException {
        return writeShapeFile(uuid,filename,null, geometriesListMap);
     }
 
-
-
     public static File writeShapeFile(String uuid, String filename, Map<String, Class> attributeClassMap, Map<Geometries, List<SimpleShapefile>> geometriesListMap) throws RestException {
-        String shapePath = INSTANCE.properties.getSpace().getShapePath(uuid);
-        String zipPath = INSTANCE.properties.getSpace().getZipPath(uuid);
+        if (GeneralUtils.isEmpty(SHAPE_FACTORY) || GeneralUtils.isEmpty(PROPERTIES)) {
+            log.error("the shape factory or shape properties need to initialize!");
+            throw new FieldNullException("shape space","please initialize the shape file factory and shape properties !");
+        }
+        String shapePath = PROPERTIES.getSpace().getShapePath(uuid);
+        String zipPath = PROPERTIES.getSpace().getZipPath(uuid);
         Map<String, List<File>> zipFileMap = new HashMap<>();
         for (Map.Entry<Geometries, List<SimpleShapefile>> innerEntry : geometriesListMap.entrySet()) {
             Geometries geometries = innerEntry.getKey();
@@ -73,9 +74,9 @@ public class ShapefileUtils implements InitializingBean {
             File templateFile = FileUtils.createFile(templatePath);
             File shapeFile;
             if (GeneralUtils.isNotEmpty(attributeClassMap)) {
-                shapeFile = INSTANCE.shapeFactory.write(templateFile, geometries, attributeClassMap, shapefiles);
+                shapeFile = SHAPE_FACTORY.write(templateFile, geometries, attributeClassMap, shapefiles);
             } else {
-                shapeFile = INSTANCE.shapeFactory.write(templateFile, geometries, shapefiles);
+                shapeFile = SHAPE_FACTORY.write(templateFile, geometries, shapefiles);
             }
             File zipShapeFile = ShapefileUtils.zipShapeFile(uuid, shapeFile);
             CollectUtils.collect(filename, zipShapeFile, zipFileMap);
@@ -84,13 +85,21 @@ public class ShapefileUtils implements InitializingBean {
     }
 
     public static void clear(String uuid) throws RestException {
-        String cachePath = INSTANCE.properties.getSpace().getCachePath(uuid);
+        if (GeneralUtils.isEmpty(PROPERTIES)) {
+            log.error("the shape properties need to initialize!");
+            throw new FieldNullException("shape space","please initialize the shape properties !");
+        }
+        String cachePath = PROPERTIES.getSpace().getCachePath(uuid);
         FileUtils.clear(cachePath);
     }
 
     public static File shapeFile(String uuid, MultipartFile shape) throws RestException {
-        File shapeZipFile = cacheShapeFile(shape, INSTANCE.properties.getSpace().getCachePath(uuid));
-        return unzipShapeFile(shapeZipFile,INSTANCE.properties.getSpace().getZipPath(uuid));
+        if (GeneralUtils.isEmpty(PROPERTIES)) {
+            log.error("the shape properties need to initialize!");
+            throw new FieldNullException("shape space","please initialize the shape properties !");
+        }
+        File shapeZipFile = cacheShapeFile(shape, PROPERTIES.getSpace().getCachePath(uuid));
+        return unzipShapeFile(shapeZipFile,PROPERTIES.getSpace().getZipPath(uuid));
     }
 
     public static File cacheShapeFile(MultipartFile shape, String cachePath) throws RestException {
@@ -101,10 +110,15 @@ public class ShapefileUtils implements InitializingBean {
         return FileUtils.cacheFile(cachePath, shape);
     }
 
-    public static File zipShapeFile(String uuid,File shapeFile) throws RestException {
-        String zipPath = INSTANCE.properties.getSpace().getZipPath(uuid);
-        String parentPath = shapeFile.getParentFile().getPath();
-        String shapeName = shapeFile.getName().substring(0, shapeFile.getName().lastIndexOf("."));
+    public static File zipShapeFile(String uuid, File shapeFile) throws RestException {
+        if (GeneralUtils.isEmpty(PROPERTIES)) {
+            log.error("the shape properties need to initialize!");
+            throw new FieldNullException("shape space","please initialize the shape properties !");
+        }
+        String zipPath = PROPERTIES.getSpace().getZipPath(uuid);
+        String shapeFilePath = shapeFile.getPath();
+        String shapeName = FilenameUtils.getBaseName(shapeFilePath);
+        String parentPath = FilenameUtils.getFullPath(shapeFilePath);
         List<File> shapeFiles = Arrays.asList(
                 new File(parentPath + File.separator + shapeName + JtsConstants.DBF_EXT),
                 new File(parentPath + File.separator + shapeName + JtsConstants.PRJ_EXT),

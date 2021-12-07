@@ -1,7 +1,6 @@
 package io.github.nichetoolkit.jts.configure;
 
 import io.github.nichetoolkit.jts.constant.JtsConstants;
-import io.github.nichetoolkit.jts.shape.ShapeConfig;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.stereotype.Component;
@@ -117,9 +116,6 @@ public class JtsShapeProperties {
 
     }
 
-    public ShapeConfig toConfig() {
-        return new ShapeConfig(this.getSpace().getCachePath(),this.getSpace().getZipPath());
-    }
 
     public static String toRootPath() {
         return File.separator.concat(JtsConstants.DATA_PREFIX).concat(File.separator).concat(ROOT_PREFIX);
@@ -137,20 +133,6 @@ public class JtsShapeProperties {
         return File.separator.concat(JtsConstants.ZIP_SUFFIX).concat(File.separator);
     }
 
-    public static class Jackson {
-        private Boolean enabled = false;
-
-        public Jackson() {
-        }
-
-        public Boolean getEnabled() {
-            return enabled;
-        }
-
-        public void setEnabled(Boolean enabled) {
-            this.enabled = enabled;
-        }
-    }
 
     public Boolean getEnabled() {
         return enabled;
