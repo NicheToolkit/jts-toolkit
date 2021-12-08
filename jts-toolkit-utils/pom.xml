@@ -11,6 +11,7 @@
     <artifactId>jts-toolkit-utils</artifactId>
     <version>1.0.1</version>
     <name>jts-toolkit-utils</name>
+    <packaging>jar</packaging>
     <description>jts toolkit utils project for Spring Boot</description>
     <url>https://github.com/NicheToolkit/jts-toolkit/jts-toolkit-utils</url>
 
