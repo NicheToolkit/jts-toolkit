@@ -12,6 +12,7 @@
     <version>1.0.1</version>
     <name>jts-toolkit-utils</name>
     <description>jts toolkit utils project for Spring Boot</description>
+    <url>https://github.com/NicheToolkit/jts-toolkit/jts-toolkit-utils</url>
 
     <properties>
         <java.version>1.8</java.version>
