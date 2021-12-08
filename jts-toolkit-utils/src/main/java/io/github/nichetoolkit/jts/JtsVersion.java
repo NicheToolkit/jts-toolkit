@@ -16,6 +16,7 @@ public class JtsVersion implements Versioned {
     public JtsVersion() {
     }
 
+    @Override
     public Version version() {
         return VERSION;
     }
