@@ -8,6 +8,7 @@ import io.github.nichetoolkit.rest.error.natives.ResourceErrorException;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("unused")
 public class FeaturesUninitializedErrorException extends ResourceErrorException {
     public FeaturesUninitializedErrorException() {
         super(JtsErrorStatus.SHAPE_FEATURES_UNINITIALIZED_ERROR);
@@ -17,10 +18,12 @@ public class FeaturesUninitializedErrorException extends ResourceErrorException 
         super(JtsErrorStatus.SHAPE_FEATURES_UNINITIALIZED_ERROR,message);
     }
 
+    @Override
     public FeaturesUninitializedErrorException get() {
         return new FeaturesUninitializedErrorException();
     }
 
+    @Override
     public String name() {
         return "Shape features uninitialized error exception";
     }

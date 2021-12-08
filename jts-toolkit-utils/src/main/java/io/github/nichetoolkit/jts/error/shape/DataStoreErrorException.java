@@ -9,6 +9,7 @@ import io.github.nichetoolkit.rest.error.natives.ResourceErrorException;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("unused")
 public class DataStoreErrorException extends ResourceErrorException {
     public DataStoreErrorException() {
         super(JtsErrorStatus.SHAPE_DATA_STORE_ERROR);
@@ -26,10 +27,12 @@ public class DataStoreErrorException extends ResourceErrorException {
         super(status,message);
     }
 
+    @Override
     public DataStoreErrorException get() {
         return new DataStoreErrorException();
     }
 
+    @Override
     public String name() {
         return "Shape data store error exception";
     }

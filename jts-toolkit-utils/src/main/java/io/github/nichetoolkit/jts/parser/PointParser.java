@@ -2,8 +2,6 @@ package io.github.nichetoolkit.jts.parser;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import io.github.nichetoolkit.jts.JtsParser;
-import io.github.nichetoolkit.jts.error.JtsParseException;
-import io.github.nichetoolkit.jts.error.JtsParserErrorException;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
@@ -22,7 +20,8 @@ public class PointParser extends JtsParser<Point> {
     }
 
     public static Coordinate parseCoordinate(JsonNode array) {
-        assert array.isArray() && (array.size() == 2 || array.size() == 3) : "expecting coordinate array with single point [ x, y, |z| ]";
+        if (!array.isArray() || (array.size() != 2 && array.size() != 3))
+            throw new AssertionError("expecting coordinate array with single point [ x, y, |z| ]");
         if (array.size() == 2) {
             return new Coordinate(array.get(0).asDouble(), array.get(1).asDouble());
         }
@@ -43,7 +42,7 @@ public class PointParser extends JtsParser<Point> {
     }
 
     @Override
-    public Point parse(JsonNode node) throws JtsParserErrorException {
+    public Point parse(JsonNode node) {
         return parsePoint(node);
     }
 }

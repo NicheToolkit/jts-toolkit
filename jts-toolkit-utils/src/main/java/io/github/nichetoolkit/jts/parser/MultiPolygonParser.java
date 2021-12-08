@@ -2,8 +2,6 @@ package io.github.nichetoolkit.jts.parser;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import io.github.nichetoolkit.jts.JtsParser;
-import io.github.nichetoolkit.jts.error.JtsParseException;
-import io.github.nichetoolkit.jts.error.JtsParserErrorException;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.MultiPolygon;
 import org.locationtech.jts.geom.Polygon;
@@ -17,7 +15,7 @@ import static io.github.nichetoolkit.jts.JtsGeojson.COORDINATES;
  */
 public class MultiPolygonParser extends JtsParser<MultiPolygon> {
 
-    private PolygonParser polygonParser;
+    private final PolygonParser polygonParser;
 
     public MultiPolygonParser(GeometryFactory geometryFactory) {
         super(geometryFactory);
@@ -38,7 +36,7 @@ public class MultiPolygonParser extends JtsParser<MultiPolygon> {
     }
 
     @Override
-    public MultiPolygon parse(JsonNode node) throws JtsParserErrorException {
+    public MultiPolygon parse(JsonNode node) {
         return parseMultiPolygon(node);
     }
 }

@@ -11,7 +11,7 @@ import org.locationtech.jts.geom.GeometryFactory;
  * @version v1.0.0
  */
 public abstract class JtsParser<S extends Geometry> {
-    protected GeometryFactory geometryFactory;
+    protected final GeometryFactory geometryFactory;
 
     public JtsParser(GeometryFactory geometryFactory) {
         super();

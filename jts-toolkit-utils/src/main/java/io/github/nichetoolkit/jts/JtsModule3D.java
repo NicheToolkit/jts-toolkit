@@ -6,6 +6,7 @@ import io.github.nichetoolkit.jts.serialization.GeometrySerializer;
 import io.github.nichetoolkit.jts.serialization.JtsDeserializer;
 import org.locationtech.jts.geom.*;
 
+@SuppressWarnings("unused")
 public class JtsModule3D extends SimpleModule {
 
     public JtsModule3D() {

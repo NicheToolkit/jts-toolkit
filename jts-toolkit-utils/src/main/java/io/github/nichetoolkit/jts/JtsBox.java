@@ -7,6 +7,7 @@ import io.github.nichetoolkit.jts.error.JtsBoxInvalidException;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("unused")
 public class JtsBox {
     public static final Double MIN_LATITUDE = -90.0;
     public static final Double MIN_INVALID_LATITUDE = -91.0;
@@ -102,10 +103,7 @@ public class JtsBox {
         if (invalidY(this.maxY)) {
             return true;
         }
-        if (invalidY(this.minY)) {
-            return true;
-        }
-        return false;
+        return invalidY(this.minY);
     }
 
     public void verify() throws JtsBoxInvalidException {
@@ -127,20 +125,15 @@ public class JtsBox {
         box.verify();
     }
 
-    public static Boolean invalidX(Double valueX) {
-        if (valueX == null || valueX > MAX_INVALID_LONGITUDE || valueX < MIN_INVALID_LONGITUDE ) {
-            return true;
-        }
-        return false;
+    public static boolean invalidX(Double valueX) {
+        return valueX == null || valueX > MAX_INVALID_LONGITUDE || valueX < MIN_INVALID_LONGITUDE;
     }
 
-    public static Boolean invalidY(Double valueY) {
-        if (valueY == null || valueY > MAX_INVALID_LATITUDE || valueY < MIN_INVALID_LATITUDE) {
-            return true;
-        }
-        return false;
+    public static boolean invalidY(Double valueY) {
+        return valueY == null || valueY > MAX_INVALID_LATITUDE || valueY < MIN_INVALID_LATITUDE;
     }
 
+    @SuppressWarnings("unused")
     public static class Builder {
         protected Double minX = 0.0;
         protected Double minY = 0.0;

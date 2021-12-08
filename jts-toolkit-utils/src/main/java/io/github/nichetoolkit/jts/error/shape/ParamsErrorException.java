@@ -9,6 +9,7 @@ import io.github.nichetoolkit.rest.error.natives.ResourceErrorException;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("unused")
 public class ParamsErrorException extends ResourceErrorException {
     public ParamsErrorException() {
         super(JtsErrorStatus.SHAPE_PARAMS_ERROR);
@@ -26,10 +27,12 @@ public class ParamsErrorException extends ResourceErrorException {
         super(status,message);
     }
 
+    @Override
     public ParamsErrorException get() {
         return new ParamsErrorException();
     }
 
+    @Override
     public String name() {
         return "Shape params error exception";
     }

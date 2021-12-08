@@ -2,8 +2,6 @@ package io.github.nichetoolkit.jts.parser;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import io.github.nichetoolkit.jts.JtsParser;
-import io.github.nichetoolkit.jts.error.JtsParseException;
-import io.github.nichetoolkit.jts.error.JtsParserErrorException;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.MultiPoint;
@@ -27,7 +25,7 @@ public class MultiPointParser extends JtsParser<MultiPoint> {
     }
 
     @Override
-    public MultiPoint parse(JsonNode node) throws JtsParserErrorException {
+    public MultiPoint parse(JsonNode node) {
         return parseMultiPoint(node);
     }
 }

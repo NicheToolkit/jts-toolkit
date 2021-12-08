@@ -2,7 +2,6 @@ package io.github.nichetoolkit.jts.parser;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import io.github.nichetoolkit.jts.JtsParser;
-import io.github.nichetoolkit.jts.error.JtsParseException;
 import io.github.nichetoolkit.jts.error.JtsParserErrorException;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
@@ -20,7 +19,7 @@ import static io.github.nichetoolkit.jts.JtsGeojson.*;
  */
 public class GeometryParser extends JtsParser<Geometry> {
 
-    private Map<String, JtsParser> parsers;
+    private final Map<String, JtsParser> parsers;
 
     public GeometryParser(GeometryFactory geometryFactory) {
         super(geometryFactory);

@@ -15,10 +15,12 @@ public class JtsBoxInvalidException extends JtsParseException {
         super(JtsErrorStatus.JTS_BOX_INVALID_ERROR, message);
     }
 
+    @Override
     public JtsBoxInvalidException get() {
         return new JtsBoxInvalidException();
     }
 
+    @Override
     public String name() {
         return "box invalid exception";
     }

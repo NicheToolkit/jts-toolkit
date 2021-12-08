@@ -13,6 +13,7 @@ import java.util.Map;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("unused")
 public abstract class ShapeFactory<T extends Shapefile> {
 
     protected ShapeReader<T> shapeReader;

@@ -17,10 +17,12 @@ public class ReaderUninitializedErrorException extends ResourceErrorException {
         super(JtsErrorStatus.SHAPE_READER_UNINITIALIZED_ERROR,message);
     }
 
+    @Override
     public ReaderUninitializedErrorException get() {
         return new ReaderUninitializedErrorException();
     }
 
+    @Override
     public String name() {
         return "Shape params uninitialized error exception";
     }

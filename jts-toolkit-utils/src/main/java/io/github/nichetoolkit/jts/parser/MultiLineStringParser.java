@@ -2,8 +2,6 @@ package io.github.nichetoolkit.jts.parser;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import io.github.nichetoolkit.jts.JtsParser;
-import io.github.nichetoolkit.jts.error.JtsParseException;
-import io.github.nichetoolkit.jts.error.JtsParserErrorException;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.LineString;
@@ -36,7 +34,7 @@ public class MultiLineStringParser extends JtsParser<MultiLineString> {
     }
 
     @Override
-    public MultiLineString parse(JsonNode node) throws JtsParserErrorException {
+    public MultiLineString parse(JsonNode node) {
         return parseMultiLineString(node);
     }
 }

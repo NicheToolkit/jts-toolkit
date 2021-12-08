@@ -8,7 +8,6 @@ import org.geotools.geometry.jts.Geometries;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 
-import java.io.Closeable;
 import java.io.File;
 import java.io.Serializable;
 import java.util.Collection;
@@ -20,6 +19,7 @@ import java.util.Map;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings({"unused", "RedundantThrows"})
 public abstract class ShapeWriter<T extends Shapefile> {
 
     public abstract Map<String, Serializable> params(File shapefile) throws RestException;

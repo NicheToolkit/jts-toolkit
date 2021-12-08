@@ -2,8 +2,6 @@ package io.github.nichetoolkit.jts.parser;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import io.github.nichetoolkit.jts.JtsParser;
-import io.github.nichetoolkit.jts.error.JtsParseException;
-import io.github.nichetoolkit.jts.error.JtsParserErrorException;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.LinearRing;
@@ -41,7 +39,7 @@ public class PolygonParser extends JtsParser<Polygon> {
 
 
     @Override
-    public Polygon parse(JsonNode jsonNode) throws JtsParserErrorException {
+    public Polygon parse(JsonNode jsonNode) {
         JsonNode arrayOfRings = jsonNode.get(COORDINATES);
         return parsePolygon(arrayOfRings);
     }

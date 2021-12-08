@@ -6,7 +6,6 @@ import org.geotools.feature.FeatureIterator;
 import org.opengis.feature.Property;
 import org.opengis.feature.simple.SimpleFeature;
 
-import java.io.Closeable;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +15,7 @@ import java.util.Map;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings({"unused", "RedundantThrows"})
 public abstract class ShapeReader<T extends Shapefile> {
 
     public abstract Map<String, Object> params(File shapeFile) throws RestException;

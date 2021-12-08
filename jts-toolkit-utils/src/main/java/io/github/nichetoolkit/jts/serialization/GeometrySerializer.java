@@ -42,7 +42,7 @@ public class GeometrySerializer extends JsonSerializer<Geometry> {
             writeGeometryCollection(jsonGenerator, (GeometryCollection) value);
         } else {
             throw new JtsParserErrorException("Geometry type "
-                    + value.getClass().getName() + " cannot be serialized as Geojson." +
+                    + value.getClass().getName() + " cannot be serialized as geojson." +
                     "Supported types are: " + Arrays.asList(
                     Point.class.getName(),
                     LineString.class.getName(),

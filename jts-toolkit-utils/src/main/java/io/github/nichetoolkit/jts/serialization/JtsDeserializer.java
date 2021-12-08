@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 public class JtsDeserializer<S extends Geometry> extends JsonDeserializer<S> {
 
-    private JtsParser<S> jtsParser;
+    private final JtsParser<S> jtsParser;
 
     public JtsDeserializer(JtsParser<S> jtsParser) {
         this.jtsParser = jtsParser;

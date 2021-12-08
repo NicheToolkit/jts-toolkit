@@ -35,6 +35,7 @@ import java.util.Map;
  * @version v1.0.0
  */
 @Slf4j
+@SuppressWarnings("unused")
 public class SimpleShapeReader extends ShapeReader<SimpleShapefile> {
     protected Map<String, Object> params = new HashMap<>();
     protected String typeName;
@@ -166,7 +167,7 @@ public class SimpleShapeReader extends ShapeReader<SimpleShapefile> {
     }
 
     @Override
-    public List<SimpleShapefile> read(FeatureIterator<SimpleFeature> features) throws RestException {
+    public List<SimpleShapefile> read(FeatureIterator<SimpleFeature> features) {
         List<SimpleShapefile> shapefiles = new ArrayList<>();
         while (features.hasNext()) {
             SimpleFeature feature = features.next();
@@ -180,7 +181,7 @@ public class SimpleShapeReader extends ShapeReader<SimpleShapefile> {
     }
 
     @Override
-    public SimpleShapefile feature(SimpleFeature feature) throws RestException {
+    public SimpleShapefile feature(SimpleFeature feature) {
         Object defaultGeometry = feature.getDefaultGeometry();
         String featureID = feature.getID();
         SimpleShapefile simpleShapefile;
@@ -205,7 +206,7 @@ public class SimpleShapeReader extends ShapeReader<SimpleShapefile> {
     }
 
     @Override
-    public void property(SimpleShapefile shapefile, Property property) throws RestException {
+    public void property(SimpleShapefile shapefile, Property property) {
         String name = property.getName().toString();
         Object value = property.getValue();
         if (Shapefile.THE_GEOM.equals(name)) {

@@ -17,9 +17,10 @@ import static io.github.nichetoolkit.jts.JtsGeojson.GEOMETRY_FACTORY;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("unused")
 public class GeometryDeserializer extends JsonDeserializer<Geometry> {
 
-    private JtsParser jtsParser;
+    private final JtsParser jtsParser;
 
     public GeometryDeserializer() {
         this.jtsParser = new GeometryParser(GEOMETRY_FACTORY);

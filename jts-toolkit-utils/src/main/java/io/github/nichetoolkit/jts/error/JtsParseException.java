@@ -8,6 +8,7 @@ import io.github.nichetoolkit.rest.error.json.JsonParseErrorException;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("unused")
 public class JtsParseException extends JsonParseErrorException {
 
     public JtsParseException() {
@@ -30,10 +31,12 @@ public class JtsParseException extends JsonParseErrorException {
         super(JtsErrorStatus.JTS_PARSE_ERROR,resource,cause,message);
     }
 
+    @Override
     public JtsParseException get() {
         return new JtsParseException();
     }
 
+    @Override
     public String name() {
         return "jts parse exception";
     }

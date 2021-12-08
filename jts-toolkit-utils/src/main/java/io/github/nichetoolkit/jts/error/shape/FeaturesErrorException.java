@@ -9,6 +9,7 @@ import io.github.nichetoolkit.rest.error.natives.ResourceErrorException;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("unused")
 public class FeaturesErrorException extends ResourceErrorException {
     public FeaturesErrorException() {
         super(JtsErrorStatus.SHAPE_FEATURES_ERROR);
@@ -26,10 +27,12 @@ public class FeaturesErrorException extends ResourceErrorException {
         super(status,message);
     }
 
+    @Override
     public FeaturesErrorException get() {
         return new FeaturesErrorException();
     }
 
+    @Override
     public String name() {
         return "Shape features error exception";
     }

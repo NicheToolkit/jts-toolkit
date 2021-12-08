@@ -33,6 +33,7 @@ import java.util.*;
  * @version v1.0.0
  */
 @Slf4j
+@SuppressWarnings("unused")
 public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
     protected File shapefile;
     protected ShapefileDataStore dataStore;
@@ -59,44 +60,44 @@ public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
     }
 
     @Override
-    public SimpleFeatureTypeBuilder typeBuilder(File shapefile) throws RestException {
+    public SimpleFeatureTypeBuilder typeBuilder(File shapefile) {
         return typeBuilder(shapefile, null, null);
     }
 
     @Override
-    public SimpleFeatureTypeBuilder typeBuilder(String filename) throws RestException {
+    public SimpleFeatureTypeBuilder typeBuilder(String filename) {
         return typeBuilder(filename, null, null);
     }
 
     @Override
-    public SimpleFeatureTypeBuilder typeBuilder(File shapefile, Geometries geometries) throws RestException {
+    public SimpleFeatureTypeBuilder typeBuilder(File shapefile, Geometries geometries) {
         return typeBuilder(shapefile, geometries, null);
     }
 
     @Override
-    public SimpleFeatureTypeBuilder typeBuilder(String filename, Geometries geometries) throws RestException {
+    public SimpleFeatureTypeBuilder typeBuilder(String filename, Geometries geometries) {
         return typeBuilder(filename, geometries, null);
     }
 
     @Override
-    public SimpleFeatureTypeBuilder typeBuilder(File shapefile, Map<String, Class> attributeClassMap) throws RestException {
+    public SimpleFeatureTypeBuilder typeBuilder(File shapefile, Map<String, Class> attributeClassMap) {
         return typeBuilder(shapefile, null, attributeClassMap);
     }
 
     @Override
-    public SimpleFeatureTypeBuilder typeBuilder(String filename, Map<String, Class> attributeClassMap) throws RestException {
+    public SimpleFeatureTypeBuilder typeBuilder(String filename, Map<String, Class> attributeClassMap) {
         return typeBuilder(filename, null, attributeClassMap);
     }
 
     @Override
-    public SimpleFeatureTypeBuilder typeBuilder(File shapefile, Geometries geometries, Map<String, Class> attributeClassMap) throws RestException {
+    public SimpleFeatureTypeBuilder typeBuilder(File shapefile, Geometries geometries, Map<String, Class> attributeClassMap) {
         String fileName = shapefile.getName();
         String shapeFilename = FilenameUtils.getName(fileName);
         return typeBuilder(shapeFilename, geometries, attributeClassMap);
     }
 
     @Override
-    public SimpleFeatureTypeBuilder typeBuilder(String filename, Geometries geometries, Map<String, Class> attributeClassMap) throws RestException {
+    public SimpleFeatureTypeBuilder typeBuilder(String filename, Geometries geometries, Map<String, Class> attributeClassMap) {
         SimpleFeatureTypeBuilder typeBuilder = new SimpleFeatureTypeBuilder();
         typeBuilder.setCRS(DefaultGeographicCRS.WGS84);
         typeBuilder.setName(filename);
@@ -265,7 +266,7 @@ public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
     }
 
     @Override
-    public void write(SimpleFeature feature, SimpleShapefile shapefile) throws RestException {
+    public void write(SimpleFeature feature, SimpleShapefile shapefile) {
         feature.setAttribute(Shapefile.THE_GEOM, shapefile.getGeometry());
         if (GeneralUtils.isNotEmpty(shapefile.getProperties()) && GeneralUtils.isNotEmpty(this.attributeClassMap)) {
             shapefile.getProperties().entrySet().stream().filter(entry -> {

@@ -8,19 +8,23 @@ import io.github.nichetoolkit.rest.error.natives.ResourceErrorException;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("unused")
 public class DataStoreUninitializedErrorException extends ResourceErrorException {
     public DataStoreUninitializedErrorException() {
         super(JtsErrorStatus.SHAPE_DATA_STORE_UNINITIALIZED_ERROR);
     }
 
+
     public DataStoreUninitializedErrorException(String message) {
         super(JtsErrorStatus.SHAPE_DATA_STORE_UNINITIALIZED_ERROR,message);
     }
 
+    @Override
     public DataStoreUninitializedErrorException get() {
         return new DataStoreUninitializedErrorException();
     }
 
+    @Override
     public String name() {
         return "Shape data store uninitialized error exception";
     }

@@ -17,9 +17,9 @@ import java.util.Map;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("unused")
 public abstract class Shapefile implements Serializable {
     public static final String THE_GEOM = "the_geom";
-    public static final String GEOM = "geom";
     protected String featureId;
     protected String typeName;
     @JsonDeserialize(using = GeometryDeserializer.class)
@@ -87,10 +87,10 @@ public abstract class Shapefile implements Serializable {
         this.properties = properties;
     }
 
-    public void addProperties(String name, Object propertry) {
+    public void addProperties(String name, Object property) {
         if (GeneralUtils.isEmpty(this.properties)) {
             this.properties = new HashMap<>();
         }
-        this.properties.putIfAbsent(name, propertry);
+        this.properties.putIfAbsent(name, property);
     }
 }

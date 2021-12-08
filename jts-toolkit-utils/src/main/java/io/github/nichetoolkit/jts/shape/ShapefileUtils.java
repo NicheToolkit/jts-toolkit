@@ -17,10 +17,6 @@ import io.github.nichetoolkit.rest.util.common.GeneralUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.geotools.geometry.jts.Geometries;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
@@ -36,6 +32,7 @@ import java.util.zip.ZipOutputStream;
  * @version v1.0.0
  */
 @Slf4j
+@SuppressWarnings("unused")
 public class ShapefileUtils {
     private static ShapeFactory<SimpleShapefile> SHAPE_FACTORY;
     private static JtsShapeProperties PROPERTIES;

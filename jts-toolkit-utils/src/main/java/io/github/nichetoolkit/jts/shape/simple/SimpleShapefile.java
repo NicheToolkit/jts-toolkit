@@ -8,6 +8,7 @@ import org.locationtech.jts.geom.Geometry;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("unused")
 public class SimpleShapefile extends Shapefile {
 
     public SimpleShapefile() {

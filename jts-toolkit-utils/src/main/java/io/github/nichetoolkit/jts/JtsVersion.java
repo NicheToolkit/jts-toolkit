@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.util.VersionUtil;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@SuppressWarnings("unused")
 public class JtsVersion implements Versioned {
     public static final Version VERSION = VersionUtil.parseVersion("1.0.0", "io.github.nichetoolkit.jts", "jts-toolkit");
 
