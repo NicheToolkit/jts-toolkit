@@ -5,11 +5,11 @@
     <parent>
         <groupId>io.github.nichetoolkit</groupId>
         <artifactId>rest-toolkit-parent</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
     </parent>
 
     <artifactId>jts-toolkit-parent</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 
     <modules>
         <module>jts-toolkit-utils</module>
