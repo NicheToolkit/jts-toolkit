@@ -1,6 +1,6 @@
 ## [Jts-Toolkit](https://github.com/NicheToolkit/jts-toolkit) jts开发工具组
 
-[![Maven Release](https://img.shields.io/maven-central/v/io.github.nichetoolkit/jts-toolkit-utils.svg)](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22io.github.nichetoolkit%22%20AND%20a%3A%jts-toolkit-utils%22)
+[![GitHub license](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/NicheToolkit/jts-toolkit/blob/master/LICENSE)[![Maven Release](https://img.shields.io/maven-central/v/io.github.nichetoolkit/jts-toolkit-utils.svg)](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22io.github.nichetoolkit%22%20AND%20a%3A%jts-toolkit-utils%22)
 
 &emsp;&emsp; 依赖[rest-toolkit](https://github.com/NicheToolkit/rest-toolkit)组件下的Gis相关开发工具整理.
 
