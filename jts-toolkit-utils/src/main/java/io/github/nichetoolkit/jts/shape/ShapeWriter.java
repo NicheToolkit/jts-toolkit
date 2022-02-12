@@ -19,7 +19,7 @@ import java.util.Map;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
-@SuppressWarnings({"unused", "RedundantThrows"})
+@SuppressWarnings({"unused"})
 public abstract class ShapeWriter<T extends Shapefile> {
 
     public abstract Map<String, Serializable> params(File shapefile) throws RestException;
