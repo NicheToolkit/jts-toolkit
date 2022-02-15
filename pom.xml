@@ -13,7 +13,7 @@
 
     <modules>
         <module>jts-toolkit-utils</module>
-        <!--<module>jts-toolkit-test-web</module>-->
+        <module>jts-toolkit-test-web</module>
     </modules>
 
     <name>jts-toolkit-parent</name>
