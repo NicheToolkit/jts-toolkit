@@ -2,14 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>io.github.nichetoolkit</groupId>
-        <artifactId>rest-toolkit-parent</artifactId>
-        <version>1.0.2</version>
-    </parent>
-
+    <groupId>io.github.nichetoolkit</groupId>
     <artifactId>jts-toolkit-parent</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3-SNAPSHOT</version>
 
     <modules>
         <module>jts-toolkit-utils</module>
@@ -41,6 +36,13 @@
         <url>git@github.com:NicheToolkit/jts-toolkit.git</url>
     </scm>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.6</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
     <distributionManagement>
         <snapshotRepository>
             <id>sonatype-nexus-snapshot</id>
@@ -62,8 +64,23 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <jdk.version>1.8</jdk.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <spring-boot.version>2.6.0</spring-boot.version>
+        <rest-toolkit.version>1.0.5-SNAPSHOT</rest-toolkit.version>
+        <jts-toolkit.version>1.0.3-SNAPSHOT</jts-toolkit.version>
+
+        <source-plugin.version>2.2.1</source-plugin.version>
+        <javadoc-plugin.version>2.9.1</javadoc-plugin.version>
+        <gpg-plugin.version>1.5</gpg-plugin.version>
+        <nexus-staging-plugin.version>1.6.7</nexus-staging-plugin.version>
+        <compiler-plugin.version>3.3</compiler-plugin.version>
+        <release-plugin.version>2.5.3</release-plugin.version>
+
         <geotools.version>25.0</geotools.version>
     </properties>
 
