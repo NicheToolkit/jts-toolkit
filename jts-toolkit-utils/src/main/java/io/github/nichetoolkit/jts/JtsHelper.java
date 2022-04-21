@@ -2,7 +2,7 @@ package io.github.nichetoolkit.jts;
 
 import io.github.nichetoolkit.jts.error.JtsBoxInvalidException;
 import io.github.nichetoolkit.jts.error.JtsParseException;
-import io.github.nichetoolkit.rest.util.common.GeneralUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 import org.geotools.geojson.geom.GeometryJSON;
 import org.geotools.geometry.jts.Geometries;
 import org.locationtech.jts.geom.Geometry;

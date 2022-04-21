@@ -60,6 +60,12 @@
         </dependency>
 
         <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>io.github.nichetoolkit</groupId>
             <artifactId>rest-toolkit-utils</artifactId>
             <version>${rest-toolkit.version}</version>

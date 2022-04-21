@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.github.nichetoolkit.jts.serialization.GeometryDeserializer;
 import io.github.nichetoolkit.jts.serialization.GeometrySerializer;
-import io.github.nichetoolkit.rest.util.common.GeneralUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 import org.geotools.geometry.jts.Geometries;
 import org.locationtech.jts.geom.Geometry;
 

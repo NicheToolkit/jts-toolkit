@@ -73,7 +73,7 @@
         <spring-boot.version>2.6.0</spring-boot.version>
         <rest-toolkit.version>1.0.5-SNAPSHOT</rest-toolkit.version>
         <jts-toolkit.version>1.0.3-SNAPSHOT</jts-toolkit.version>
-
+        <commons-io.version>2.11.0</commons-io.version>
         <source-plugin.version>2.2.1</source-plugin.version>
         <javadoc-plugin.version>2.9.1</javadoc-plugin.version>
         <gpg-plugin.version>1.5</gpg-plugin.version>
