@@ -3,11 +3,7 @@ package io.github.nichetoolkit.jts.controller;
 import io.github.nichetoolkit.jts.service.ShapeService;
 import io.github.nichetoolkit.rest.RestNote;
 import io.github.nichetoolkit.rest.RestResult;
-import io.github.nichetoolkit.rest.identity.IdentityUtils;
-import io.github.nichetoolkit.rest.identity.worker.IdentityWorker;
-import io.github.nichetoolkit.rest.util.bean.ContextUtils;
-import io.github.nichetoolkit.rest.util.common.JsonUtils;
-import io.github.nichetoolkit.rest.util.often.RandomUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +35,7 @@ public class ShapeController {
 
     @GetMapping("/download/path")
     public ResponseEntity downloadPath(@RequestParam(value = "filename") String filename) throws Exception {
-        String uuid = RandomUtils.uuid();
+        String uuid = GeneralUtils.uuid();
         shapeService.download(uuid,filename);
         return RestResult.ok("成功",uuid);
     }

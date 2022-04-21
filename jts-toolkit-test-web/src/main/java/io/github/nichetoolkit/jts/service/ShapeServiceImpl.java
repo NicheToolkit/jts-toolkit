@@ -1,23 +1,31 @@
 package io.github.nichetoolkit.jts.service;
 
 import io.github.nichetoolkit.jts.JtsGeojson;
+import io.github.nichetoolkit.jts.constant.FileConstants;
 import io.github.nichetoolkit.jts.shape.ShapefileUtils;
 import io.github.nichetoolkit.jts.shape.simple.SimpleShapefile;
 import io.github.nichetoolkit.rest.RestException;
+import io.github.nichetoolkit.rest.error.natives.FileErrorException;
 import io.github.nichetoolkit.rest.error.supply.ResourceNotFoundException;
-import io.github.nichetoolkit.rest.util.common.FileUtils;
-import io.github.nichetoolkit.rest.util.common.GeneralUtils;
-import io.github.nichetoolkit.rest.util.common.JsonUtils;
-import io.github.nichetoolkit.rest.util.often.RandomUtils;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
+import io.github.nichetoolkit.rest.util.JsonUtils;
+import io.github.nichetoolkit.rest.util.StreamUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.geotools.geometry.jts.Geometries;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Point;
+import org.springframework.http.MediaType;
+import org.springframework.http.MediaTypeFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /**
@@ -34,7 +42,7 @@ public class ShapeServiceImpl implements ShapeService {
 
     @Override
     public void upload(MultipartFile file) throws RestException {
-        String uuid = RandomUtils.uuid();
+        String uuid = GeneralUtils.uuid();
         List<SimpleShapefile> shapefiles = ShapefileUtils.readShapeFile(uuid,file);
         log.info("shapefiles: {}", JsonUtils.parseJson(shapefiles));
         ShapefileUtils.clear(uuid);
@@ -69,7 +77,21 @@ public class ShapeServiceImpl implements ShapeService {
     public void download(String uuid, HttpServletResponse response) throws RestException {
         File zipFiles = FILE_CACHE.get(uuid);
         if (GeneralUtils.isNotEmpty(zipFiles) && zipFiles.exists() && zipFiles.isFile()) {
-            FileUtils.writeZip(zipFiles, response);
+            String filename = zipFiles.getName();
+            Optional<MediaType> mediaTypeOptional = MediaTypeFactory.getMediaType(filename);
+             String contentType =  mediaTypeOptional.orElse(MediaType.APPLICATION_OCTET_STREAM).toString();
+            try (FileInputStream inputStream = new FileInputStream(zipFiles);
+                 ServletOutputStream outputStream = response.getOutputStream()) {
+                log.info("file size: {}", zipFiles.length());
+                response.addHeader(FileConstants.CONTENT_DISPOSITION_HEADER, FileConstants.ATTACHMENT_FILENAME_VALUE + URLEncoder.encode(filename, StandardCharsets.UTF_8.name()));
+                response.addHeader(FileConstants.CONTENT_LENGTH_HEADER, "" + zipFiles.length());
+                response.setCharacterEncoding(StandardCharsets.UTF_8.name());
+                response.setContentType(contentType);
+                StreamUtils.write(outputStream, inputStream);
+            } catch (IOException exception) {
+                log.error("the file service download has error: {}", exception.getMessage());
+                throw new FileErrorException();
+            }
             ShapefileUtils.clear(uuid);
         } else {
             throw new ResourceNotFoundException("the zip file of shape no found!");
