@@ -36,14 +36,14 @@ public class ShapeController {
     @GetMapping("/download/path")
     public ResponseEntity downloadPath(@RequestParam(value = "filename") String filename) throws Exception {
         String uuid = GeneralUtils.uuid();
-        shapeService.download(uuid,filename);
-        return RestResult.ok("成功",uuid);
+        shapeService.download(uuid, filename);
+        return RestResult.ok("成功", uuid);
     }
 
     @GetMapping("/download/load")
     public ResponseEntity downloadLoad(@RequestParam("uuid") String uuid) throws Exception {
         boolean isOver = shapeService.download(uuid);
-        return RestResult.ok("成功",isOver);
+        return RestResult.ok("成功", isOver);
     }
 
     @GetMapping("/download/file")

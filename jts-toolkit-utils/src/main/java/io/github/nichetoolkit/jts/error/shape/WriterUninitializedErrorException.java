@@ -15,7 +15,7 @@ public class WriterUninitializedErrorException extends ResourceErrorException {
     }
 
     public WriterUninitializedErrorException(String message) {
-        super(JtsErrorStatus.SHAPE_WRITER_UNINITIALIZED_ERROR,message);
+        super(JtsErrorStatus.SHAPE_WRITER_UNINITIALIZED_ERROR, message);
     }
 
     @Override

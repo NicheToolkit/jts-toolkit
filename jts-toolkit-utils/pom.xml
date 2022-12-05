@@ -5,11 +5,11 @@
     <parent>
         <groupId>io.github.nichetoolkit</groupId>
         <artifactId>jts-toolkit-parent</artifactId>
-        <version>1.0.3-SNAPSHOT</version>
+        <version>1.0.3</version>
     </parent>
 
     <artifactId>jts-toolkit-utils</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.3</version>
     <name>jts-toolkit-utils</name>
     <packaging>jar</packaging>
     <description>jts toolkit utils project for Spring Boot</description>
@@ -75,32 +75,12 @@
             <groupId>org.geotools</groupId>
             <artifactId>gt-geojson</artifactId>
             <version>${geotools.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.eclipse.emf</groupId>
-                    <artifactId>org.eclipse.emf.ecore</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.eclipse.emf</groupId>
-                    <artifactId>org.eclipse.emf.common</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-shapefile</artifactId>
             <version>${geotools.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.eclipse.emf</groupId>
-                    <artifactId>org.eclipse.emf.ecore</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.eclipse.emf</groupId>
-                    <artifactId>org.eclipse.emf.common</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
     </dependencies>

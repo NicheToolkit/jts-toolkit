@@ -30,11 +30,9 @@ public class JtsShapeAutoConfigure {
     @ConditionalOnMissingBean(ShapeFactory.class)
     public ShapeFactory shapeFactory(JtsShapeProperties properties) {
         SimpleShapeFactory shapeFactory = new SimpleShapeFactory(new SimpleShapeReader(), new SimpleShapeWriter());
-        ShapefileUtils.initShapefile(shapeFactory,properties);
+        ShapefileUtils.initShapefile(shapeFactory, properties);
         return shapeFactory;
     }
-
-
 
 
 }

@@ -25,7 +25,7 @@ public class GeometryCollectionParser extends JtsParser<GeometryCollection> {
 
     private Geometry[] parseGeometries(JsonNode geometryArray) throws JtsParserErrorException {
         Geometry[] items = new Geometry[geometryArray.size()];
-        for(int i=0;i!=geometryArray.size();++i) {
+        for (int i = 0; i != geometryArray.size(); ++i) {
             items[i] = geometryParser.parse(geometryArray.get(i));
         }
         return items;

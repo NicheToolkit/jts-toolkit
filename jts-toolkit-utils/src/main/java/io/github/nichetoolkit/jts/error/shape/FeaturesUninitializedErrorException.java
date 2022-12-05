@@ -15,7 +15,7 @@ public class FeaturesUninitializedErrorException extends ResourceErrorException 
     }
 
     public FeaturesUninitializedErrorException(String message) {
-        super(JtsErrorStatus.SHAPE_FEATURES_UNINITIALIZED_ERROR,message);
+        super(JtsErrorStatus.SHAPE_FEATURES_UNINITIALIZED_ERROR, message);
     }
 
     @Override

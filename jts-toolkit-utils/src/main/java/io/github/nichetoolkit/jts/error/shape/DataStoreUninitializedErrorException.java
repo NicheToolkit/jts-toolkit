@@ -16,7 +16,7 @@ public class DataStoreUninitializedErrorException extends ResourceErrorException
 
 
     public DataStoreUninitializedErrorException(String message) {
-        super(JtsErrorStatus.SHAPE_DATA_STORE_UNINITIALIZED_ERROR,message);
+        super(JtsErrorStatus.SHAPE_DATA_STORE_UNINITIALIZED_ERROR, message);
     }
 
     @Override

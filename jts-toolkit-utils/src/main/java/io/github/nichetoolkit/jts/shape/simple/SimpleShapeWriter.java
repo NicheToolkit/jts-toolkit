@@ -211,7 +211,7 @@ public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
                     log.error("shape reader need to initialize!");
                     throw new ReaderUninitializedErrorException("shape reader need to initialize!");
                 } else {
-                    featureWriter(this.params,this.typeBuilder);
+                    featureWriter(this.params, this.typeBuilder);
                 }
             } else {
                 featureWriter(this.dataStore);
@@ -221,7 +221,7 @@ public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
             if (GeneralUtils.isNotEmpty(shapefiles)) {
                 for (SimpleShapefile shapefile : shapefiles) {
                     SimpleFeature feature = this.featureWriter.next();
-                    write(feature,shapefile);
+                    write(feature, shapefile);
                 }
             } else {
                 this.featureWriter.next();
@@ -246,21 +246,21 @@ public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
 
     @Override
     public File write(File shapeFile, Geometries geometries, List<SimpleShapefile> shapefiles) throws RestException {
-        ShapefileDataStore dataStore = dataStore(shapeFile,geometries);
+        ShapefileDataStore dataStore = dataStore(shapeFile, geometries);
         featureWriter(dataStore);
         return write(shapefiles);
     }
 
     @Override
     public File write(File shapeFile, Map<String, Class> attributeClassMap, Collection<SimpleShapefile> shapefiles) throws RestException {
-        ShapefileDataStore dataStore = dataStore(shapeFile,attributeClassMap);
+        ShapefileDataStore dataStore = dataStore(shapeFile, attributeClassMap);
         featureWriter(dataStore);
         return write(shapefiles);
     }
 
     @Override
     public File write(File shapeFile, Geometries geometries, Map<String, Class> attributeClassMap, Collection<SimpleShapefile> shapefiles) throws RestException {
-        ShapefileDataStore dataStore = dataStore(shapeFile,geometries,attributeClassMap);
+        ShapefileDataStore dataStore = dataStore(shapeFile, geometries, attributeClassMap);
         featureWriter(dataStore);
         return write(shapefiles);
     }

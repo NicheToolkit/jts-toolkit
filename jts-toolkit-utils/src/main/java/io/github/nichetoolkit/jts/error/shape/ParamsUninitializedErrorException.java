@@ -15,7 +15,7 @@ public class ParamsUninitializedErrorException extends ResourceErrorException {
     }
 
     public ParamsUninitializedErrorException(String message) {
-        super(JtsErrorStatus.SHAPE_PARAMS_UNINITIALIZED_ERROR,message);
+        super(JtsErrorStatus.SHAPE_PARAMS_UNINITIALIZED_ERROR, message);
     }
 
     @Override

@@ -11,7 +11,7 @@ public class JtsModule extends SimpleModule {
     public JtsModule() {
         this(new GeometryFactory());
     }
-    
+
     public JtsModule(GeometryFactory geometryFactory) {
         super("JtsModule", JtsVersion.VERSION);
         addSerializer(Geometry.class, new GeometrySerializer());

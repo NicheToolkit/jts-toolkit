@@ -20,11 +20,11 @@ public class FeaturesErrorException extends ResourceErrorException {
     }
 
     public FeaturesErrorException(String message) {
-        super(JtsErrorStatus.SHAPE_FEATURES_ERROR,message);
+        super(JtsErrorStatus.SHAPE_FEATURES_ERROR, message);
     }
 
     public FeaturesErrorException(RestStatus status, String message) {
-        super(status,message);
+        super(status, message);
     }
 
     @Override

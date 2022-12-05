@@ -36,12 +36,12 @@ public class JtsParserErrorException extends JsonProcessingException implements 
     }
 
     public JtsParserErrorException(String message, Throwable cause) {
-        super(message,cause);
+        super(message, cause);
         this.status = ERROR_STATUS;
     }
 
     public JtsParserErrorException(String message, RestStatus status, Throwable cause) {
-        super(message,cause);
+        super(message, cause);
         this.status = status.getStatus();
     }
 

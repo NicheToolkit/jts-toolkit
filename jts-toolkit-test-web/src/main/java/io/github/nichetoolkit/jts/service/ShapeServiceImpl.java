@@ -43,7 +43,7 @@ public class ShapeServiceImpl implements ShapeService {
     @Override
     public void upload(MultipartFile file) throws RestException {
         String uuid = GeneralUtils.uuid();
-        List<SimpleShapefile> shapefiles = ShapefileUtils.readShapeFile(uuid,file);
+        List<SimpleShapefile> shapefiles = ShapefileUtils.readShapeFile(uuid, file);
         log.info("shapefiles: {}", JsonUtils.parseJson(shapefiles));
         ShapefileUtils.clear(uuid);
     }
@@ -79,7 +79,7 @@ public class ShapeServiceImpl implements ShapeService {
         if (GeneralUtils.isNotEmpty(zipFiles) && zipFiles.exists() && zipFiles.isFile()) {
             String filename = zipFiles.getName();
             Optional<MediaType> mediaTypeOptional = MediaTypeFactory.getMediaType(filename);
-             String contentType =  mediaTypeOptional.orElse(MediaType.APPLICATION_OCTET_STREAM).toString();
+            String contentType = mediaTypeOptional.orElse(MediaType.APPLICATION_OCTET_STREAM).toString();
             try (FileInputStream inputStream = new FileInputStream(zipFiles);
                  ServletOutputStream outputStream = response.getOutputStream()) {
                 log.info("file size: {}", zipFiles.length());

@@ -19,7 +19,7 @@ public class JtsParseException extends JsonParseErrorException {
         super(status);
     }
 
-    public JtsParseException(RestStatus status,String message) {
+    public JtsParseException(RestStatus status, String message) {
         super(status, message);
     }
 
@@ -28,7 +28,7 @@ public class JtsParseException extends JsonParseErrorException {
     }
 
     public JtsParseException(String resource, String message, Throwable cause) {
-        super(JtsErrorStatus.JTS_PARSE_ERROR,resource,cause,message);
+        super(JtsErrorStatus.JTS_PARSE_ERROR, resource, cause, message);
     }
 
     @Override

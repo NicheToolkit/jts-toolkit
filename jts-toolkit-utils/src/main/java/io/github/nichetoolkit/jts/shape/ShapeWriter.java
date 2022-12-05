@@ -74,6 +74,6 @@ public abstract class ShapeWriter<T extends Shapefile> {
 
     public abstract File write(File shapeFile, Geometries geometries, Map<String, Class> attributeClassMap, Collection<T> shapefiles) throws RestException;
 
-    public abstract void write(SimpleFeature feature,T shapefile) throws RestException;
+    public abstract void write(SimpleFeature feature, T shapefile) throws RestException;
 
 }

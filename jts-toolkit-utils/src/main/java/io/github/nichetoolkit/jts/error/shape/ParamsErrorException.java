@@ -20,11 +20,11 @@ public class ParamsErrorException extends ResourceErrorException {
     }
 
     public ParamsErrorException(String message) {
-        super(JtsErrorStatus.SHAPE_PARAMS_ERROR,message);
+        super(JtsErrorStatus.SHAPE_PARAMS_ERROR, message);
     }
 
     public ParamsErrorException(RestStatus status, String message) {
-        super(status,message);
+        super(status, message);
     }
 
     @Override

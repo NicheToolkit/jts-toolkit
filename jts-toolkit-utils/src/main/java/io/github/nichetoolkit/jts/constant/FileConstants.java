@@ -8,7 +8,7 @@ package io.github.nichetoolkit.jts.constant;
 public class FileConstants {
 
     public static final String FILE_ID_PARAM = "fileId";
-    public static final String FILE_NAME_PARAM= "name";
+    public static final String FILE_NAME_PARAM = "name";
     public static final String USER_ID_PARAM = "userId";
     public static final String ACCOUNT_ID_PARAM = "accountId";
     public static final String FILE_PARAM = "file";
@@ -19,9 +19,9 @@ public class FileConstants {
     public static final String CONTENT_RANGE_RANGE_REGEX = "-";
     public static final String CONTENT_RANGE_SIZE_REGEX = "/";
 
-    public static final String CONTENT_DISPOSITION_HEADER =  "Content-Disposition";
-    public static final String CONTENT_LENGTH_HEADER =  "Content-Length";
-    public static final String ATTACHMENT_FILENAME_VALUE =  "attachment; filename=";
+    public static final String CONTENT_DISPOSITION_HEADER = "Content-Disposition";
+    public static final String CONTENT_LENGTH_HEADER = "Content-Length";
+    public static final String ATTACHMENT_FILENAME_VALUE = "attachment; filename=";
 
     public static final String SUFFIX_REGEX = ".";
     public static final String IMAGE_JPG_SUFFIX = "jpg";

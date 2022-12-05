@@ -20,11 +20,11 @@ public class DataStoreErrorException extends ResourceErrorException {
     }
 
     public DataStoreErrorException(String message) {
-        super(JtsErrorStatus.SHAPE_DATA_STORE_ERROR,message);
+        super(JtsErrorStatus.SHAPE_DATA_STORE_ERROR, message);
     }
 
     public DataStoreErrorException(RestStatus status, String message) {
-        super(status,message);
+        super(status, message);
     }
 
     @Override

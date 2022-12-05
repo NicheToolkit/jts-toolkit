@@ -14,7 +14,7 @@ public class ReaderUninitializedErrorException extends ResourceErrorException {
     }
 
     public ReaderUninitializedErrorException(String message) {
-        super(JtsErrorStatus.SHAPE_READER_UNINITIALIZED_ERROR,message);
+        super(JtsErrorStatus.SHAPE_READER_UNINITIALIZED_ERROR, message);
     }
 
     @Override

@@ -108,16 +108,16 @@ public class JtsBox {
 
     public void verify() throws JtsBoxInvalidException {
         if (invalidX(this.maxX)) {
-            throw new JtsBoxInvalidException("值[maxX]:"+ this.maxX + " 无效");
+            throw new JtsBoxInvalidException("值[maxX]:" + this.maxX + " 无效");
         }
         if (invalidX(this.minX)) {
-            throw new JtsBoxInvalidException("值[minX]:"+ this.minX + " 无效");
+            throw new JtsBoxInvalidException("值[minX]:" + this.minX + " 无效");
         }
         if (invalidY(this.maxY)) {
-            throw new JtsBoxInvalidException("值[maxY]:"+ this.maxY + " 无效");
+            throw new JtsBoxInvalidException("值[maxY]:" + this.maxY + " 无效");
         }
         if (invalidY(this.minY)) {
-            throw new JtsBoxInvalidException("值[minY]:"+ this.minY + " 无效");
+            throw new JtsBoxInvalidException("值[minY]:" + this.minY + " 无效");
         }
     }
 
@@ -141,6 +141,7 @@ public class JtsBox {
         protected Double maxX = 0.0;
         protected Double maxY = 0.0;
         protected Double maxZ = 0.0;
+
         public Builder() {
         }
 

@@ -47,7 +47,7 @@ public class JtsHelper {
                 Polygon polygon = (Polygon) reader.read(wktString);
                 return parseBox(polygon);
             } catch (ParseException exception) {
-                throw new JtsParseException("wkt parse to box",exception.getMessage());
+                throw new JtsParseException("wkt parse to box", exception.getMessage());
             }
         }
         return null;
@@ -77,7 +77,7 @@ public class JtsHelper {
                 geometryJSON.write(geometry, writer);
                 return writer.toString();
             } catch (IOException exception) {
-                throw new JtsParseException("geometry parse to geojson",exception.getMessage());
+                throw new JtsParseException("geometry parse to geojson", exception.getMessage());
             }
         }
         return null;
@@ -89,7 +89,7 @@ public class JtsHelper {
                 WKBReader reader = new WKBReader();
                 return reader.read(wkbBytes);
             } catch (ParseException exception) {
-                throw new JtsParseException("wkb parse to geometry",exception.getMessage());
+                throw new JtsParseException("wkb parse to geometry", exception.getMessage());
             }
         }
         return null;
@@ -102,7 +102,7 @@ public class JtsHelper {
                 WKBReader reader = new WKBReader();
                 return writer.write(reader.read(wkbBytes));
             } catch (ParseException exception) {
-                throw new JtsParseException("wkb parse to wkt",exception.getMessage());
+                throw new JtsParseException("wkb parse to wkt", exception.getMessage());
             }
         }
         return null;
@@ -114,7 +114,7 @@ public class JtsHelper {
                 WKBWriter writer = new WKBWriter();
                 return writer.write(geometry);
             } catch (Exception exception) {
-                throw new JtsParseException("geometry parse to wkb",exception.getMessage());
+                throw new JtsParseException("geometry parse to wkb", exception.getMessage());
             }
         }
         return new byte[0];
@@ -126,7 +126,7 @@ public class JtsHelper {
                 WKTWriter writer = new WKTWriter();
                 return writer.write(geometry);
             } catch (Exception exception) {
-                throw new JtsParseException("geometry parse to wkt",exception.getMessage());
+                throw new JtsParseException("geometry parse to wkt", exception.getMessage());
             }
         }
         return null;
@@ -138,7 +138,7 @@ public class JtsHelper {
                 WKTReader reader = new WKTReader();
                 return reader.read(wktString);
             } catch (ParseException exception) {
-                throw new JtsParseException("wkt parse to geometry",exception.getMessage());
+                throw new JtsParseException("wkt parse to geometry", exception.getMessage());
             }
         }
         return null;
@@ -151,7 +151,7 @@ public class JtsHelper {
                 WKBWriter writer = new WKBWriter();
                 return writer.write(reader.read(wktString));
             } catch (ParseException exception) {
-                throw new JtsParseException("wkt parse to wkb",exception.getMessage());
+                throw new JtsParseException("wkt parse to wkb", exception.getMessage());
             }
         }
         return new byte[0];
@@ -164,7 +164,7 @@ public class JtsHelper {
                 Reader reader = new StringReader(geojson);
                 return geometryJSON.read(reader);
             } catch (IOException exception) {
-                throw new JtsParseException("geojson parse to geometry",exception.getMessage());
+                throw new JtsParseException("geojson parse to geometry", exception.getMessage());
             }
         }
         return null;
