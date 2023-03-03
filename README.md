@@ -1,7 +1,10 @@
 ## [Jts-Toolkit](https://github.com/NicheToolkit/jts-toolkit) jts开发工具组
 
-[![GitHub license](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/NicheToolkit/jts-toolkit/blob/master/LICENSE)[![Maven Release](https://img.shields.io/maven-central/v/io.github.nichetoolkit/jts-toolkit-utils.svg)](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22io.github.nichetoolkit%22%20AND%20a%3A%jts-toolkit-utils%22)
-[![Maven Snapshot](https://img.shields.io/maven-central/v/io.github.nichetoolkit/jts-toolkit-utils.svg)](https://s01.oss.sonatype.org/content/repositories/snapshots/io/github/nichetoolkit/jts-toolkit-utils/)
+[![GitHub License](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/NicheToolkit/jts-toolkit/blob/master/LICENSE)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.nichetoolkit/jts-toolkit-utils)](https://central.sonatype.com/search?smo=true&q=jts-toolkit-utils&namespace=io.github.nichetoolkit)
+[![Nexus Release](https://img.shields.io/nexus/r/io.github.nichetoolkit/jts-toolkit-utils?server=https%3A%2F%2Fs01.oss.sonatype.org)](https://s01.oss.sonatype.org/content/repositories/releases/io/github/nichetoolkit/jts-toolkit-utils/)
+[![Nexus Snapshot](https://img.shields.io/nexus/s/io.github.nichetoolkit/jts-toolkit-utils?server=https%3A%2F%2Fs01.oss.sonatype.org)](https://s01.oss.sonatype.org/content/repositories/snapshots/io/github/nichetoolkit/jts-toolkit-utils/)
+
 ![Tests](https://github.com/NicheToolkit/jts-toolkit/workflows/Tests/badge.svg)
 
 &emsp;&emsp; 依赖[rest-toolkit](https://github.com/NicheToolkit/rest-toolkit)组件下的Gis相关开发工具整理.
