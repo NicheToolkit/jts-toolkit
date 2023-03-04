@@ -83,6 +83,7 @@
 
         <repository>
             <id>sonatype-nexus-release</id>
+            <name>sonatype maven releases</name>
             <url>https://s01.oss.sonatype.org/content/repositories/releases/</url>
             <releases>
                 <enabled>true</enabled>
