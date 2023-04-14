@@ -11,7 +11,7 @@ import org.springframework.lang.NonNull;
  */
 public class JtsBuilder {
 
-    public StringBuilder build(@NonNull String alias, @NonNull Geometry geometry, SpatialType spatialType) {
+    public static StringBuilder build(@NonNull String alias, @NonNull Geometry geometry, SpatialType spatialType) {
         StringBuilder geometryBuilder = new StringBuilder("AND ");
         switch (spatialType) {
             case TOUCHES:
