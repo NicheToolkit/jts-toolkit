@@ -38,12 +38,12 @@ public enum SpatialType implements RestValue<Integer,String> {
     }
 
     @JsonCreator
-    public static SpatialType parserKey(@NonNull Integer key) {
+    public static SpatialType parseKey(@NonNull Integer key) {
         SpatialType typeEnum = RestValue.parseKey(SpatialType.class, key);
         return Optional.ofNullable(typeEnum).orElse(SpatialType.INTERSECTS);
     }
 
-    public static SpatialType parserValue(@NonNull String value) {
+    public static SpatialType parseValue(@NonNull String value) {
         SpatialType typeEnum = RestValue.parseValue(SpatialType.class, value);
         return Optional.ofNullable(typeEnum).orElse(SpatialType.INTERSECTS);
     }
