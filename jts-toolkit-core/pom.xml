@@ -2,20 +2,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>io.github.nichetoolkit</groupId>
-    <artifactId>jts-toolkit-parent</artifactId>
+    <parent>
+        <groupId>io.github.nichetoolkit</groupId>
+        <artifactId>jts-toolkit-parent</artifactId>
+        <version>1.0.4-SNAPSHOT</version>
+    </parent>
+    <artifactId>jts-toolkit-core</artifactId>
     <version>1.0.4-SNAPSHOT</version>
+    <name>jts-toolkit-core</name>
+    <packaging>jar</packaging>
+    <description>jts toolkit core project for Spring Boot</description>
+    <url>https://github.com/NicheToolkit/jts-toolkit/tree/master/jts-toolkit-core</url>
 
-    <modules>
-        <module>jts-toolkit-core</module>
-        <module>jts-toolkit-utils</module>
-        <!--<module>jts-toolkit-test-web</module>-->
-    </modules>
-
-    <name>jts-toolkit-parent</name>
-    <packaging>pom</packaging>
-    <description>Jts toolkit project for Spring Boot</description>
-    <url>https://github.com/NicheToolkit/jts-toolkit</url>
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
 
     <licenses>
         <license>
@@ -36,13 +39,6 @@
         <developerConnection>scm:git:git@github.com:NicheToolkit/jts-toolkit.git</developerConnection>
         <url>git@github.com:NicheToolkit/jts-toolkit.git</url>
     </scm>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.7</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
 
     <distributionManagement>
         <snapshotRepository>
@@ -114,35 +110,48 @@
 
     </repositories>
 
-    <properties>
-        <java.version>1.8</java.version>
-        <jdk.version>1.8</jdk.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <spring-boot.version>2.7.7</spring-boot.version>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
 
-        <rest-toolkit.version>1.0.6-SNAPSHOT</rest-toolkit.version>
-        <jts-toolkit.version>1.0.4-SNAPSHOT</jts-toolkit.version>
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-geojson</artifactId>
+            <version>${geotools.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.emf</groupId>
+                    <artifactId>org.eclipse.emf.ecore</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.emf</groupId>
+                    <artifactId>org.eclipse.emf.common</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.emf</groupId>
+                    <artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
-        <locationtech.version>1.18.2</locationtech.version>
-        <commons-io.version>2.11.0</commons-io.version>
+        <dependency>
+            <groupId>io.github.nichetoolkit</groupId>
+            <artifactId>rest-toolkit-utils</artifactId>
+            <version>${rest-toolkit.version}</version>
+        </dependency>
 
-        <source-plugin.version>2.2.1</source-plugin.version>
-        <javadoc-plugin.version>2.9.1</javadoc-plugin.version>
-        <gpg-plugin.version>1.5</gpg-plugin.version>
-        <nexus-staging-plugin.version>1.6.7</nexus-staging-plugin.version>
-        <compiler-plugin.version>3.3</compiler-plugin.version>
-        <release-plugin.version>2.5.3</release-plugin.version>
-
-        <geotools.version>27.0</geotools.version>
-    </properties>
+    </dependencies>
 
     <build>
         <finalName>${project.artifactId}</finalName>
         <resources>
+            <resource>
+                <filtering>false</filtering>
+                <directory>src/main/resources</directory>
+            </resource>
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
@@ -228,10 +237,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${compiler-plugin.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>8</source>
+                    <target>8</target>
                     <encoding>utf-8</encoding>
                 </configuration>
             </plugin>
