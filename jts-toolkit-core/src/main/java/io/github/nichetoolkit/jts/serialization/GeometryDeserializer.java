@@ -32,15 +32,6 @@ public class GeometryDeserializer extends JsonDeserializer<Geometry> {
     @Override
     public Geometry deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         JsonNode root = jsonParser.getCodec().readTree(jsonParser);
-        JsonToken jsonToken = jsonParser.nextToken();
-        if (JsonToken.VALUE_STRING == jsonToken) {
-            String geoJson = root.asText();
-            if (GeneralUtils.isEmpty(geoJson)) {
-                geoJson = root.toString();
-            }
-            return JtsUtils.parseGeojson(geoJson);
-        } else {
-            return jtsParser.parse(root);
-        }
+        return jtsParser.parse(root);
     }
 }
