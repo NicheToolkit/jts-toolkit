@@ -117,7 +117,7 @@ public class JtsHelper {
                 throw new JtsParseException("geometry parse to wkb", exception.getMessage());
             }
         }
-        return new byte[0];
+        return null;
     }
 
     public static String parseWkt(Geometry geometry) throws JtsParseException {
@@ -154,7 +154,7 @@ public class JtsHelper {
                 throw new JtsParseException("wkt parse to wkb", exception.getMessage());
             }
         }
-        return new byte[0];
+        return null;
     }
 
     public static Geometry parseGeojson(String geojson) throws JtsParseException {
