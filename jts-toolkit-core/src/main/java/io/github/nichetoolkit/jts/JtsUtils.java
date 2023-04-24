@@ -91,7 +91,7 @@ public class JtsUtils {
             log.error("It is failed during parsing geometry to wkb!", exception);
             exception.printStackTrace();
         }
-        return new byte[0];
+        return null;
     }
 
     public static String parseWkt(Geometry geometry) {
@@ -121,7 +121,7 @@ public class JtsUtils {
             log.error("It is failed during parsing wkt to wkb!", exception);
             exception.printStackTrace();
         }
-        return new byte[0];
+        return null;
     }
 
     public static Geometry parseGeojson(String geojson) {
