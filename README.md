@@ -11,19 +11,6 @@
 &emsp;&emsp; 针对[jackson-datatype-jts](https://github.com/bedatadriven/jackson-datatype-jts)的基础上进行对[geotools](https://github.com/geotools/geotools)工具升级，
 并包含`shape`数据的`zip`压缩文件的上传，下载示例。
 
-## Release介绍
-
--  [Jts-Toolkit@1.0.3](https://github.com/NicheToolkit/jts-toolkit/tree/master/release/1.0.3.md)
-
-### v1.0.3 Release
-
-
-# [jts-toolkit-utils](https://github.com/NicheToolkit/jts-toolkit/tree/master/jts-toolkit-utils)
-
-1、升级`gt-geojson`至`27.0`版本。
-
-2、升级`rest-toolkit-utils`至`1.0.5`版本。
-
 ## Maven Central
 
 -  [Maven Central Repository](https://search.maven.org/search?q=io.github.nichetoolkit)
@@ -31,9 +18,19 @@
 -  [Sonatype Central Repository](https://central.sonatype.dev/search?q=io.github.nichetoolkit)
 
 ## 依赖环境
- > [Spring Boot](https://spring.io/projects/spring-boot) 2.6.6.RELEASE\
+ > [Spring Boot](https://spring.io/projects/spring-boot) 2.7.7.RELEASE\
  > [Maven](https://maven.apache.org/) 3.6.0+\
  > [JDK](https://www.oracle.com/java/technologies/downloads/#java8) 1.8
+ 
+## jts-toolkit-core
+ * Maven (`pom.xml`)
+```xml
+  <dependency>
+    <groupId>io.github.nichetoolkit</groupId>
+    <artifactId>jts-toolkit-core</artifactId>
+    <version>1.0.4</version>
+  </dependency>
+```
 
 ## jts-toolkit-utils
  * Maven (`pom.xml`)
@@ -41,7 +38,7 @@
   <dependency>
     <groupId>io.github.nichetoolkit</groupId>
     <artifactId>jts-toolkit-utils</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
   </dependency>
 ```
 

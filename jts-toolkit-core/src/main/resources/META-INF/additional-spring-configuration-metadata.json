@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "name": "nichetoolkit.jts.jackson",
+      "sourceType": "io.github.nichetoolkit.jts.configure.JtsJacksonProperties",
+      "type": "io.github.nichetoolkit.jts.configure.JtsJacksonProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "nichetoolkit.jts.jackson.enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "java.lang.Boolean",
+      "description": "nichetoolkit jts jackson auto configure enabled ."
+    }
+  ]
+}

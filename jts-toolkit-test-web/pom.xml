@@ -5,11 +5,11 @@
     <parent>
         <groupId>io.github.nichetoolkit</groupId>
         <artifactId>jts-toolkit-parent</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.0.4</version>
     </parent>
 
     <artifactId>jts-toolkit-test-web</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.4</version>
     <name>jts-toolkit-test-web</name>
     <packaging>jar</packaging>
     <description>jts toolkit test web project for Spring Boot</description>

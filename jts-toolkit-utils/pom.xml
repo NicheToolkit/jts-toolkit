@@ -5,11 +5,11 @@
     <parent>
         <groupId>io.github.nichetoolkit</groupId>
         <artifactId>jts-toolkit-parent</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.0.4</version>
     </parent>
 
     <artifactId>jts-toolkit-utils</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.4</version>
     <name>jts-toolkit-utils</name>
     <packaging>jar</packaging>
     <description>jts toolkit utils project for Spring Boot</description>
@@ -122,6 +122,12 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${commons-io.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.nichetoolkit</groupId>
+            <artifactId>jts-toolkit-core</artifactId>
+            <version>${jts-toolkit.version}</version>
         </dependency>
 
         <dependency>

@@ -1,11 +1,14 @@
 package io.github.nichetoolkit.jts.serialization;
 
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.github.nichetoolkit.jts.JtsParser;
+import io.github.nichetoolkit.jts.JtsUtils;
 import io.github.nichetoolkit.jts.parser.GeometryParser;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 import org.locationtech.jts.geom.Geometry;
 
 import java.io.IOException;

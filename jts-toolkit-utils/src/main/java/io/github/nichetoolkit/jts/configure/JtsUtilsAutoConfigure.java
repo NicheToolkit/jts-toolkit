@@ -2,7 +2,6 @@ package io.github.nichetoolkit.jts.configure;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,11 +13,10 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @Configuration
 @ComponentScan(basePackages = {"io.github.nichetoolkit.jts"})
-@ConditionalOnProperty(value = "nichetoolkit.jts.enabled", havingValue = "true")
-@ImportAutoConfiguration(value = {JtsShapeAutoConfigure.class, JtsJacksonAutoConfigure.class})
-public class JtsToolkitAutoConfigure {
-    public JtsToolkitAutoConfigure() {
-        log.debug("================= jts-toolkit-auto-configure initiated ！ ===================");
+@ImportAutoConfiguration(value = JtsShapeAutoConfigure.class)
+public class JtsUtilsAutoConfigure {
+    public JtsUtilsAutoConfigure() {
+        log.debug("================= jts-utils-auto-configure initiated ！ ===================");
     }
 
 }

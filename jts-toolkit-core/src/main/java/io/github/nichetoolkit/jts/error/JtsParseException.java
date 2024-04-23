@@ -2,6 +2,7 @@ package io.github.nichetoolkit.jts.error;
 
 import io.github.nichetoolkit.rest.RestStatus;
 import io.github.nichetoolkit.rest.error.json.JsonParseErrorException;
+import io.github.nichetoolkit.rest.error.natives.ParseErrorException;
 
 /**
  * <p>JtsParseException</p>
@@ -9,7 +10,7 @@ import io.github.nichetoolkit.rest.error.json.JsonParseErrorException;
  * @version v1.0.0
  */
 @SuppressWarnings("unused")
-public class JtsParseException extends JsonParseErrorException {
+public class JtsParseException extends ParseErrorException {
 
     public JtsParseException() {
         super(JtsErrorStatus.JTS_PARSE_ERROR);
@@ -28,7 +29,7 @@ public class JtsParseException extends JsonParseErrorException {
     }
 
     public JtsParseException(String resource, String message, Throwable cause) {
-        super(JtsErrorStatus.JTS_PARSE_ERROR, resource, cause, message);
+        super(JtsErrorStatus.JTS_PARSE_ERROR, resource, message, cause);
     }
 
     @Override
