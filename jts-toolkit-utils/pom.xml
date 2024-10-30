@@ -5,11 +5,11 @@
     <parent>
         <groupId>io.github.nichetoolkit</groupId>
         <artifactId>jts-toolkit-parent</artifactId>
-        <version>1.0.4</version>
+        <version>1.1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>jts-toolkit-utils</artifactId>
-    <version>1.0.4</version>
+    <version>1.1.0-SNAPSHOT</version>
     <name>jts-toolkit-utils</name>
     <packaging>jar</packaging>
     <description>jts toolkit utils project for Spring Boot</description>
@@ -131,35 +131,8 @@
         </dependency>
 
         <dependency>
-            <groupId>io.github.nichetoolkit</groupId>
-            <artifactId>rest-toolkit-utils</artifactId>
-            <version>${rest-toolkit.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-geojson</artifactId>
-            <version>${geotools.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.eclipse.emf</groupId>
-                    <artifactId>org.eclipse.emf.ecore</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.eclipse.emf</groupId>
-                    <artifactId>org.eclipse.emf.common</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.eclipse.emf</groupId>
-                    <artifactId>org.eclipse.emf.ecore.xmi</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-shapefile</artifactId>
-            <version>${geotools.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.eclipse.emf</groupId>
@@ -193,7 +166,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>${source-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -206,9 +178,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${javadoc-plugin.version}</version>
                 <configuration>
-                    <aggregate>true</aggregate>
                     <charset>UTF-8</charset>
                     <encoding>UTF-8</encoding>
                     <docencoding>UTF-8</docencoding>
@@ -220,16 +190,12 @@
                             <goal>jar</goal>
                         </goals>
                         <phase>package</phase>
-                        <configuration>
-                            <additionalparam>-Xdoclint:none</additionalparam>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>${gpg-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -243,7 +209,6 @@
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>${nexus-staging-plugin.version}</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>sonatype-nexus-central</serverId>
@@ -254,7 +219,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>${release-plugin.version}</version>
                 <configuration>
                     <tagNameFormat>v@{project.version}</tagNameFormat>
                     <autoVersionSubmodules>true</autoVersionSubmodules>

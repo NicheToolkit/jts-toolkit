@@ -1,6 +1,10 @@
 package io.github.nichetoolkit.jts;
 
 import io.github.nichetoolkit.jts.error.JtsBoxInvalidException;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.io.Serializable;
 
 /**
  * <p>JtsBox</p>
@@ -8,7 +12,9 @@ import io.github.nichetoolkit.jts.error.JtsBoxInvalidException;
  * @version v1.0.0
  */
 @SuppressWarnings("unused")
-public class JtsBox {
+@Getter
+@Setter
+public class JtsBox implements Serializable {
     public static final Double MIN_LATITUDE = -90.0;
     public static final Double MIN_INVALID_LATITUDE = -91.0;
     public static final Double MAX_LATITUDE = 90.0;
@@ -42,55 +48,6 @@ public class JtsBox {
         this.maxX = builder.maxX;
         this.maxY = builder.maxY;
         this.maxZ = builder.maxZ;
-    }
-
-
-    public Double getMinX() {
-        return minX;
-    }
-
-    public void setMinX(Double minX) {
-        this.minX = minX;
-    }
-
-    public Double getMinY() {
-        return minY;
-    }
-
-    public void setMinY(Double minY) {
-        this.minY = minY;
-    }
-
-    public Double getMinZ() {
-        return minZ;
-    }
-
-    public void setMinZ(Double minZ) {
-        this.minZ = minZ;
-    }
-
-    public Double getMaxX() {
-        return maxX;
-    }
-
-    public void setMaxX(Double maxX) {
-        this.maxX = maxX;
-    }
-
-    public Double getMaxY() {
-        return maxY;
-    }
-
-    public void setMaxY(Double maxY) {
-        this.maxY = maxY;
-    }
-
-    public Double getMaxZ() {
-        return maxZ;
-    }
-
-    public void setMaxZ(Double maxZ) {
-        this.maxZ = maxZ;
     }
 
     public Boolean invalid() {

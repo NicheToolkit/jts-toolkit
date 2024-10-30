@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 @ImportAutoConfiguration(value = JtsJacksonAutoConfigure.class)
 public class JtsCoreAutoConfigure {
     public JtsCoreAutoConfigure() {
-        log.debug("================= jts-core-auto-configure initiated ！ ===================");
+        log.debug("The auto configuration for [jts-core] initiated");
     }
 
 }

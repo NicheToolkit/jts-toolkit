@@ -23,12 +23,12 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnProperty(value = "nichetoolkit.jts.shape.enabled", havingValue = "true")
 public class JtsShapeAutoConfigure {
     public JtsShapeAutoConfigure() {
-        log.debug("================= jts-shape-auto-configure initiated ！ ===================");
+        log.debug("The auto configuration for [jts-shape] initiated");
     }
 
     @Bean
     @ConditionalOnMissingBean(ShapeFactory.class)
-    public ShapeFactory shapeFactory(JtsShapeProperties properties) {
+    public SimpleShapeFactory shapeFactory(JtsShapeProperties properties) {
         SimpleShapeFactory shapeFactory = new SimpleShapeFactory(new SimpleShapeReader(), new SimpleShapeWriter());
         ShapefileUtils.initShapefile(shapeFactory, properties);
         return shapeFactory;

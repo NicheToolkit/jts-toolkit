@@ -1,14 +1,11 @@
 package io.github.nichetoolkit.jts.serialization;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.github.nichetoolkit.jts.JtsParser;
-import io.github.nichetoolkit.jts.JtsUtils;
 import io.github.nichetoolkit.jts.parser.GeometryParser;
-import io.github.nichetoolkit.rest.util.GeneralUtils;
 import org.locationtech.jts.geom.Geometry;
 
 import java.io.IOException;
@@ -23,7 +20,7 @@ import static io.github.nichetoolkit.jts.JtsGeojson.GEOMETRY_FACTORY;
 @SuppressWarnings("unused")
 public class GeometryDeserializer extends JsonDeserializer<Geometry> {
 
-    private final JtsParser jtsParser;
+    private final JtsParser<?> jtsParser;
 
     public GeometryDeserializer() {
         this.jtsParser = new GeometryParser(GEOMETRY_FACTORY);

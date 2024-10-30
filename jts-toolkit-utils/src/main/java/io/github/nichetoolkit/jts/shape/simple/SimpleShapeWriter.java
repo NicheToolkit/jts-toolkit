@@ -8,6 +8,8 @@ import io.github.nichetoolkit.jts.shape.Shapefile;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.geotools.data.FeatureWriter;
@@ -33,13 +35,15 @@ import java.util.*;
  * @version v1.0.0
  */
 @Slf4j
+@Getter
+@Setter
 @SuppressWarnings("unused")
 public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
     protected File shapefile;
     protected ShapefileDataStore dataStore;
     protected Map<String, Serializable> params;
     protected FeatureWriter<SimpleFeatureType, SimpleFeature> featureWriter;
-    protected Map<String, Class> attributeClassMap;
+    protected Map<String, Class<?>> attributeClassMap;
     protected SimpleFeatureTypeBuilder typeBuilder;
 
 
@@ -49,12 +53,11 @@ public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
             Map<String, Serializable> params = new HashMap<>();
             URL value = shapefile.toURI().toURL();
             params.put(ShapefileDataStoreFactory.URLP.key, value);
-            log.debug("shape writer set up url params for the data store success! url: {}.", value.toString());
+            log.debug("shape writer set up url params for the data store success! url: {}.", value);
             this.shapefile = shapefile;
             this.params = params;
             return params;
         } catch (IOException exception) {
-            log.error("shape writer set up params for the data store happened error, error: {}.", exception.getMessage());
             throw new ParamsErrorException(JtsErrorStatus.SHAPE_WRITER_PARAMS_ERROR, exception.getMessage());
         }
     }
@@ -80,24 +83,24 @@ public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
     }
 
     @Override
-    public SimpleFeatureTypeBuilder typeBuilder(File shapefile, Map<String, Class> attributeClassMap) {
+    public SimpleFeatureTypeBuilder typeBuilder(File shapefile, Map<String, Class<?>> attributeClassMap) {
         return typeBuilder(shapefile, null, attributeClassMap);
     }
 
     @Override
-    public SimpleFeatureTypeBuilder typeBuilder(String filename, Map<String, Class> attributeClassMap) {
+    public SimpleFeatureTypeBuilder typeBuilder(String filename, Map<String, Class<?>> attributeClassMap) {
         return typeBuilder(filename, null, attributeClassMap);
     }
 
     @Override
-    public SimpleFeatureTypeBuilder typeBuilder(File shapefile, Geometries geometries, Map<String, Class> attributeClassMap) {
+    public SimpleFeatureTypeBuilder typeBuilder(File shapefile, Geometries geometries, Map<String, Class<?>> attributeClassMap) {
         String fileName = shapefile.getName();
         String shapeFilename = FilenameUtils.getName(fileName);
         return typeBuilder(shapeFilename, geometries, attributeClassMap);
     }
 
     @Override
-    public SimpleFeatureTypeBuilder typeBuilder(String filename, Geometries geometries, Map<String, Class> attributeClassMap) {
+    public SimpleFeatureTypeBuilder typeBuilder(String filename, Geometries geometries, Map<String, Class<?>> attributeClassMap) {
         SimpleFeatureTypeBuilder typeBuilder = new SimpleFeatureTypeBuilder();
         typeBuilder.setCRS(DefaultGeographicCRS.WGS84);
         typeBuilder.setName(filename);
@@ -106,7 +109,7 @@ public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
         }
         if (GeneralUtils.isNotEmpty(attributeClassMap)) {
             this.attributeClassMap = attributeClassMap;
-            for (Map.Entry<String, Class> entry : attributeClassMap.entrySet()) {
+            for (Map.Entry<String, Class<?>> entry : attributeClassMap.entrySet()) {
                 typeBuilder.add(entry.getKey(), entry.getValue());
             }
         }
@@ -125,7 +128,6 @@ public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
             log.debug("shape writer set up data store type builder success! params: {}.", JsonUtils.parseJson(params));
             return dataStore;
         } catch (IOException exception) {
-            log.error("shape writer set up typeBuilder happened error, params: {}, error: {}.", JsonUtils.parseJson(params), exception.getMessage());
             throw new DataStoreErrorException(JtsErrorStatus.SHAPE_WRITER_DATA_STORE_ERROR, exception.getMessage());
         }
     }
@@ -156,25 +158,25 @@ public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
     }
 
     @Override
-    public ShapefileDataStore dataStore(File shapefile, Map<String, Class> attributeClassMap) throws RestException {
+    public ShapefileDataStore dataStore(File shapefile, Map<String, Class<?>> attributeClassMap) throws RestException {
         SimpleFeatureTypeBuilder typeBuilder = typeBuilder(shapefile, attributeClassMap);
         return dataStore(shapefile, typeBuilder);
     }
 
     @Override
-    public ShapefileDataStore dataStore(File shapefile, String filename, Map<String, Class> attributeClassMap) throws RestException {
+    public ShapefileDataStore dataStore(File shapefile, String filename, Map<String, Class<?>> attributeClassMap) throws RestException {
         SimpleFeatureTypeBuilder typeBuilder = typeBuilder(filename, attributeClassMap);
         return dataStore(shapefile, typeBuilder);
     }
 
     @Override
-    public ShapefileDataStore dataStore(File shapefile, Geometries geometries, Map<String, Class> attributeClassMap) throws RestException {
+    public ShapefileDataStore dataStore(File shapefile, Geometries geometries, Map<String, Class<?>> attributeClassMap) throws RestException {
         SimpleFeatureTypeBuilder typeBuilder = typeBuilder(shapefile, geometries, attributeClassMap);
         return dataStore(shapefile, typeBuilder);
     }
 
     @Override
-    public ShapefileDataStore dataStore(File shapefile, String filename, Geometries geometries, Map<String, Class> attributeClassMap) throws RestException {
+    public ShapefileDataStore dataStore(File shapefile, String filename, Geometries geometries, Map<String, Class<?>> attributeClassMap) throws RestException {
         SimpleFeatureTypeBuilder typeBuilder = typeBuilder(filename, geometries, attributeClassMap);
         return dataStore(shapefile, typeBuilder);
     }
@@ -190,10 +192,9 @@ public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
         try {
             FeatureWriter<SimpleFeatureType, SimpleFeature> featureWriter = dataStore.getFeatureWriter(this.dataStore.getTypeNames()[0], Transaction.AUTO_COMMIT);
             this.featureWriter = featureWriter;
-            log.debug("shape writer set up feature writer success!");
+            log.debug("The shape writer set up feature writer success!");
             return featureWriter;
         } catch (IOException exception) {
-            log.error("shape writer set up feature writer happened error, error: {}.", exception.getMessage());
             throw new FeaturesErrorException(JtsErrorStatus.SHAPE_WRITER_FEATURES_ERROR, exception.getMessage());
         }
     }
@@ -208,8 +209,7 @@ public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
         if (GeneralUtils.isEmpty(this.featureWriter)) {
             if (GeneralUtils.isEmpty(this.dataStore)) {
                 if (GeneralUtils.isEmpty(this.params) || GeneralUtils.isEmpty(this.typeBuilder)) {
-                    log.error("shape reader need to initialize!");
-                    throw new ReaderUninitializedErrorException("shape reader need to initialize!");
+                    throw new ReaderUninitializedErrorException("The shape reader need to initialize!");
                 } else {
                     featureWriter(this.params, this.typeBuilder);
                 }
@@ -226,12 +226,11 @@ public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
             } else {
                 this.featureWriter.next();
             }
-            log.debug("shape writer write shapefiles success! size: {}.", shapefiles.size());
+            log.debug("The shape writer write shapefiles success! size: {}.", shapefiles.size());
             this.featureWriter.write();
             this.featureWriter.close();
             this.dataStore.dispose();
         } catch (IOException exception) {
-            log.error("shape writer write shapefiles happened error, error: {}.", exception.getMessage());
             throw new FeaturesErrorException(JtsErrorStatus.SHAPE_WRITER_FEATURES_ERROR, exception.getMessage());
         }
         return this.shapefile;
@@ -252,14 +251,14 @@ public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
     }
 
     @Override
-    public File write(File shapeFile, Map<String, Class> attributeClassMap, Collection<SimpleShapefile> shapefiles) throws RestException {
+    public File write(File shapeFile, Map<String, Class<?>> attributeClassMap, Collection<SimpleShapefile> shapefiles) throws RestException {
         ShapefileDataStore dataStore = dataStore(shapeFile, attributeClassMap);
         featureWriter(dataStore);
         return write(shapefiles);
     }
 
     @Override
-    public File write(File shapeFile, Geometries geometries, Map<String, Class> attributeClassMap, Collection<SimpleShapefile> shapefiles) throws RestException {
+    public File write(File shapeFile, Geometries geometries, Map<String, Class<?>> attributeClassMap, Collection<SimpleShapefile> shapefiles) throws RestException {
         ShapefileDataStore dataStore = dataStore(shapeFile, geometries, attributeClassMap);
         featureWriter(dataStore);
         return write(shapefiles);
@@ -274,37 +273,5 @@ public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
                 return GeneralUtils.isNotEmpty(key) && this.attributeClassMap.containsKey(key);
             }).forEach(entry -> feature.setAttribute(entry.getKey(), entry.getValue()));
         }
-    }
-
-    public ShapefileDataStore getDataStore() {
-        return dataStore;
-    }
-
-    public void setDataStore(ShapefileDataStore dataStore) {
-        this.dataStore = dataStore;
-    }
-
-    public FeatureWriter<SimpleFeatureType, SimpleFeature> getFeatureWriter() {
-        return featureWriter;
-    }
-
-    public void setFeatureWriter(FeatureWriter<SimpleFeatureType, SimpleFeature> featureWriter) {
-        this.featureWriter = featureWriter;
-    }
-
-    public Map<String, Class> getAttributeClassMap() {
-        return attributeClassMap;
-    }
-
-    public void setAttributeClassMap(Map<String, Class> attributeClassMap) {
-        this.attributeClassMap = attributeClassMap;
-    }
-
-    public SimpleFeatureTypeBuilder getTypeBuilder() {
-        return typeBuilder;
-    }
-
-    public void setTypeBuilder(SimpleFeatureTypeBuilder typeBuilder) {
-        this.typeBuilder = typeBuilder;
     }
 }

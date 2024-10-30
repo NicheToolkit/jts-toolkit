@@ -9,6 +9,8 @@ import io.github.nichetoolkit.jts.shape.Shapefile;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.geotools.data.DataStoreFinder;
 import org.geotools.data.FeatureSource;
@@ -35,6 +37,8 @@ import java.util.Map;
  * @version v1.0.0
  */
 @Slf4j
+@Getter
+@Setter
 @SuppressWarnings("unused")
 public class SimpleShapeReader extends ShapeReader<SimpleShapefile> {
     protected Map<String, Object> params = new HashMap<>();
@@ -49,11 +53,10 @@ public class SimpleShapeReader extends ShapeReader<SimpleShapefile> {
             HashMap<String, Object> params = new HashMap<>();
             URL value = shapeFile.toURI().toURL();
             params.put(JtsConstants.PARAM_URL, value);
-            log.debug("shape reader set up url params for the data store success! url: {}.", value.toString());
+            log.debug("The shape reader set up url params for the data store success! url: {}.", value);
             this.params = params;
             return params;
         } catch (IOException exception) {
-            log.error("shape reader set up params for the data store happened error, error: {}.", exception.getMessage());
             throw new ParamsErrorException(JtsErrorStatus.SHAPE_READER_PARAMS_ERROR, exception.getMessage());
         }
     }
@@ -61,8 +64,7 @@ public class SimpleShapeReader extends ShapeReader<SimpleShapefile> {
     @Override
     public ShapefileDataStore dataStore() throws RestException {
         if (GeneralUtils.isEmpty(this.params)) {
-            log.error("shape reader need to initialize!");
-            throw new ReaderUninitializedErrorException("shape reader need to initialize!");
+            throw new ReaderUninitializedErrorException("The shape reader need to initialize!");
         }
         return dataStore(this.params);
     }
@@ -78,12 +80,11 @@ public class SimpleShapeReader extends ShapeReader<SimpleShapefile> {
         try {
             ShapefileDataStore dataStore = (ShapefileDataStore) DataStoreFinder.getDataStore(params);
             dataStore.setCharset(Charset.forName(JtsConstants.SHAPE_ENCODING));
-            log.debug("shape reader set up data store success! params: {}.", JsonUtils.parseJson(params));
+            log.debug("The shape reader set up data store success! params: {}.", JsonUtils.parseJson(params));
             this.params = params;
             this.dataStore = dataStore;
             return dataStore;
         } catch (IOException exception) {
-            log.error("shape reader set up data store happened error, params: {}, error: {}.", JsonUtils.parseJson(params), exception.getMessage());
             throw new DataStoreErrorException(JtsErrorStatus.SHAPE_READER_DATA_STORE_ERROR, exception.getMessage());
         }
     }
@@ -92,8 +93,7 @@ public class SimpleShapeReader extends ShapeReader<SimpleShapefile> {
     public FeatureIterator<SimpleFeature> features() throws RestException {
         if (GeneralUtils.isEmpty(this.dataStore)) {
             if (GeneralUtils.isEmpty(this.params)) {
-                log.error("shape reader need to initialize!");
-                throw new ReaderUninitializedErrorException("shape reader need to initialize!");
+                throw new ReaderUninitializedErrorException("The shape reader need to initialize!");
             } else {
                 return features(this.params);
             }
@@ -123,10 +123,9 @@ public class SimpleShapeReader extends ShapeReader<SimpleShapefile> {
             this.dataStore = dataStore;
             this.typeName = typeName;
             this.features = features;
-            log.debug("shape reader obtains features success! size: {}.", featureCollection.size());
+            log.debug("The shape reader obtains features success! size: {}.", featureCollection.size());
             return features;
         } catch (IOException exception) {
-            log.error("shape reader obtains features happened error, error: {}.", exception.getMessage());
             throw new FeaturesErrorException(JtsErrorStatus.SHAPE_READER_FEATURES_ERROR, exception.getMessage());
         }
     }
@@ -136,8 +135,7 @@ public class SimpleShapeReader extends ShapeReader<SimpleShapefile> {
         if (GeneralUtils.isEmpty(this.features)) {
             if (GeneralUtils.isEmpty(this.dataStore)) {
                 if (GeneralUtils.isEmpty(this.params)) {
-                    log.error("shape reader need to initialize!");
-                    throw new ReaderUninitializedErrorException("shape reader need to initialize!");
+                    throw new ReaderUninitializedErrorException("The shape reader need to initialize!");
                 } else {
                     return read(this.params);
                 }
@@ -219,38 +217,4 @@ public class SimpleShapeReader extends ShapeReader<SimpleShapefile> {
             shapefile.addProperties(name, value);
         }
     }
-
-    public String getTypeName() {
-        return typeName;
-    }
-
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
-    }
-
-    public Map<String, Object> getParams() {
-        return params;
-    }
-
-    public void setParams(Map<String, Object> params) {
-        this.params = params;
-    }
-
-    public ShapefileDataStore getDataStore() {
-        return dataStore;
-    }
-
-    public void setDataStore(ShapefileDataStore dataStore) {
-        this.dataStore = dataStore;
-    }
-
-    public FeatureIterator<SimpleFeature> getFeatures() {
-        return features;
-    }
-
-    public void setFeatures(FeatureIterator<SimpleFeature> features) {
-        this.features = features;
-    }
-
-
 }

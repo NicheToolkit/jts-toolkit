@@ -1,13 +1,10 @@
 package io.github.nichetoolkit.jts.controller;
 
 import io.github.nichetoolkit.jts.service.ShapeService;
-import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.RestResult;
 import io.github.nichetoolkit.rest.userlog.stereotype.RestNotelog;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,33 +22,30 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/shape")
 public class ShapeController {
 
-    @Autowired
-    private ShapeService shapeService;
+    private final ShapeService shapeService;
 
-    @GetMapping("/error")
-    public ResponseEntity<RestResult> error() throws RestException {
-        Object test = null;
-        test.toString();
-        return RestResult.ok();
+    public ShapeController(ShapeService shapeService) {
+        this.shapeService = shapeService;
     }
 
+
     @PostMapping("/upload")
-    public ResponseEntity upload(@RequestPart(value = "file") MultipartFile file) throws Exception {
+    public RestResult<?> upload(@RequestPart(value = "file") MultipartFile file) throws Exception {
         shapeService.upload(file);
-        return RestResult.ok("成功");
+        return RestResult.success();
     }
 
     @GetMapping("/download/path")
-    public ResponseEntity downloadPath(@RequestParam(value = "filename") String filename) throws Exception {
+    public RestResult<String> downloadPath(@RequestParam(value = "filename") String filename) throws Exception {
         String uuid = GeneralUtils.uuid();
         shapeService.download(uuid, filename);
-        return RestResult.ok("成功", uuid);
+        return RestResult.success( "success",uuid);
     }
 
     @GetMapping("/download/load")
-    public ResponseEntity downloadLoad(@RequestParam("uuid") String uuid) throws Exception {
+    public RestResult<?> downloadLoad(@RequestParam("uuid") String uuid) throws Exception {
         boolean isOver = shapeService.download(uuid);
-        return RestResult.ok("成功", isOver);
+        return RestResult.success("success", isOver);
     }
 
     @GetMapping("/download/file")

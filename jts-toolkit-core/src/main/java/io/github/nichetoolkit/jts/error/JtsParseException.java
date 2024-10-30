@@ -1,7 +1,6 @@
 package io.github.nichetoolkit.jts.error;
 
 import io.github.nichetoolkit.rest.RestStatus;
-import io.github.nichetoolkit.rest.error.json.JsonParseErrorException;
 import io.github.nichetoolkit.rest.error.natives.ParseErrorException;
 
 /**
@@ -42,8 +41,4 @@ public class JtsParseException extends ParseErrorException {
         return "jts parse exception";
     }
 
-    @Override
-    public Integer getStatus() {
-        return this.status;
-    }
 }

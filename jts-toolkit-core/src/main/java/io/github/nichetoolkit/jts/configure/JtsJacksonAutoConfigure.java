@@ -23,7 +23,7 @@ import org.springframework.core.annotation.Order;
 public class JtsJacksonAutoConfigure {
 
     public JtsJacksonAutoConfigure() {
-        log.debug("================= jts-jackson-auto-configure initiated ！ ===================");
+        log.debug("The auto configuration for [jts-jackson] initiated");
     }
 
     @Bean
@@ -36,8 +36,8 @@ public class JtsJacksonAutoConfigure {
     @Order(1)
     public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer(JtsModule jtsModule) {
         return jacksonBuilder -> {
-            ObjectMapperHolder.OBJECT_MAPPER.registerModule(jtsModule);
-            jacksonBuilder.configure(ObjectMapperHolder.OBJECT_MAPPER);
+            ObjectMapperHolder.objectMapper().registerModule(jtsModule);
+            jacksonBuilder.configure(ObjectMapperHolder.objectMapper());
             jacksonBuilder.modules(jtsModule);
         };
     }

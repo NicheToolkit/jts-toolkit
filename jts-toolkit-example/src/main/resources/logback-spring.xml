@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true" scanPeriod="10 seconds">
+
+    <!--引入默认日志配置-->
+    <include resource="io/github/nichetoolkit/rest/logback/logback-default.xml"/>
+
+    <!--日志保留时间-->
+    <property name="MAX_FILE_SIZE" value="1GB" />
+    <property name="MAX_HISTORY" value="30" />
+
+    <!--默认环境:打印控制台-->
+    <springProfile name="default">
+        <logger name="io.github.nichetoolkit" level="debug"/>
+        <root level="info" >
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="LOGS_FILE" />
+            <appender-ref ref="DEBUG_FILE" />
+            <appender-ref ref="INFO_FILE" />
+            <appender-ref ref="WARN_FILE" />
+            <appender-ref ref="ERROR_FILE" />
+        </root>
+    </springProfile>
+
+    <!--开发环境:打印控制台-->
+    <springProfile name="dev">
+        <logger name="io.github.nichetoolkit" level="debug"/>
+        <root level="info" >
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="LOGS_FILE" />
+            <appender-ref ref="DEBUG_FILE" />
+            <appender-ref ref="INFO_FILE" />
+            <appender-ref ref="WARN_FILE" />
+            <appender-ref ref="ERROR_FILE" />
+        </root>
+    </springProfile>
+
+    <!--生产环境:打印控制台-->
+    <springProfile name="pro">
+        <logger name="io.github.nichetoolkit" level="debug"/>
+        <root level="info">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="LOGS_FILE" />
+            <appender-ref ref="DEBUG_FILE" />
+            <appender-ref ref="INFO_FILE" />
+            <appender-ref ref="ERROR_FILE" />
+            <appender-ref ref="WARN_FILE" />
+        </root>
+    </springProfile>
+
+</configuration>

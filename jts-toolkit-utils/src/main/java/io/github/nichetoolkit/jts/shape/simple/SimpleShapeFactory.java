@@ -65,13 +65,14 @@ public class SimpleShapeFactory extends ShapeFactory<SimpleShapefile> implements
         return shapeWriter.write(shapeFile, geometries, shapefiles);
     }
 
+
     @Override
-    public File write(File shapeFile, Map<String, Class> attributeClassMap, Collection<SimpleShapefile> shapefiles) throws RestException {
+    public File write(File shapeFile, Map<String, Class<?>> attributeClassMap, Collection<SimpleShapefile> shapefiles) throws RestException {
         return shapeWriter.write(shapeFile, attributeClassMap, shapefiles);
     }
 
     @Override
-    public File write(File shapeFile, Geometries geometries, Map<String, Class> attributeClassMap, Collection<SimpleShapefile> shapefiles) throws RestException {
+    public File write(File shapeFile, Geometries geometries, Map<String, Class<?>> attributeClassMap, Collection<SimpleShapefile> shapefiles) throws RestException {
         return shapeWriter.write(shapeFile, geometries, attributeClassMap, shapefiles);
     }
 

@@ -7,10 +7,10 @@ import io.github.nichetoolkit.rest.RestErrorStatus;
 import io.github.nichetoolkit.rest.RestException;
 import io.github.nichetoolkit.rest.error.natives.FileErrorException;
 import io.github.nichetoolkit.rest.error.often.FieldNullException;
-import io.github.nichetoolkit.rest.error.often.StreamReadException;
-import io.github.nichetoolkit.rest.error.often.StreamWriteException;
+import io.github.nichetoolkit.rest.error.often.IoStreamReadException;
+import io.github.nichetoolkit.rest.error.often.IoStreamWriteException;
 import io.github.nichetoolkit.rest.helper.CloseableHelper;
-import io.github.nichetoolkit.rest.helper.StreamHelper;
+import io.github.nichetoolkit.rest.helper.IoStreamHelper;
 import io.github.nichetoolkit.rest.util.CollectUtils;
 import io.github.nichetoolkit.rest.util.FileUtils;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -55,10 +56,9 @@ public class ShapefileUtils {
         return writeShapeFile(uuid, filename, null, geometriesListMap);
     }
 
-    public static File writeShapeFile(String uuid, String filename, Map<String, Class> attributeClassMap, Map<Geometries, List<SimpleShapefile>> geometriesListMap) throws RestException {
+    public static File writeShapeFile(String uuid, String filename, Map<String, Class<?>> attributeClassMap, Map<Geometries, List<SimpleShapefile>> geometriesListMap) throws RestException {
         if (GeneralUtils.isEmpty(SHAPE_FACTORY) || GeneralUtils.isEmpty(PROPERTIES)) {
-            log.error("the shape factory or shape properties need to initialize!");
-            throw new FieldNullException("shape factory", "please initialize the shape file factory and shape properties !");
+            throw new FieldNullException("The shape factory", "please initialize the shape file factory and shape properties !");
         }
         String shapePath = PROPERTIES.getSpace().getShapePath(uuid);
         String zipPath = PROPERTIES.getSpace().getZipPath(uuid);
@@ -83,7 +83,6 @@ public class ShapefileUtils {
 
     public static void clear(String uuid) throws RestException {
         if (GeneralUtils.isEmpty(PROPERTIES)) {
-            log.error("the shape properties need to initialize!");
             throw new FieldNullException("shape properties", "please initialize the shape properties !");
         }
         String cachePath = PROPERTIES.getSpace().getCachePath(uuid);
@@ -92,7 +91,6 @@ public class ShapefileUtils {
 
     public static File shapeFile(String uuid, MultipartFile shape) throws RestException {
         if (GeneralUtils.isEmpty(PROPERTIES)) {
-            log.error("the shape properties need to initialize!");
             throw new FieldNullException("shape properties", "please initialize the shape properties !");
         }
         File shapeZipFile = cacheShapeFile(shape, PROPERTIES.getSpace().getCachePath(uuid));
@@ -101,7 +99,6 @@ public class ShapefileUtils {
 
     public static File cacheShapeFile(MultipartFile shape, String cachePath) throws RestException {
         if (GeneralUtils.isEmpty(cachePath)) {
-            log.error("the shape cache path need to initialize!");
             throw new FieldNullException("shape cache path", "please initialize the shape file cache path!");
         }
         return FileUtils.cacheFile(cachePath, shape);
@@ -109,7 +106,6 @@ public class ShapefileUtils {
 
     public static File zipShapeFile(String uuid, File shapeFile) throws RestException {
         if (GeneralUtils.isEmpty(PROPERTIES)) {
-            log.error("the shape properties need to initialize!");
             throw new FieldNullException("shape space", "please initialize the shape properties !");
         }
         String zipPath = PROPERTIES.getSpace().getZipPath(uuid);
@@ -145,10 +141,10 @@ public class ShapefileUtils {
         }
         String zipFilePath = zipPath + File.separator + filename + JtsConstants.ZIP_EXT;
         File zipFile = FileUtils.createFile(zipFilePath);
-        try (ZipOutputStream zipOutputStream = new ZipOutputStream(new FileOutputStream(zipFile))) {
+        try (ZipOutputStream zipOutputStream = new ZipOutputStream(Files.newOutputStream(zipFile.toPath()))) {
             zipOutputStream.setComment(filename);
             for (File shapeFile : zipFiles) {
-                try (InputStream inputStream = new FileInputStream(shapeFile)) {
+                try (InputStream inputStream = Files.newInputStream(shapeFile.toPath())) {
                     zipOutputStream.putNextEntry(new ZipEntry(shapeFile.getName()));
                     int temp;
                     while ((temp = inputStream.read()) != -1) {
@@ -157,24 +153,20 @@ public class ShapefileUtils {
                 }
             }
         } catch (IOException exception) {
-            log.error("the shape file zip error: {}", exception.getMessage());
-            throw new StreamWriteException(zipPath, "zip error: ".concat(exception.getMessage()));
+            throw new IoStreamWriteException(zipPath, "zip error: ".concat(exception.getMessage()));
         }
         return zipFile;
     }
 
     public static File unzipShapeFile(File shapeZipFile, String zipPath) throws RestException {
         if (GeneralUtils.isEmpty(zipPath)) {
-            log.error("the shape zip path need to initialize!");
             throw new FieldNullException("shape zip path", "please initialize the shape file zip path!");
         }
         String suffix = FileUtils.suffix(shapeZipFile.getName());
         if (GeneralUtils.isEmpty(suffix)) {
-            log.error("the file suffix is null!");
             throw new FileErrorException(RestErrorStatus.FILE_UNAVAILABLE, "only zip files are supported, the file suffix is null!");
         }
         if (!JtsConstants.ZIP_SUFFIX.equals(suffix)) {
-            log.error("the file suffix is not supported!, suffix: {}", suffix);
             throw new FileErrorException(RestErrorStatus.FILE_UNAVAILABLE, "only zip files are supported! suffix: ".concat(suffix));
         }
         File shapeFile = null;
@@ -196,17 +188,15 @@ public class ShapefileUtils {
                     }
                     InputStream inputStream = zipFile.getInputStream(entry);
                     FileOutputStream fileOutputStream = new FileOutputStream(entryFile);
-                    StreamHelper.write(fileOutputStream, inputStream);
+                    IoStreamHelper.write(fileOutputStream, inputStream);
                 }
             }
         } catch (IOException exception) {
-            log.error("the shape file unzip error: {}", exception.getMessage());
-            throw new StreamReadException(shapeZipFile.getAbsolutePath(), "unzip error: ".concat(exception.getMessage()));
+            throw new IoStreamReadException(shapeZipFile.getAbsolutePath(), "unzip error: ".concat(exception.getMessage()));
         } finally {
             CloseableHelper.close(zipFile);
         }
         if (GeneralUtils.isEmpty(shapeFile)) {
-            log.error("no '.shp' files were found after unzip!");
             throw new FileErrorException(RestErrorStatus.FILE_UNAVAILABLE, "no '.shp' files were found!");
         }
         return shapeFile;

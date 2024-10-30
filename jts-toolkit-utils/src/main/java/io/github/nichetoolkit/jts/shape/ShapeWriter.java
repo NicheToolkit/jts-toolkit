@@ -32,13 +32,13 @@ public abstract class ShapeWriter<T extends Shapefile> {
 
     public abstract SimpleFeatureTypeBuilder typeBuilder(String filename, Geometries geometries) throws RestException;
 
-    public abstract SimpleFeatureTypeBuilder typeBuilder(File shapefile, Map<String, Class> attributeClassMap) throws RestException;
+    public abstract SimpleFeatureTypeBuilder typeBuilder(File shapefile, Map<String, Class<?>> attributeClassMap) throws RestException;
 
-    public abstract SimpleFeatureTypeBuilder typeBuilder(String filename, Map<String, Class> attributeClassMap) throws RestException;
+    public abstract SimpleFeatureTypeBuilder typeBuilder(String filename, Map<String, Class<?>> attributeClassMap) throws RestException;
 
-    public abstract SimpleFeatureTypeBuilder typeBuilder(File shapefile, Geometries geometries, Map<String, Class> attributeClassMap) throws RestException;
+    public abstract SimpleFeatureTypeBuilder typeBuilder(File shapefile, Geometries geometries, Map<String, Class<?>> attributeClassMap) throws RestException;
 
-    public abstract SimpleFeatureTypeBuilder typeBuilder(String filename, Geometries geometries, Map<String, Class> attributeClassMap) throws RestException;
+    public abstract SimpleFeatureTypeBuilder typeBuilder(String filename, Geometries geometries, Map<String, Class<?>> attributeClassMap) throws RestException;
 
     public abstract ShapefileDataStore dataStore(File shapefile) throws RestException;
 
@@ -50,13 +50,13 @@ public abstract class ShapeWriter<T extends Shapefile> {
 
     public abstract ShapefileDataStore dataStore(File shapefile, String filename, Geometries geometries) throws RestException;
 
-    public abstract ShapefileDataStore dataStore(File shapefile, Map<String, Class> attributeClassMap) throws RestException;
+    public abstract ShapefileDataStore dataStore(File shapefile, Map<String, Class<?>> attributeClassMap) throws RestException;
 
-    public abstract ShapefileDataStore dataStore(File shapefile, String filename, Map<String, Class> attributeClassMap) throws RestException;
+    public abstract ShapefileDataStore dataStore(File shapefile, String filename, Map<String, Class<?>> attributeClassMap) throws RestException;
 
-    public abstract ShapefileDataStore dataStore(File shapefile, Geometries geometries, Map<String, Class> attributeClassMap) throws RestException;
+    public abstract ShapefileDataStore dataStore(File shapefile, Geometries geometries, Map<String, Class<?>> attributeClassMap) throws RestException;
 
-    public abstract ShapefileDataStore dataStore(File shapefile, String filename, Geometries geometries, Map<String, Class> attributeClassMap) throws RestException;
+    public abstract ShapefileDataStore dataStore(File shapefile, String filename, Geometries geometries, Map<String, Class<?>> attributeClassMap) throws RestException;
 
     public abstract FeatureWriter<SimpleFeatureType, SimpleFeature> featureWriter(Map<String, Serializable> params, SimpleFeatureTypeBuilder typeBuilder) throws RestException;
 
@@ -70,9 +70,9 @@ public abstract class ShapeWriter<T extends Shapefile> {
 
     public abstract File write(File shapeFile, Geometries geometries, List<T> shapefiles) throws RestException;
 
-    public abstract File write(File shapeFile, Map<String, Class> attributeClassMap, Collection<T> shapefiles) throws RestException;
+    public abstract File write(File shapeFile, Map<String, Class<?>> attributeClassMap, Collection<T> shapefiles) throws RestException;
 
-    public abstract File write(File shapeFile, Geometries geometries, Map<String, Class> attributeClassMap, Collection<T> shapefiles) throws RestException;
+    public abstract File write(File shapeFile, Geometries geometries, Map<String, Class<?>> attributeClassMap, Collection<T> shapefiles) throws RestException;
 
     public abstract void write(SimpleFeature feature, T shapefile) throws RestException;
 

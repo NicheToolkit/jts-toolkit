@@ -19,7 +19,7 @@ import static io.github.nichetoolkit.jts.JtsGeojson.*;
  */
 public class GeometryParser extends JtsParser<Geometry> {
 
-    private final Map<String, JtsParser> parsers;
+    private final Map<String, JtsParser<?>> parsers;
 
     public GeometryParser(GeometryFactory geometryFactory) {
         super(geometryFactory);
@@ -36,7 +36,7 @@ public class GeometryParser extends JtsParser<Geometry> {
     @Override
     public Geometry parse(JsonNode node) throws JtsParserErrorException {
         String typeName = node.get(TYPE).asText();
-        JtsParser parser = parsers.get(typeName);
+        JtsParser<?> parser = parsers.get(typeName);
         if (parser != null) {
             return parser.parse(node);
         } else {

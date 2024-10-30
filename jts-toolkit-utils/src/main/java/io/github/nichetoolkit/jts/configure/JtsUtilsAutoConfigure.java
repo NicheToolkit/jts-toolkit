@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 @ImportAutoConfiguration(value = JtsShapeAutoConfigure.class)
 public class JtsUtilsAutoConfigure {
     public JtsUtilsAutoConfigure() {
-        log.debug("================= jts-utils-auto-configure initiated ！ ===================");
+        log.debug("The auto configuration for [jts-utils] initiated");
     }
 
 }

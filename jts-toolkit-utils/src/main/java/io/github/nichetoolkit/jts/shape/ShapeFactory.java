@@ -1,6 +1,8 @@
 package io.github.nichetoolkit.jts.shape;
 
 import io.github.nichetoolkit.rest.RestException;
+import lombok.Getter;
+import lombok.Setter;
 import org.geotools.geometry.jts.Geometries;
 
 import java.io.File;
@@ -13,6 +15,8 @@ import java.util.Map;
  * @author Cyan (snow22314@outlook.com)
  * @version v1.0.0
  */
+@Getter
+@Setter
 @SuppressWarnings("unused")
 public abstract class ShapeFactory<T extends Shapefile> {
 
@@ -45,23 +49,8 @@ public abstract class ShapeFactory<T extends Shapefile> {
 
     public abstract File write(File shapeFile, Geometries geometries, List<T> shapefiles) throws RestException;
 
-    public abstract File write(File shapeFile, Map<String, Class> attributeClassMap, Collection<T> shapefiles) throws RestException;
+    public abstract File write(File shapeFile, Map<String, Class<?>> attributeClassMap, Collection<T> shapefiles) throws RestException;
 
-    public abstract File write(File shapeFile, Geometries geometries, Map<String, Class> attributeClassMap, Collection<T> shapefiles) throws RestException;
+    public abstract File write(File shapeFile, Geometries geometries, Map<String, Class<?>> attributeClassMap, Collection<T> shapefiles) throws RestException;
 
-    public ShapeReader<T> getShapeReader() {
-        return shapeReader;
-    }
-
-    public void setShapeReader(ShapeReader<T> shapeReader) {
-        this.shapeReader = shapeReader;
-    }
-
-    public ShapeWriter<T> getShapeWriter() {
-        return shapeWriter;
-    }
-
-    public void setShapeWriter(ShapeWriter<T> shapeWriter) {
-        this.shapeWriter = shapeWriter;
-    }
 }

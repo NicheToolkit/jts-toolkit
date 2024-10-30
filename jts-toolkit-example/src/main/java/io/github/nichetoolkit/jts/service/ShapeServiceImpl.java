@@ -9,7 +9,7 @@ import io.github.nichetoolkit.rest.error.natives.FileErrorException;
 import io.github.nichetoolkit.rest.error.supply.ResourceNotFoundException;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
 import io.github.nichetoolkit.rest.util.JsonUtils;
-import io.github.nichetoolkit.rest.util.StreamUtils;
+import io.github.nichetoolkit.rest.util.IoStreamUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.geotools.geometry.jts.Geometries;
 import org.locationtech.jts.geom.Coordinate;
@@ -60,7 +60,7 @@ public class ShapeServiceImpl implements ShapeService {
         shapefileList.add(simpleShapefile);
         geometriesListMap.putIfAbsent(Geometries.MULTIPOINT, shapefileList);
 
-        Map<String, Class> attributeClassMap = new HashMap<>();
+        Map<String, Class<?>> attributeClassMap = new HashMap<>();
         attributeClassMap.put("name", String.class);
 
         File zipFiles = ShapefileUtils.writeShapeFile(uuid, filename, attributeClassMap, geometriesListMap);
@@ -82,15 +82,14 @@ public class ShapeServiceImpl implements ShapeService {
             String contentType = mediaTypeOptional.orElse(MediaType.APPLICATION_OCTET_STREAM).toString();
             try (FileInputStream inputStream = new FileInputStream(zipFiles);
                  ServletOutputStream outputStream = response.getOutputStream()) {
-                log.info("file size: {}", zipFiles.length());
+                log.debug("file size: {}", zipFiles.length());
                 response.addHeader(FileConstants.CONTENT_DISPOSITION_HEADER, FileConstants.ATTACHMENT_FILENAME_VALUE + URLEncoder.encode(filename, StandardCharsets.UTF_8.name()));
                 response.addHeader(FileConstants.CONTENT_LENGTH_HEADER, "" + zipFiles.length());
                 response.setCharacterEncoding(StandardCharsets.UTF_8.name());
                 response.setContentType(contentType);
-                StreamUtils.write(outputStream, inputStream);
+                IoStreamUtils.write(outputStream, inputStream);
             } catch (IOException exception) {
-                log.error("the file service download has error: {}", exception.getMessage());
-                throw new FileErrorException();
+                throw new FileErrorException("the file service download has error",exception);
             }
             ShapefileUtils.clear(uuid);
         } else {

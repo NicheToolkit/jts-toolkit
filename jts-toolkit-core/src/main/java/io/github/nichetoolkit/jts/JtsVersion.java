@@ -11,7 +11,7 @@ import com.fasterxml.jackson.core.util.VersionUtil;
  */
 @SuppressWarnings("unused")
 public class JtsVersion implements Versioned {
-    public static final Version VERSION = VersionUtil.parseVersion("1.0.0", "io.github.nichetoolkit.jts", "jts-toolkit");
+    public static final Version VERSION = VersionUtil.parseVersion("1.1.0", "io.github.nichetoolkit.jts", "jts-toolkit");
 
     public JtsVersion() {
     }

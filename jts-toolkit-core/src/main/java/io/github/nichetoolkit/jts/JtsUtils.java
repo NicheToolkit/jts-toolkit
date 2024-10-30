@@ -2,6 +2,7 @@ package io.github.nichetoolkit.jts;
 
 import io.github.nichetoolkit.jts.error.JtsBoxInvalidException;
 import io.github.nichetoolkit.jts.error.JtsParseException;
+import io.github.nichetoolkit.rest.util.GeneralUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.locationtech.jts.geom.Geometry;
 
@@ -19,7 +20,7 @@ public class JtsUtils {
             return JtsHelper.parseWkt(box);
         } catch (JtsBoxInvalidException exception) {
             log.error("It is failed during parsing box to wkt!", exception);
-            exception.printStackTrace();
+            GeneralUtils.printStackTrace(log,exception,false);
         }
         return null;
     }
@@ -29,7 +30,7 @@ public class JtsUtils {
             return JtsHelper.parseGeojson(box);
         } catch (JtsParseException exception) {
             log.error("It is failed during parsing box to geojson!", exception);
-            exception.printStackTrace();
+            GeneralUtils.printStackTrace(log,exception,false);
         }
         return null;
     }
@@ -39,7 +40,7 @@ public class JtsUtils {
             return JtsHelper.parseBox(wktString);
         } catch (JtsParseException exception) {
             log.error("It is failed during parsing wkt to box!", exception);
-            exception.printStackTrace();
+            GeneralUtils.printStackTrace(log,exception,false);
         }
         return null;
     }
@@ -49,7 +50,7 @@ public class JtsUtils {
             return JtsHelper.parseBox(geometry);
         } catch (JtsParseException exception) {
             log.error("It is failed during parsing geometry to box!", exception);
-            exception.printStackTrace();
+            GeneralUtils.printStackTrace(log,exception,false);
         }
         return null;
     }
@@ -59,7 +60,7 @@ public class JtsUtils {
             return JtsHelper.parseGeojson(geometry);
         } catch (JtsParseException exception) {
             log.error("It is failed during parsing geometry to geojson!", exception);
-            exception.printStackTrace();
+            GeneralUtils.printStackTrace(log,exception,false);
         }
         return null;
     }
@@ -69,7 +70,7 @@ public class JtsUtils {
             return JtsHelper.parseGeometry(wkbBytes);
         } catch (JtsParseException exception) {
             log.error("It is failed during parsing wkb to geometry!", exception);
-            exception.printStackTrace();
+            GeneralUtils.printStackTrace(log,exception,false);
         }
         return null;
     }
@@ -79,7 +80,7 @@ public class JtsUtils {
             return JtsHelper.parseWkt(wkbBytes);
         } catch (JtsParseException exception) {
             log.error("It is failed during parsing wkb to wkt!", exception);
-            exception.printStackTrace();
+            GeneralUtils.printStackTrace(log,exception,false);
         }
         return null;
     }
@@ -89,7 +90,7 @@ public class JtsUtils {
             return JtsHelper.parseWkb(geometry);
         } catch (JtsParseException exception) {
             log.error("It is failed during parsing geometry to wkb!", exception);
-            exception.printStackTrace();
+            GeneralUtils.printStackTrace(log,exception,false);
         }
         return null;
     }
@@ -99,7 +100,7 @@ public class JtsUtils {
             return JtsHelper.parseWkt(geometry);
         } catch (JtsParseException exception) {
             log.error("It is failed during parsing geometry to wkt!", exception);
-            exception.printStackTrace();
+            GeneralUtils.printStackTrace(log,exception,false);
         }
         return null;
     }
@@ -109,7 +110,7 @@ public class JtsUtils {
             return JtsHelper.parseGeometry(wktString);
         } catch (JtsParseException exception) {
             log.error("It is failed during parsing wkt to geometry!", exception);
-            exception.printStackTrace();
+            GeneralUtils.printStackTrace(log,exception,false);
         }
         return null;
     }
@@ -119,7 +120,7 @@ public class JtsUtils {
             return JtsHelper.parseWkb(wktString);
         } catch (JtsParseException exception) {
             log.error("It is failed during parsing wkt to wkb!", exception);
-            exception.printStackTrace();
+            GeneralUtils.printStackTrace(log,exception,false);
         }
         return null;
     }
@@ -129,7 +130,7 @@ public class JtsUtils {
             return JtsHelper.parseGeojson(geojson);
         } catch (JtsParseException exception) {
             log.error("It is failed during parsing geojson to geometry!", exception);
-            exception.printStackTrace();
+            GeneralUtils.printStackTrace(log,exception,false);
         }
         return null;
     }
