@@ -41,10 +41,10 @@ public class JtsShapeAutoConfigure {
      * <p>The shape factory method.</p>
      * @param properties {@link io.github.nichetoolkit.jts.configure.JtsShapeProperties} <p>The properties parameter is <code>JtsShapeProperties</code> type.</p>
      * @see  io.github.nichetoolkit.jts.configure.JtsShapeProperties
-     * @see  io.github.nichetoolkit.jts.shape.simple.SimpleShapeFactory
+     * @see  io.github.nichetoolkit.jts.shape.ShapeFactory
      * @see  org.springframework.context.annotation.Bean
      * @see  org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
-     * @return  {@link io.github.nichetoolkit.jts.shape.simple.SimpleShapeFactory} <p>The shape factory return object is <code>SimpleShapeFactory</code> type.</p>
+     * @return  {@link io.github.nichetoolkit.jts.shape.ShapeFactory} <p>The shape factory return object is <code>ShapeFactory</code> type.</p>
      */
     @Bean
     @ConditionalOnMissingBean(ShapeFactory.class)
