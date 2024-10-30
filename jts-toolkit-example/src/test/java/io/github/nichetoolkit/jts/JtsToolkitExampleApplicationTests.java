@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @since Jdk1.8
  */
 @SpringBootTest
-class JtsToolkitTestWebApplicationTests {
+class JtsToolkitExampleApplicationTests {
 
     /**
      * <code>contextLoads</code>

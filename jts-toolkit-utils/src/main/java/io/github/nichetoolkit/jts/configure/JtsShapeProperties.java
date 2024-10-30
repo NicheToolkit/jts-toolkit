@@ -1,6 +1,8 @@
 package io.github.nichetoolkit.jts.configure;
 
 import io.github.nichetoolkit.jts.constant.JtsConstants;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.stereotype.Component;
@@ -10,11 +12,15 @@ import java.io.File;
 /**
  * <code>JtsShapeProperties</code>
  * <p>The jts shape properties class.</p>
+ * @see  lombok.Setter
+ * @see  lombok.Getter
  * @see  org.springframework.stereotype.Component
  * @see  org.springframework.boot.context.properties.ConfigurationProperties
  * @author Cyan (snow22314@outlook.com)
  * @since Jdk1.8
  */
+@Setter
+@Getter
 @Component
 @ConfigurationProperties(prefix = "nichetoolkit.jts.shape")
 public class JtsShapeProperties {
@@ -23,7 +29,7 @@ public class JtsShapeProperties {
      * {@link java.lang.String} <p>The constant <code>ROOT_PREFIX</code> field.</p>
      * @see  java.lang.String
      */
-    private static final String ROOT_PREFIX = "nichetoolkit-jts-shape";
+    private static final String ROOT_PREFIX = "nichetoolkit.jts.shape";
     /**
      * <code>enabled</code>
      * {@link java.lang.Boolean} <p>The <code>enabled</code> field.</p>
@@ -40,18 +46,15 @@ public class JtsShapeProperties {
     private Space space = new Space();
 
     /**
-     * <code>JtsShapeProperties</code>
-     * <p>Instantiates a new jts shape properties.</p>
-     */
-    public JtsShapeProperties() {
-    }
-
-    /**
      * <code>Space</code>
      * <p>The space class.</p>
+     * @see  lombok.Setter
+     * @see  lombok.Getter
      * @author Cyan (snow22314@outlook.com)
      * @since Jdk1.8
      */
+    @Setter
+    @Getter
     public static class Space {
         /**
          * <code>rootPath</code>
@@ -79,13 +82,6 @@ public class JtsShapeProperties {
         private String zipPath = toZipPath();
 
         /**
-         * <code>Space</code>
-         * <p>Instantiates a new space.</p>
-         */
-        public Space() {
-        }
-
-        /**
          * <code>getRootPath</code>
          * <p>The get root path getter method.</p>
          * @return  {@link java.lang.String} <p>The get root path return object is <code>String</code> type.</p>
@@ -101,16 +97,6 @@ public class JtsShapeProperties {
                 }
             }
             return trim;
-        }
-
-        /**
-         * <code>setRootPath</code>
-         * <p>The set root path setter method.</p>
-         * @param rootPath {@link java.lang.String} <p>The root path parameter is <code>String</code> type.</p>
-         * @see  java.lang.String
-         */
-        public void setRootPath(String rootPath) {
-            this.rootPath = rootPath;
         }
 
         /**
@@ -136,15 +122,6 @@ public class JtsShapeProperties {
             return concatRoot(trim).concat(File.separator).concat(uuid);
         }
 
-        /**
-         * <code>setCachePath</code>
-         * <p>The set cache path setter method.</p>
-         * @param cachePath {@link java.lang.String} <p>The cache path parameter is <code>String</code> type.</p>
-         * @see  java.lang.String
-         */
-        public void setCachePath(String cachePath) {
-            this.cachePath = cachePath;
-        }
 
         /**
          * <code>getShapePath</code>
@@ -170,16 +147,6 @@ public class JtsShapeProperties {
         }
 
         /**
-         * <code>setShapePath</code>
-         * <p>The set shape path setter method.</p>
-         * @param shapePath {@link java.lang.String} <p>The shape path parameter is <code>String</code> type.</p>
-         * @see  java.lang.String
-         */
-        public void setShapePath(String shapePath) {
-            this.shapePath = shapePath;
-        }
-
-        /**
          * <code>getZipPath</code>
          * <p>The get zip path getter method.</p>
          * @return  {@link java.lang.String} <p>The get zip path return object is <code>String</code> type.</p>
@@ -200,16 +167,6 @@ public class JtsShapeProperties {
         public String getZipPath(String uuid) {
             String trim = this.zipPath.toLowerCase().trim();
             return concatCache(trim, uuid);
-        }
-
-        /**
-         * <code>setZipPath</code>
-         * <p>The set zip path setter method.</p>
-         * @param zipPath {@link java.lang.String} <p>The zip path parameter is <code>String</code> type.</p>
-         * @see  java.lang.String
-         */
-        public void setZipPath(String zipPath) {
-            this.zipPath = zipPath;
         }
 
         /**
@@ -299,47 +256,6 @@ public class JtsShapeProperties {
      */
     public static String toZipPath() {
         return File.separator.concat(JtsConstants.ZIP_SUFFIX).concat(File.separator);
-    }
-
-
-    /**
-     * <code>getEnabled</code>
-     * <p>The get enabled getter method.</p>
-     * @return  {@link java.lang.Boolean} <p>The get enabled return object is <code>Boolean</code> type.</p>
-     * @see  java.lang.Boolean
-     */
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    /**
-     * <code>setEnabled</code>
-     * <p>The set enabled setter method.</p>
-     * @param enabled {@link java.lang.Boolean} <p>The enabled parameter is <code>Boolean</code> type.</p>
-     * @see  java.lang.Boolean
-     */
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    /**
-     * <code>getSpace</code>
-     * <p>The get space getter method.</p>
-     * @return  {@link io.github.nichetoolkit.jts.configure.JtsShapeProperties.Space} <p>The get space return object is <code>Space</code> type.</p>
-     * @see  io.github.nichetoolkit.jts.configure.JtsShapeProperties.Space
-     */
-    public Space getSpace() {
-        return space;
-    }
-
-    /**
-     * <code>setSpace</code>
-     * <p>The set space setter method.</p>
-     * @param space {@link io.github.nichetoolkit.jts.configure.JtsShapeProperties.Space} <p>The space parameter is <code>Space</code> type.</p>
-     * @see  io.github.nichetoolkit.jts.configure.JtsShapeProperties.Space
-     */
-    public void setSpace(Space space) {
-        this.space = space;
     }
 
 }

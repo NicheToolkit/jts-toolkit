@@ -7,8 +7,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.ComponentScan;
 
 /**
- * <code>JtsTestApplication</code>
- * <p>The jts test application class.</p>
+ * <code>JtsExampleApplication</code>
+ * <p>The jts example application class.</p>
  * @see  org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * @see  org.springframework.boot.autoconfigure.SpringBootApplication
  * @see  org.springframework.context.annotation.ComponentScan
@@ -17,7 +17,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @ComponentScan(basePackages = "io.github.nichetoolkit")
-public class JtsTestApplication extends SpringBootServletInitializer {
+public class JtsExampleApplication extends SpringBootServletInitializer {
 
     /**
      * <code>main</code>
@@ -26,12 +26,12 @@ public class JtsTestApplication extends SpringBootServletInitializer {
      * @see  java.lang.String
      */
     public static void main(String[] args) {
-        SpringApplication.run(JtsTestApplication.class, args);
+        SpringApplication.run(JtsExampleApplication.class, args);
     }
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(JtsTestApplication.class);
+        return application.sources(JtsExampleApplication.class);
     }
 
 }
