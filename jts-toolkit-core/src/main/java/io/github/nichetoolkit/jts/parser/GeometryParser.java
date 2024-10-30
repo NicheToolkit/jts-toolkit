@@ -13,14 +13,27 @@ import static io.github.nichetoolkit.jts.JtsGeojson.*;
 
 
 /**
- * <p>GeometryParser</p>
+ * <code>GeometryParser</code>
+ * <p>The geometry parser class.</p>
+ * @see  io.github.nichetoolkit.jts.JtsParser
  * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
+ * @since Jdk1.8
  */
 public class GeometryParser extends JtsParser<Geometry> {
 
+    /**
+     * <code>parsers</code>
+     * {@link java.util.Map} <p>The <code>parsers</code> field.</p>
+     * @see  java.util.Map
+     */
     private final Map<String, JtsParser<?>> parsers;
 
+    /**
+     * <code>GeometryParser</code>
+     * <p>Instantiates a new geometry parser.</p>
+     * @param geometryFactory {@link org.locationtech.jts.geom.GeometryFactory} <p>The geometry factory parameter is <code>GeometryFactory</code> type.</p>
+     * @see  org.locationtech.jts.geom.GeometryFactory
+     */
     public GeometryParser(GeometryFactory geometryFactory) {
         super(geometryFactory);
         parsers = new HashMap<>();

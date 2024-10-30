@@ -9,7 +9,7 @@
     <modules>
         <module>jts-toolkit-core</module>
         <module>jts-toolkit-utils</module>
-        <module>jts-toolkit-example</module>
+<!--        <module>jts-toolkit-example</module>-->
     </modules>
 
     <name>jts-toolkit-parent</name>

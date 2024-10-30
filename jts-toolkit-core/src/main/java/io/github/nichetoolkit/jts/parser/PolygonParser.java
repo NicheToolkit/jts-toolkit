@@ -10,17 +10,33 @@ import org.locationtech.jts.geom.Polygon;
 import static io.github.nichetoolkit.jts.JtsGeojson.COORDINATES;
 
 /**
- * <p>PolygonParser</p>
+ * <code>PolygonParser</code>
+ * <p>The polygon parser class.</p>
+ * @see  io.github.nichetoolkit.jts.JtsParser
  * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
+ * @since Jdk1.8
  */
 public class PolygonParser extends JtsParser<Polygon> {
 
+    /**
+     * <code>PolygonParser</code>
+     * <p>Instantiates a new polygon parser.</p>
+     * @param geometryFactory {@link org.locationtech.jts.geom.GeometryFactory} <p>The geometry factory parameter is <code>GeometryFactory</code> type.</p>
+     * @see  org.locationtech.jts.geom.GeometryFactory
+     */
     public PolygonParser(GeometryFactory geometryFactory) {
         super(geometryFactory);
     }
 
 
+    /**
+     * <code>parsePolygon</code>
+     * <p>The parse polygon method.</p>
+     * @param arrayOfRings {@link com.fasterxml.jackson.databind.JsonNode} <p>The array of rings parameter is <code>JsonNode</code> type.</p>
+     * @see  com.fasterxml.jackson.databind.JsonNode
+     * @see  org.locationtech.jts.geom.Polygon
+     * @return  {@link org.locationtech.jts.geom.Polygon} <p>The parse polygon return object is <code>Polygon</code> type.</p>
+     */
     public Polygon parsePolygon(JsonNode arrayOfRings) {
         LinearRing shell = parseLinearRing(arrayOfRings.get(0));
         int size = arrayOfRings.size();
@@ -31,6 +47,14 @@ public class PolygonParser extends JtsParser<Polygon> {
         return geometryFactory.createPolygon(shell, holes);
     }
 
+    /**
+     * <code>parseLinearRing</code>
+     * <p>The parse linear ring method.</p>
+     * @param coordinatesNode {@link com.fasterxml.jackson.databind.JsonNode} <p>The coordinates node parameter is <code>JsonNode</code> type.</p>
+     * @see  com.fasterxml.jackson.databind.JsonNode
+     * @see  org.locationtech.jts.geom.LinearRing
+     * @return  {@link org.locationtech.jts.geom.LinearRing} <p>The parse linear ring return object is <code>LinearRing</code> type.</p>
+     */
     private LinearRing parseLinearRing(JsonNode coordinatesNode) {
         assert coordinatesNode.isArray() : "expected coordinates array";
         Coordinate[] coordinates = PointParser.parseCoordinates(coordinatesNode);

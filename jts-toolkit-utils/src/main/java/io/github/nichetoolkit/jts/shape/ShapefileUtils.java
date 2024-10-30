@@ -28,21 +28,54 @@ import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
 /**
- * <p>ShapefileUtils</p>
+ * <code>ShapefileUtils</code>
+ * <p>The shapefile utils class.</p>
+ * @see  lombok.extern.slf4j.Slf4j
+ * @see  java.lang.SuppressWarnings
  * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
+ * @since Jdk1.8
  */
 @Slf4j
 @SuppressWarnings("unused")
 public class ShapefileUtils {
+    /**
+     * <code>SHAPE_FACTORY</code>
+     * {@link io.github.nichetoolkit.jts.shape.ShapeFactory} <p>The <code>SHAPE_FACTORY</code> field.</p>
+     * @see  io.github.nichetoolkit.jts.shape.ShapeFactory
+     */
     private static ShapeFactory<SimpleShapefile> SHAPE_FACTORY;
+    /**
+     * <code>PROPERTIES</code>
+     * {@link io.github.nichetoolkit.jts.configure.JtsShapeProperties} <p>The constant <code>PROPERTIES</code> field.</p>
+     * @see  io.github.nichetoolkit.jts.configure.JtsShapeProperties
+     */
     private static JtsShapeProperties PROPERTIES;
 
+    /**
+     * <code>initShapefile</code>
+     * <p>The init shapefile method.</p>
+     * @param shapeFactory {@link io.github.nichetoolkit.jts.shape.ShapeFactory} <p>The shape factory parameter is <code>ShapeFactory</code> type.</p>
+     * @param properties {@link io.github.nichetoolkit.jts.configure.JtsShapeProperties} <p>The properties parameter is <code>JtsShapeProperties</code> type.</p>
+     * @see  io.github.nichetoolkit.jts.shape.ShapeFactory
+     * @see  io.github.nichetoolkit.jts.configure.JtsShapeProperties
+     */
     public static void initShapefile(ShapeFactory<SimpleShapefile> shapeFactory, JtsShapeProperties properties) {
         SHAPE_FACTORY = shapeFactory;
         PROPERTIES = properties;
     }
 
+    /**
+     * <code>readShapeFile</code>
+     * <p>The read shape file method.</p>
+     * @param uuid {@link java.lang.String} <p>The uuid parameter is <code>String</code> type.</p>
+     * @param file {@link org.springframework.web.multipart.MultipartFile} <p>The file parameter is <code>MultipartFile</code> type.</p>
+     * @see  java.lang.String
+     * @see  org.springframework.web.multipart.MultipartFile
+     * @see  java.util.List
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.util.List} <p>The read shape file return object is <code>List</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
     public static List<SimpleShapefile> readShapeFile(String uuid, MultipartFile file) throws RestException {
         if (GeneralUtils.isEmpty(SHAPE_FACTORY)) {
             log.error("the shape factory  need to initialize!");
@@ -52,10 +85,37 @@ public class ShapefileUtils {
         return SHAPE_FACTORY.read(shapeFile);
     }
 
+    /**
+     * <code>writeShapeFile</code>
+     * <p>The write shape file method.</p>
+     * @param uuid {@link java.lang.String} <p>The uuid parameter is <code>String</code> type.</p>
+     * @param filename {@link java.lang.String} <p>The filename parameter is <code>String</code> type.</p>
+     * @param geometriesListMap {@link java.util.Map} <p>The geometries list map parameter is <code>Map</code> type.</p>
+     * @see  java.lang.String
+     * @see  java.util.Map
+     * @see  java.io.File
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.io.File} <p>The write shape file return object is <code>File</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
     public static File writeShapeFile(String uuid, String filename, Map<Geometries, List<SimpleShapefile>> geometriesListMap) throws RestException {
         return writeShapeFile(uuid, filename, null, geometriesListMap);
     }
 
+    /**
+     * <code>writeShapeFile</code>
+     * <p>The write shape file method.</p>
+     * @param uuid {@link java.lang.String} <p>The uuid parameter is <code>String</code> type.</p>
+     * @param filename {@link java.lang.String} <p>The filename parameter is <code>String</code> type.</p>
+     * @param attributeClassMap {@link java.util.Map} <p>The attribute class map parameter is <code>Map</code> type.</p>
+     * @param geometriesListMap {@link java.util.Map} <p>The geometries list map parameter is <code>Map</code> type.</p>
+     * @see  java.lang.String
+     * @see  java.util.Map
+     * @see  java.io.File
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.io.File} <p>The write shape file return object is <code>File</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
     public static File writeShapeFile(String uuid, String filename, Map<String, Class<?>> attributeClassMap, Map<Geometries, List<SimpleShapefile>> geometriesListMap) throws RestException {
         if (GeneralUtils.isEmpty(SHAPE_FACTORY) || GeneralUtils.isEmpty(PROPERTIES)) {
             throw new FieldNullException("The shape factory", "please initialize the shape file factory and shape properties !");
@@ -81,6 +141,14 @@ public class ShapefileUtils {
         return ShapefileUtils.zipFiles(zipPath, zipFileMap);
     }
 
+    /**
+     * <code>clear</code>
+     * <p>The clear method.</p>
+     * @param uuid {@link java.lang.String} <p>The uuid parameter is <code>String</code> type.</p>
+     * @see  java.lang.String
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
     public static void clear(String uuid) throws RestException {
         if (GeneralUtils.isEmpty(PROPERTIES)) {
             throw new FieldNullException("shape properties", "please initialize the shape properties !");
@@ -89,6 +157,18 @@ public class ShapefileUtils {
         FileUtils.clear(cachePath);
     }
 
+    /**
+     * <code>shapeFile</code>
+     * <p>The shape file method.</p>
+     * @param uuid {@link java.lang.String} <p>The uuid parameter is <code>String</code> type.</p>
+     * @param shape {@link org.springframework.web.multipart.MultipartFile} <p>The shape parameter is <code>MultipartFile</code> type.</p>
+     * @see  java.lang.String
+     * @see  org.springframework.web.multipart.MultipartFile
+     * @see  java.io.File
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.io.File} <p>The shape file return object is <code>File</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
     public static File shapeFile(String uuid, MultipartFile shape) throws RestException {
         if (GeneralUtils.isEmpty(PROPERTIES)) {
             throw new FieldNullException("shape properties", "please initialize the shape properties !");
@@ -97,6 +177,18 @@ public class ShapefileUtils {
         return unzipShapeFile(shapeZipFile, PROPERTIES.getSpace().getZipPath(uuid));
     }
 
+    /**
+     * <code>cacheShapeFile</code>
+     * <p>The cache shape file method.</p>
+     * @param shape {@link org.springframework.web.multipart.MultipartFile} <p>The shape parameter is <code>MultipartFile</code> type.</p>
+     * @param cachePath {@link java.lang.String} <p>The cache path parameter is <code>String</code> type.</p>
+     * @see  org.springframework.web.multipart.MultipartFile
+     * @see  java.lang.String
+     * @see  java.io.File
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.io.File} <p>The cache shape file return object is <code>File</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
     public static File cacheShapeFile(MultipartFile shape, String cachePath) throws RestException {
         if (GeneralUtils.isEmpty(cachePath)) {
             throw new FieldNullException("shape cache path", "please initialize the shape file cache path!");
@@ -104,6 +196,17 @@ public class ShapefileUtils {
         return FileUtils.cacheFile(cachePath, shape);
     }
 
+    /**
+     * <code>zipShapeFile</code>
+     * <p>The zip shape file method.</p>
+     * @param uuid {@link java.lang.String} <p>The uuid parameter is <code>String</code> type.</p>
+     * @param shapeFile {@link java.io.File} <p>The shape file parameter is <code>File</code> type.</p>
+     * @see  java.lang.String
+     * @see  java.io.File
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.io.File} <p>The zip shape file return object is <code>File</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
     public static File zipShapeFile(String uuid, File shapeFile) throws RestException {
         if (GeneralUtils.isEmpty(PROPERTIES)) {
             throw new FieldNullException("shape space", "please initialize the shape properties !");
@@ -120,6 +223,18 @@ public class ShapefileUtils {
         return zipFiles(zipPath, shapeName, shapeFiles);
     }
 
+    /**
+     * <code>zipFiles</code>
+     * <p>The zip files method.</p>
+     * @param zipPath {@link java.lang.String} <p>The zip path parameter is <code>String</code> type.</p>
+     * @param zipFiles {@link java.util.Map} <p>The zip files parameter is <code>Map</code> type.</p>
+     * @see  java.lang.String
+     * @see  java.util.Map
+     * @see  java.io.File
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.io.File} <p>The zip files return object is <code>File</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
     public static File zipFiles(String zipPath, Map<String, List<File>> zipFiles) throws RestException {
         List<File> fileList = new ArrayList<>();
         if (zipFiles.keySet().size() == 1) {
@@ -135,6 +250,19 @@ public class ShapefileUtils {
         return zipFiles(zipPath, "shapes", fileList);
     }
 
+    /**
+     * <code>zipFiles</code>
+     * <p>The zip files method.</p>
+     * @param zipPath {@link java.lang.String} <p>The zip path parameter is <code>String</code> type.</p>
+     * @param filename {@link java.lang.String} <p>The filename parameter is <code>String</code> type.</p>
+     * @param zipFiles {@link java.util.List} <p>The zip files parameter is <code>List</code> type.</p>
+     * @see  java.lang.String
+     * @see  java.util.List
+     * @see  java.io.File
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.io.File} <p>The zip files return object is <code>File</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
     public static File zipFiles(String zipPath, String filename, List<File> zipFiles) throws RestException {
         if (zipFiles.size() == 1) {
             return zipFiles.stream().findFirst().get();
@@ -158,6 +286,17 @@ public class ShapefileUtils {
         return zipFile;
     }
 
+    /**
+     * <code>unzipShapeFile</code>
+     * <p>The unzip shape file method.</p>
+     * @param shapeZipFile {@link java.io.File} <p>The shape zip file parameter is <code>File</code> type.</p>
+     * @param zipPath {@link java.lang.String} <p>The zip path parameter is <code>String</code> type.</p>
+     * @see  java.io.File
+     * @see  java.lang.String
+     * @see  io.github.nichetoolkit.rest.RestException
+     * @return  {@link java.io.File} <p>The unzip shape file return object is <code>File</code> type.</p>
+     * @throws RestException {@link io.github.nichetoolkit.rest.RestException} <p>The rest exception is <code>RestException</code> type.</p>
+     */
     public static File unzipShapeFile(File shapeZipFile, String zipPath) throws RestException {
         if (GeneralUtils.isEmpty(zipPath)) {
             throw new FieldNullException("shape zip path", "please initialize the shape file zip path!");

@@ -10,14 +10,29 @@ import org.locationtech.jts.geom.Geometry;
 import java.io.IOException;
 
 /**
- * <p>JtsDeserializer</p>
+ * <code>JtsDeserializer</code>
+ * <p>The jts deserializer class.</p>
+ * @param <S>  {@link org.locationtech.jts.geom.Geometry} <p>The generic parameter is <code>Geometry</code> type.</p>
+ * @see  org.locationtech.jts.geom.Geometry
+ * @see  com.fasterxml.jackson.databind.JsonDeserializer
  * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
+ * @since Jdk1.8
  */
 public class JtsDeserializer<S extends Geometry> extends JsonDeserializer<S> {
 
+    /**
+     * <code>jtsParser</code>
+     * {@link io.github.nichetoolkit.jts.JtsParser} <p>The <code>jtsParser</code> field.</p>
+     * @see  io.github.nichetoolkit.jts.JtsParser
+     */
     private final JtsParser<S> jtsParser;
 
+    /**
+     * <code>JtsDeserializer</code>
+     * <p>Instantiates a new jts deserializer.</p>
+     * @param jtsParser {@link io.github.nichetoolkit.jts.JtsParser} <p>The jts parser parameter is <code>JtsParser</code> type.</p>
+     * @see  io.github.nichetoolkit.jts.JtsParser
+     */
     public JtsDeserializer(JtsParser<S> jtsParser) {
         this.jtsParser = jtsParser;
     }

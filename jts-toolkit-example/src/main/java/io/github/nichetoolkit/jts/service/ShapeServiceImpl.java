@@ -29,15 +29,23 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /**
- * <p>ShapeServiceImpl</p>
+ * <code>ShapeServiceImpl</code>
+ * <p>The shape service class.</p>
+ * @see  lombok.extern.slf4j.Slf4j
+ * @see  org.springframework.stereotype.Service
  * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
+ * @since Jdk1.8
  */
 @Slf4j
 @Service
 public class ShapeServiceImpl implements ShapeService {
 
-    //TODO use redis
+    /**
+     * <code>FILE_CACHE</code>
+     * {@link java.util.Map} <p>The constant <code>FILE_CACHE</code> field.</p>
+     * @see  java.util.Map
+     */
+//TODO use redis
     private static final Map<String, File> FILE_CACHE = new HashMap<>();
 
     @Override

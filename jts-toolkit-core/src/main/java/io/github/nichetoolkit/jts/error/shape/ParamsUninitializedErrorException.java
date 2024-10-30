@@ -4,16 +4,29 @@ import io.github.nichetoolkit.jts.error.JtsErrorStatus;
 import io.github.nichetoolkit.rest.error.natives.ResourceErrorException;
 
 /**
- * <p>ShapeWriterParamsErrorException</p>
+ * <code>ParamsUninitializedErrorException</code>
+ * <p>The params uninitialized error exception class.</p>
+ * @see  io.github.nichetoolkit.rest.error.natives.ResourceErrorException
+ * @see  java.lang.SuppressWarnings
  * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
+ * @since Jdk1.8
  */
 @SuppressWarnings("unused")
 public class ParamsUninitializedErrorException extends ResourceErrorException {
+    /**
+     * <code>ParamsUninitializedErrorException</code>
+     * <p>Instantiates a new params uninitialized error exception.</p>
+     */
     public ParamsUninitializedErrorException() {
         super(JtsErrorStatus.SHAPE_PARAMS_UNINITIALIZED_ERROR);
     }
 
+    /**
+     * <code>ParamsUninitializedErrorException</code>
+     * <p>Instantiates a new params uninitialized error exception.</p>
+     * @param message {@link java.lang.String} <p>The message parameter is <code>String</code> type.</p>
+     * @see  java.lang.String
+     */
     public ParamsUninitializedErrorException(String message) {
         super(JtsErrorStatus.SHAPE_PARAMS_UNINITIALIZED_ERROR, message);
     }

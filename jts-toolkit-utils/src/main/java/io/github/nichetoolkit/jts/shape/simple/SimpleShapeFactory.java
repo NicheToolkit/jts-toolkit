@@ -13,15 +13,28 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <p>ShapeReaderFactory</p>
+ * <code>SimpleShapeFactory</code>
+ * <p>The simple shape factory class.</p>
+ * @see  io.github.nichetoolkit.jts.shape.ShapeFactory
+ * @see  org.springframework.beans.factory.InitializingBean
+ * @see  java.lang.SuppressWarnings
  * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
+ * @since Jdk1.8
  */
 @SuppressWarnings("unused")
 public class SimpleShapeFactory extends ShapeFactory<SimpleShapefile> implements InitializingBean {
 
+    /**
+     * <code>INSTANCE</code>
+     * {@link io.github.nichetoolkit.jts.shape.simple.SimpleShapeFactory} <p>The constant <code>INSTANCE</code> field.</p>
+     */
     private static SimpleShapeFactory INSTANCE = null;
 
+    /**
+     * <code>getInstance</code>
+     * <p>The get instance getter method.</p>
+     * @return  {@link io.github.nichetoolkit.jts.shape.simple.SimpleShapeFactory} <p>The get instance return object is <code>SimpleShapeFactory</code> type.</p>
+     */
     public static SimpleShapeFactory getInstance() {
         return INSTANCE;
     }
@@ -31,6 +44,14 @@ public class SimpleShapeFactory extends ShapeFactory<SimpleShapefile> implements
         INSTANCE = this;
     }
 
+    /**
+     * <code>SimpleShapeFactory</code>
+     * <p>Instantiates a new simple shape factory.</p>
+     * @param shapeReader {@link io.github.nichetoolkit.jts.shape.ShapeReader} <p>The shape reader parameter is <code>ShapeReader</code> type.</p>
+     * @param shapeWriter {@link io.github.nichetoolkit.jts.shape.ShapeWriter} <p>The shape writer parameter is <code>ShapeWriter</code> type.</p>
+     * @see  io.github.nichetoolkit.jts.shape.ShapeReader
+     * @see  io.github.nichetoolkit.jts.shape.ShapeWriter
+     */
     public SimpleShapeFactory(ShapeReader<SimpleShapefile> shapeReader, ShapeWriter<SimpleShapefile> shapeWriter) {
         super(shapeReader, shapeWriter);
     }

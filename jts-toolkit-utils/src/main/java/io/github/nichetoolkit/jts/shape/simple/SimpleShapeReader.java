@@ -32,18 +32,44 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <p>DefaultShapeReader</p>
+ * <code>SimpleShapeReader</code>
+ * <p>The simple shape reader class.</p>
+ * @see  io.github.nichetoolkit.jts.shape.ShapeReader
+ * @see  lombok.extern.slf4j.Slf4j
+ * @see  lombok.Getter
+ * @see  lombok.Setter
+ * @see  java.lang.SuppressWarnings
  * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
+ * @since Jdk1.8
  */
 @Slf4j
 @Getter
 @Setter
 @SuppressWarnings("unused")
 public class SimpleShapeReader extends ShapeReader<SimpleShapefile> {
+    /**
+     * <code>params</code>
+     * {@link java.util.Map} <p>The <code>params</code> field.</p>
+     * @see  java.util.Map
+     */
     protected Map<String, Object> params = new HashMap<>();
+    /**
+     * <code>typeName</code>
+     * {@link java.lang.String} <p>The <code>typeName</code> field.</p>
+     * @see  java.lang.String
+     */
     protected String typeName;
+    /**
+     * <code>dataStore</code>
+     * {@link org.geotools.data.shapefile.ShapefileDataStore} <p>The <code>dataStore</code> field.</p>
+     * @see  org.geotools.data.shapefile.ShapefileDataStore
+     */
     protected ShapefileDataStore dataStore;
+    /**
+     * <code>features</code>
+     * {@link org.geotools.feature.FeatureIterator} <p>The <code>features</code> field.</p>
+     * @see  org.geotools.feature.FeatureIterator
+     */
     protected FeatureIterator<SimpleFeature> features;
 
 

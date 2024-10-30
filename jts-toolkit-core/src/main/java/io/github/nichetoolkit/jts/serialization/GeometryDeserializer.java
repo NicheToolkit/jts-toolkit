@@ -13,15 +13,27 @@ import java.io.IOException;
 import static io.github.nichetoolkit.jts.JtsGeojson.GEOMETRY_FACTORY;
 
 /**
- * <p>GeometryDeserializer</p>
+ * <code>GeometryDeserializer</code>
+ * <p>The geometry deserializer class.</p>
+ * @see  com.fasterxml.jackson.databind.JsonDeserializer
+ * @see  java.lang.SuppressWarnings
  * @author Cyan (snow22314@outlook.com)
- * @version v1.0.0
+ * @since Jdk1.8
  */
 @SuppressWarnings("unused")
 public class GeometryDeserializer extends JsonDeserializer<Geometry> {
 
+    /**
+     * <code>jtsParser</code>
+     * {@link io.github.nichetoolkit.jts.JtsParser} <p>The <code>jtsParser</code> field.</p>
+     * @see  io.github.nichetoolkit.jts.JtsParser
+     */
     private final JtsParser<?> jtsParser;
 
+    /**
+     * <code>GeometryDeserializer</code>
+     * <p>Instantiates a new geometry deserializer.</p>
+     */
     public GeometryDeserializer() {
         this.jtsParser = new GeometryParser(GEOMETRY_FACTORY);
     }
