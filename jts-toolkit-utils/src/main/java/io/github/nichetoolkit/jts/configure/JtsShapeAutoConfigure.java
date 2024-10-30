@@ -5,6 +5,7 @@ import io.github.nichetoolkit.jts.shape.ShapefileUtils;
 import io.github.nichetoolkit.jts.shape.simple.SimpleShapeFactory;
 import io.github.nichetoolkit.jts.shape.simple.SimpleShapeReader;
 import io.github.nichetoolkit.jts.shape.simple.SimpleShapeWriter;
+import io.github.nichetoolkit.jts.shape.simple.SimpleShapefile;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -47,7 +48,7 @@ public class JtsShapeAutoConfigure {
      */
     @Bean
     @ConditionalOnMissingBean(ShapeFactory.class)
-    public SimpleShapeFactory shapeFactory(JtsShapeProperties properties) {
+    public ShapeFactory<SimpleShapefile> shapeFactory(JtsShapeProperties properties) {
         SimpleShapeFactory shapeFactory = new SimpleShapeFactory(new SimpleShapeReader(), new SimpleShapeWriter());
         ShapefileUtils.initShapefile(shapeFactory, properties);
         return shapeFactory;
