@@ -7,6 +7,13 @@ package io.github.nichetoolkit.jts.constant;
  * @since Jdk1.8
  */
 public class JtsConstants {
+
+    /**
+     * <code>SHAPE_ROOT_PREFIX</code>
+     * {@link java.lang.String} <p>The constant <code>SHAPE_ROOT_PREFIX</code> field.</p>
+     * @see  java.lang.String
+     */
+    public static final String SHAPE_ROOT_PREFIX = "nichetoolkit.jts.shape";
     /**
      * <code>DATA_PREFIX</code>
      * {@link java.lang.String} <p>The constant <code>DATA_PREFIX</code> field.</p>

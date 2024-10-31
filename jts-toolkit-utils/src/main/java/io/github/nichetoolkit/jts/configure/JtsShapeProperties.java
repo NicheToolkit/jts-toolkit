@@ -25,12 +25,6 @@ import java.io.File;
 @ConfigurationProperties(prefix = "nichetoolkit.jts.shape")
 public class JtsShapeProperties {
     /**
-     * <code>ROOT_PREFIX</code>
-     * {@link java.lang.String} <p>The constant <code>ROOT_PREFIX</code> field.</p>
-     * @see  java.lang.String
-     */
-    private static final String ROOT_PREFIX = "nichetoolkit.jts.shape";
-    /**
      * <code>enabled</code>
      * {@link java.lang.Boolean} <p>The <code>enabled</code> field.</p>
      * @see  java.lang.Boolean
@@ -89,11 +83,11 @@ public class JtsShapeProperties {
          */
         public String getRootPath() {
             String trim = this.rootPath.toLowerCase().trim();
-            if (!trim.endsWith(ROOT_PREFIX) || !trim.contains(ROOT_PREFIX)) {
+            if (!trim.endsWith(JtsConstants.SHAPE_ROOT_PREFIX) || !trim.contains(JtsConstants.SHAPE_ROOT_PREFIX)) {
                 if (!trim.endsWith(File.separator)) {
-                    return trim.concat(File.separator).concat(ROOT_PREFIX);
+                    return trim.concat(File.separator).concat(JtsConstants.SHAPE_ROOT_PREFIX);
                 } else {
-                    return trim.concat(ROOT_PREFIX);
+                    return trim.concat(JtsConstants.SHAPE_ROOT_PREFIX);
                 }
             }
             return trim;
@@ -225,7 +219,7 @@ public class JtsShapeProperties {
      * @see  java.lang.String
      */
     public static String toRootPath() {
-        return File.separator.concat(JtsConstants.DATA_PREFIX).concat(File.separator).concat(ROOT_PREFIX);
+        return File.separator.concat(JtsConstants.DATA_PREFIX).concat(File.separator).concat(JtsConstants.SHAPE_ROOT_PREFIX);
     }
 
     /**
