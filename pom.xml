@@ -7,9 +7,9 @@
     <version>1.1.0</version>
 
     <modules>
+        <module>jts-toolkit-example</module>
         <module>jts-toolkit-core</module>
         <module>jts-toolkit-utils</module>
-<!--        <module>jts-toolkit-example</module>-->
     </modules>
 
     <name>jts-toolkit-parent</name>
@@ -129,7 +129,6 @@
         <maven-gpg-plugin.version>3.2.5</maven-gpg-plugin.version>
         <nexus-staging-maven-plugin.version>1.7.0</nexus-staging-maven-plugin.version>
         <maven-release-plugin.version>3.1.1</maven-release-plugin.version>
-
 
         <rest-toolkit.version>1.1.0</rest-toolkit.version>
         <jts-toolkit.version>1.1.0</jts-toolkit.version>
@@ -295,9 +294,25 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
                 <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <id>default-deploy</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <serverId>sonatype-nexus-central</serverId>
                     <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
