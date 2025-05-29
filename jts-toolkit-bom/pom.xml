@@ -2,21 +2,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>io.github.nichetoolkit</groupId>
-    <artifactId>jts-toolkit-parent</artifactId>
+    <parent>
+        <groupId>io.github.nichetoolkit</groupId>
+        <artifactId>jts-toolkit-parent</artifactId>
+        <version>1.1.2-SNAPSHOT</version>
+    </parent>
+    <artifactId>jts-toolkit-bom</artifactId>
     <version>1.1.2-SNAPSHOT</version>
-
-    <modules>
-        <module>jts-toolkit-example</module>
-        <module>jts-toolkit-bom</module>
-        <module>jts-toolkit-core</module>
-        <module>jts-toolkit-utils</module>
-    </modules>
-
-    <name>jts-toolkit-parent</name>
+    <name>jts-toolkit-bom</name>
     <packaging>pom</packaging>
-    <description>Jts toolkit project for Spring Boot</description>
-    <url>https://github.com/NicheToolkit/jts-toolkit</url>
+    <description>Jts toolkit bom project for Spring Boot</description>
+    <url>https://github.com/NicheToolkit/jts-toolkit/tree/master/jts-toolkit-bom</url>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
 
     <licenses>
         <license>
@@ -38,13 +40,6 @@
         <url>git@github.com:NicheToolkit/jts-toolkit.git</url>
     </scm>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.18</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
-
     <distributionManagement>
         <snapshotRepository>
             <id>sonatype-nexus-snapshot</id>
@@ -57,19 +52,6 @@
     </distributionManagement>
 
     <repositories>
-        <repository>
-            <id>osgeo-maven-release</id>
-            <name>osgeo maven releases</name>
-            <url>https://repo.osgeo.org/repository/release/</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-                <updatePolicy>daily</updatePolicy>
-            </snapshots>
-        </repository>
 
         <repository>
             <id>sonatype-nexus-central</id>
@@ -115,40 +97,8 @@
 
     </repositories>
 
-    <properties>
-        <java.version>1.8</java.version>
-        <jdk.version>1.8</jdk.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-
-        <spring-boot.version>2.7.18</spring-boot.version>
-
-        <spring-boot-maven-plugin.version>2.7.18</spring-boot-maven-plugin.version>
-        <maven-gpg-plugin.version>3.2.5</maven-gpg-plugin.version>
-        <nexus-staging-maven-plugin.version>1.7.0</nexus-staging-maven-plugin.version>
-        <maven-release-plugin.version>3.1.1</maven-release-plugin.version>
-
-        <rest-toolkit.version>1.1.2-SNAPSHOT</rest-toolkit.version>
-        <jts-toolkit.version>1.1.2-SNAPSHOT</jts-toolkit.version>
-
-        <commons-io.version>2.17.0</commons-io.version>
-
-        <geotools.version>28.5</geotools.version>
-    </properties>
-
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>io.github.nichetoolkit</groupId>
-                <artifactId>rest-toolkit-parent</artifactId>
-                <version>${rest-toolkit.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
             <dependency>
                 <groupId>io.github.nichetoolkit</groupId>
                 <artifactId>jts-toolkit-core</artifactId>
@@ -159,89 +109,17 @@
                 <artifactId>jts-toolkit-utils</artifactId>
                 <version>${jts-toolkit.version}</version>
             </dependency>
-
-            <dependency>
-                <groupId>org.geotools</groupId>
-                <artifactId>gt-geojson</artifactId>
-                <version>${geotools.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.eclipse.emf</groupId>
-                        <artifactId>org.eclipse.emf.ecore</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.eclipse.emf</groupId>
-                        <artifactId>org.eclipse.emf.common</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.eclipse.emf</groupId>
-                        <artifactId>org.eclipse.emf.ecore.xmi</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <dependency>
-                <groupId>org.geotools</groupId>
-                <artifactId>gt-shapefile</artifactId>
-                <version>${geotools.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.eclipse.emf</groupId>
-                        <artifactId>org.eclipse.emf.ecore</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.eclipse.emf</groupId>
-                        <artifactId>org.eclipse.emf.common</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-io</groupId>
-                <artifactId>commons-io</artifactId>
-                <version>${commons-io.version}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>${maven-source-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>${maven-javadoc-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-gpg-plugin</artifactId>
-                    <version>${maven-gpg-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.sonatype.plugins</groupId>
-                    <artifactId>nexus-staging-maven-plugin</artifactId>
-                    <version>${nexus-staging-maven-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-release-plugin</artifactId>
-                    <version>${maven-release-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven-compiler-plugin.version}</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
 
+    <build>
         <finalName>${project.artifactId}</finalName>
         <resources>
+            <resource>
+                <filtering>false</filtering>
+                <directory>src/main/resources</directory>
+            </resource>
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
@@ -335,8 +213,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>8</source>
+                    <target>8</target>
                     <encoding>utf-8</encoding>
                 </configuration>
             </plugin>
