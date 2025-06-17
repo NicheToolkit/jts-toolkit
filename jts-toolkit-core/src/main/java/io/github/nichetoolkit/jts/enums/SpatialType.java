@@ -2,6 +2,7 @@ package io.github.nichetoolkit.jts.enums;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.RestValue;
 import org.springframework.lang.NonNull;
 
@@ -90,7 +91,7 @@ public enum SpatialType implements RestValue<Integer,String> {
      */
     @JsonCreator
     public static SpatialType parseKey(@NonNull Integer key) {
-        SpatialType typeEnum = RestValue.parseKey(SpatialType.class, key);
+        SpatialType typeEnum = RestKey.parseKey(SpatialType.class, key);
         return Optional.ofNullable(typeEnum).orElse(SpatialType.INTERSECTS);
     }
 
