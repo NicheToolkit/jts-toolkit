@@ -1,6 +1,7 @@
 package io.github.nichetoolkit.jts.error;
 
 import io.github.nichetoolkit.rest.RestStatus;
+import io.github.nichetoolkit.rest.util.I18nUtils;
 import lombok.Getter;
 
 /**
@@ -128,5 +129,10 @@ public enum JtsErrorStatus implements RestStatus {
     JtsErrorStatus(Integer status, String message) {
         this.status = status;
         this.message = message;
+    }
+
+    @Override
+    public String getMessage() {
+        return I18nUtils.message(name(), this.message);
     }
 }
