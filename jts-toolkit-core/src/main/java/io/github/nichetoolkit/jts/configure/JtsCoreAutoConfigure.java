@@ -30,7 +30,7 @@ public class JtsCoreAutoConfigure {
      * {@link java.lang.String} <p>The constant <code>JTS_I18N</code> field.</p>
      * @see java.lang.String
      */
-    private static final String JTS_I18N = "jts-i18n";
+    private static final String JTS_I18N = "jts-i18n/messages";
 
     /**
      * <code>JtsCoreAutoConfigure</code>
