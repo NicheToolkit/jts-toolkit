@@ -4,6 +4,8 @@ import io.github.nichetoolkit.jts.shape.ShapeFactory;
 import io.github.nichetoolkit.jts.shape.ShapeReader;
 import io.github.nichetoolkit.jts.shape.ShapeWriter;
 import io.github.nichetoolkit.rest.RestException;
+import io.github.nichetoolkit.rest.RestOptional;
+import io.github.nichetoolkit.rest.error.lack.ConfigureLackError;
 import org.geotools.geometry.jts.Geometries;
 import org.springframework.beans.factory.InitializingBean;
 
@@ -15,10 +17,10 @@ import java.util.Map;
 /**
  * <code>SimpleShapeFactory</code>
  * <p>The simple shape factory class.</p>
- * @see  io.github.nichetoolkit.jts.shape.ShapeFactory
- * @see  org.springframework.beans.factory.InitializingBean
- * @see  java.lang.SuppressWarnings
  * @author Cyan (snow22314@outlook.com)
+ * @see io.github.nichetoolkit.jts.shape.ShapeFactory
+ * @see org.springframework.beans.factory.InitializingBean
+ * @see java.lang.SuppressWarnings
  * @since Jdk1.8
  */
 @SuppressWarnings("unused")
@@ -31,12 +33,12 @@ public class SimpleShapeFactory extends ShapeFactory<SimpleShapefile> implements
     private static SimpleShapeFactory INSTANCE = null;
 
     /**
-     * <code>getInstance</code>
-     * <p>The get instance getter method.</p>
-     * @return  {@link io.github.nichetoolkit.jts.shape.simple.SimpleShapeFactory} <p>The get instance return object is <code>SimpleShapeFactory</code> type.</p>
+     * <code>instance</code>
+     * <p>The instance method.</p>
+     * @return {@link io.github.nichetoolkit.jts.shape.simple.SimpleShapeFactory} <p>The instance return object is <code>SimpleShapeFactory</code> type.</p>
      */
-    public static SimpleShapeFactory getInstance() {
-        return INSTANCE;
+    public static SimpleShapeFactory instance() {
+        return RestOptional.ofNullable(INSTANCE).orNullThrow(ConfigureLackError::new);
     }
 
     @Override
@@ -49,8 +51,8 @@ public class SimpleShapeFactory extends ShapeFactory<SimpleShapefile> implements
      * <p>Instantiates a new simple shape factory.</p>
      * @param shapeReader {@link io.github.nichetoolkit.jts.shape.ShapeReader} <p>The shape reader parameter is <code>ShapeReader</code> type.</p>
      * @param shapeWriter {@link io.github.nichetoolkit.jts.shape.ShapeWriter} <p>The shape writer parameter is <code>ShapeWriter</code> type.</p>
-     * @see  io.github.nichetoolkit.jts.shape.ShapeReader
-     * @see  io.github.nichetoolkit.jts.shape.ShapeWriter
+     * @see io.github.nichetoolkit.jts.shape.ShapeReader
+     * @see io.github.nichetoolkit.jts.shape.ShapeWriter
      */
     public SimpleShapeFactory(ShapeReader<SimpleShapefile> shapeReader, ShapeWriter<SimpleShapefile> shapeWriter) {
         super(shapeReader, shapeWriter);
