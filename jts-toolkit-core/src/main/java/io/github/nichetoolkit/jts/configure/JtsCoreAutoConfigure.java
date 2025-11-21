@@ -1,13 +1,11 @@
 package io.github.nichetoolkit.jts.configure;
 
-import io.github.nichetoolkit.rest.RestI18n;
+import io.github.nichetoolkit.rest.resource.RestI18nResources;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.Collections;
 
 /**
  * <code>JtsCoreAutoConfigure</code>
@@ -41,15 +39,15 @@ public class JtsCoreAutoConfigure {
     }
 
     /**
-     * <code>jtsI18nBasename</code>
-     * <p>The jts i 18 n basename method.</p>
-     * @return {@link io.github.nichetoolkit.rest.RestI18n} <p>The jts i 18 n basename return object is <code>RestI18n</code> type.</p>
-     * @see io.github.nichetoolkit.rest.RestI18n
+     * <code>jtsI18nResources</code>
+     * <p>The jts i 18 n resources method.</p>
+     * @return {@link io.github.nichetoolkit.rest.resource.RestI18nResources} <p>The jts i 18 n resources return object is <code>RestI18nResources</code> type.</p>
+     * @see io.github.nichetoolkit.rest.resource.RestI18nResources
      * @see org.springframework.context.annotation.Bean
      */
     @Bean
-    public RestI18n jtsI18nBasename() {
-        return () -> Collections.singleton(JTS_I18N);
+    public RestI18nResources jtsI18nResources() {
+        return RestI18nResources.of(JTS_I18N);
     }
 
 }
