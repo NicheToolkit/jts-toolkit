@@ -21,15 +21,11 @@ import java.util.Map;
  * @see io.github.nichetoolkit.jts.shape.ShapeFactory
  * @see org.springframework.beans.factory.InitializingBean
  * @see java.lang.SuppressWarnings
- * @since Jdk1.8
+ * @since Jdk17
  */
 @SuppressWarnings("unused")
 public class SimpleShapeFactory extends ShapeFactory<SimpleShapefile> implements InitializingBean {
 
-    /**
-     * <code>INSTANCE</code>
-     * {@link io.github.nichetoolkit.jts.shape.simple.SimpleShapeFactory} <p>The constant <code>INSTANCE</code> field.</p>
-     */
     private static SimpleShapeFactory INSTANCE = null;
 
     /**

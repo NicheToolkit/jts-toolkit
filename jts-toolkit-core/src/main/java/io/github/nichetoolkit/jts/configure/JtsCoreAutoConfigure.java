@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
  * @see org.springframework.context.annotation.Configuration
  * @see org.springframework.context.annotation.ComponentScan
  * @see org.springframework.boot.autoconfigure.ImportAutoConfiguration
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Slf4j
 @Configuration
@@ -23,11 +23,6 @@ import org.springframework.context.annotation.Configuration;
 @ImportAutoConfiguration(value = JtsJacksonAutoConfigure.class)
 public class JtsCoreAutoConfigure {
 
-    /**
-     * <code>JTS_I18N</code>
-     * {@link java.lang.String} <p>The constant <code>JTS_I18N</code> field.</p>
-     * @see java.lang.String
-     */
     private static final String JTS_I18N = "jts-i18n/messages";
 
     /**

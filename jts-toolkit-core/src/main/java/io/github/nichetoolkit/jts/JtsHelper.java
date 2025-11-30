@@ -18,7 +18,7 @@ import java.io.StringWriter;
  * <code>JtsHelper</code>
  * <p>The jts helper class.</p>
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @since Jdk17
  */
 public class JtsHelper {
 
@@ -26,11 +26,11 @@ public class JtsHelper {
      * <code>parseWkt</code>
      * <p>The parse wkt method.</p>
      * @param box {@link io.github.nichetoolkit.jts.JtsBox} <p>The box parameter is <code>JtsBox</code> type.</p>
-     * @see  io.github.nichetoolkit.jts.JtsBox
-     * @see  java.lang.String
-     * @see  io.github.nichetoolkit.jts.error.JtsBoxInvalidException
-     * @return  {@link java.lang.String} <p>The parse wkt return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The parse wkt return object is <code>String</code> type.</p>
      * @throws JtsBoxInvalidException {@link io.github.nichetoolkit.jts.error.JtsBoxInvalidException} <p>The jts box invalid exception is <code>JtsBoxInvalidException</code> type.</p>
+     * @see io.github.nichetoolkit.jts.JtsBox
+     * @see java.lang.String
+     * @see io.github.nichetoolkit.jts.error.JtsBoxInvalidException
      */
     public static String parseWkt(JtsBox box) throws JtsBoxInvalidException {
         if (GeneralUtils.isNotEmpty(box)) {
@@ -49,11 +49,11 @@ public class JtsHelper {
      * <code>parseGeojson</code>
      * <p>The parse geojson method.</p>
      * @param box {@link io.github.nichetoolkit.jts.JtsBox} <p>The box parameter is <code>JtsBox</code> type.</p>
-     * @see  io.github.nichetoolkit.jts.JtsBox
-     * @see  java.lang.String
-     * @see  io.github.nichetoolkit.jts.error.JtsParseException
-     * @return  {@link java.lang.String} <p>The parse geojson return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The parse geojson return object is <code>String</code> type.</p>
      * @throws JtsParseException {@link io.github.nichetoolkit.jts.error.JtsParseException} <p>The jts parse exception is <code>JtsParseException</code> type.</p>
+     * @see io.github.nichetoolkit.jts.JtsBox
+     * @see java.lang.String
+     * @see io.github.nichetoolkit.jts.error.JtsParseException
      */
     public static String parseGeojson(JtsBox box) throws JtsParseException {
         String wkt = parseWkt(box);
@@ -65,11 +65,11 @@ public class JtsHelper {
      * <code>parseBox</code>
      * <p>The parse box method.</p>
      * @param wktString {@link java.lang.String} <p>The wkt string parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  io.github.nichetoolkit.jts.JtsBox
-     * @see  io.github.nichetoolkit.jts.error.JtsParseException
-     * @return  {@link io.github.nichetoolkit.jts.JtsBox} <p>The parse box return object is <code>JtsBox</code> type.</p>
+     * @return {@link io.github.nichetoolkit.jts.JtsBox} <p>The parse box return object is <code>JtsBox</code> type.</p>
      * @throws JtsParseException {@link io.github.nichetoolkit.jts.error.JtsParseException} <p>The jts parse exception is <code>JtsParseException</code> type.</p>
+     * @see java.lang.String
+     * @see io.github.nichetoolkit.jts.JtsBox
+     * @see io.github.nichetoolkit.jts.error.JtsParseException
      */
     public static JtsBox parseBox(String wktString) throws JtsParseException {
         if (GeneralUtils.isNotEmpty(wktString)) {
@@ -88,11 +88,11 @@ public class JtsHelper {
      * <code>parseBox</code>
      * <p>The parse box method.</p>
      * @param geometry {@link org.locationtech.jts.geom.Geometry} <p>The geometry parameter is <code>Geometry</code> type.</p>
-     * @see  org.locationtech.jts.geom.Geometry
-     * @see  io.github.nichetoolkit.jts.JtsBox
-     * @see  io.github.nichetoolkit.jts.error.JtsBoxInvalidException
-     * @return  {@link io.github.nichetoolkit.jts.JtsBox} <p>The parse box return object is <code>JtsBox</code> type.</p>
+     * @return {@link io.github.nichetoolkit.jts.JtsBox} <p>The parse box return object is <code>JtsBox</code> type.</p>
      * @throws JtsBoxInvalidException {@link io.github.nichetoolkit.jts.error.JtsBoxInvalidException} <p>The jts box invalid exception is <code>JtsBoxInvalidException</code> type.</p>
+     * @see org.locationtech.jts.geom.Geometry
+     * @see io.github.nichetoolkit.jts.JtsBox
+     * @see io.github.nichetoolkit.jts.error.JtsBoxInvalidException
      */
     public static JtsBox parseBox(Geometry geometry) throws JtsBoxInvalidException {
         if (GeneralUtils.isNotEmpty(geometry)) {
@@ -114,11 +114,11 @@ public class JtsHelper {
      * <code>parseGeojson</code>
      * <p>The parse geojson method.</p>
      * @param geometry {@link org.locationtech.jts.geom.Geometry} <p>The geometry parameter is <code>Geometry</code> type.</p>
-     * @see  org.locationtech.jts.geom.Geometry
-     * @see  java.lang.String
-     * @see  io.github.nichetoolkit.jts.error.JtsParseException
-     * @return  {@link java.lang.String} <p>The parse geojson return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The parse geojson return object is <code>String</code> type.</p>
      * @throws JtsParseException {@link io.github.nichetoolkit.jts.error.JtsParseException} <p>The jts parse exception is <code>JtsParseException</code> type.</p>
+     * @see org.locationtech.jts.geom.Geometry
+     * @see java.lang.String
+     * @see io.github.nichetoolkit.jts.error.JtsParseException
      */
     public static String parseGeojson(Geometry geometry) throws JtsParseException {
         if (GeneralUtils.isNotEmpty(geometry)) {
@@ -138,10 +138,10 @@ public class JtsHelper {
      * <code>parseGeometry</code>
      * <p>The parse geometry method.</p>
      * @param wkbBytes byte <p>The wkb bytes parameter is <code>byte</code> type.</p>
-     * @return  {@link org.locationtech.jts.geom.Geometry} <p>The parse geometry return object is <code>Geometry</code> type.</p>
-     * @see  org.locationtech.jts.geom.Geometry
-     * @see  io.github.nichetoolkit.jts.error.JtsParseException
+     * @return {@link org.locationtech.jts.geom.Geometry} <p>The parse geometry return object is <code>Geometry</code> type.</p>
      * @throws JtsParseException {@link io.github.nichetoolkit.jts.error.JtsParseException} <p>The jts parse exception is <code>JtsParseException</code> type.</p>
+     * @see org.locationtech.jts.geom.Geometry
+     * @see io.github.nichetoolkit.jts.error.JtsParseException
      */
     public static Geometry parseGeometry(byte[] wkbBytes) throws JtsParseException {
         if (GeneralUtils.isNotEmpty(wkbBytes)) {
@@ -159,10 +159,10 @@ public class JtsHelper {
      * <code>parseWkt</code>
      * <p>The parse wkt method.</p>
      * @param wkbBytes byte <p>The wkb bytes parameter is <code>byte</code> type.</p>
-     * @return  {@link java.lang.String} <p>The parse wkt return object is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  io.github.nichetoolkit.jts.error.JtsParseException
+     * @return {@link java.lang.String} <p>The parse wkt return object is <code>String</code> type.</p>
      * @throws JtsParseException {@link io.github.nichetoolkit.jts.error.JtsParseException} <p>The jts parse exception is <code>JtsParseException</code> type.</p>
+     * @see java.lang.String
+     * @see io.github.nichetoolkit.jts.error.JtsParseException
      */
     public static String parseWkt(byte[] wkbBytes) throws JtsParseException {
         if (GeneralUtils.isNotEmpty(wkbBytes)) {
@@ -181,10 +181,10 @@ public class JtsHelper {
      * <code>parseWkb</code>
      * <p>The parse wkb method.</p>
      * @param geometry {@link org.locationtech.jts.geom.Geometry} <p>The geometry parameter is <code>Geometry</code> type.</p>
-     * @see  org.locationtech.jts.geom.Geometry
-     * @see  io.github.nichetoolkit.jts.error.JtsParseException
      * @return byte <p>The parse wkb return object is <code>byte</code> type.</p>
      * @throws JtsParseException {@link io.github.nichetoolkit.jts.error.JtsParseException} <p>The jts parse exception is <code>JtsParseException</code> type.</p>
+     * @see org.locationtech.jts.geom.Geometry
+     * @see io.github.nichetoolkit.jts.error.JtsParseException
      */
     public static byte[] parseWkb(Geometry geometry) throws JtsParseException {
         if (GeneralUtils.isNotEmpty(geometry)) {
@@ -202,11 +202,11 @@ public class JtsHelper {
      * <code>parseWkt</code>
      * <p>The parse wkt method.</p>
      * @param geometry {@link org.locationtech.jts.geom.Geometry} <p>The geometry parameter is <code>Geometry</code> type.</p>
-     * @see  org.locationtech.jts.geom.Geometry
-     * @see  java.lang.String
-     * @see  io.github.nichetoolkit.jts.error.JtsParseException
-     * @return  {@link java.lang.String} <p>The parse wkt return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The parse wkt return object is <code>String</code> type.</p>
      * @throws JtsParseException {@link io.github.nichetoolkit.jts.error.JtsParseException} <p>The jts parse exception is <code>JtsParseException</code> type.</p>
+     * @see org.locationtech.jts.geom.Geometry
+     * @see java.lang.String
+     * @see io.github.nichetoolkit.jts.error.JtsParseException
      */
     public static String parseWkt(Geometry geometry) throws JtsParseException {
         if (GeneralUtils.isNotEmpty(geometry)) {
@@ -224,11 +224,11 @@ public class JtsHelper {
      * <code>parseGeometry</code>
      * <p>The parse geometry method.</p>
      * @param wktString {@link java.lang.String} <p>The wkt string parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  org.locationtech.jts.geom.Geometry
-     * @see  io.github.nichetoolkit.jts.error.JtsParseException
-     * @return  {@link org.locationtech.jts.geom.Geometry} <p>The parse geometry return object is <code>Geometry</code> type.</p>
+     * @return {@link org.locationtech.jts.geom.Geometry} <p>The parse geometry return object is <code>Geometry</code> type.</p>
      * @throws JtsParseException {@link io.github.nichetoolkit.jts.error.JtsParseException} <p>The jts parse exception is <code>JtsParseException</code> type.</p>
+     * @see java.lang.String
+     * @see org.locationtech.jts.geom.Geometry
+     * @see io.github.nichetoolkit.jts.error.JtsParseException
      */
     public static Geometry parseGeometry(String wktString) throws JtsParseException {
         if (GeneralUtils.isNotEmpty(wktString)) {
@@ -246,10 +246,10 @@ public class JtsHelper {
      * <code>parseWkb</code>
      * <p>The parse wkb method.</p>
      * @param wktString {@link java.lang.String} <p>The wkt string parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  io.github.nichetoolkit.jts.error.JtsParseException
      * @return byte <p>The parse wkb return object is <code>byte</code> type.</p>
      * @throws JtsParseException {@link io.github.nichetoolkit.jts.error.JtsParseException} <p>The jts parse exception is <code>JtsParseException</code> type.</p>
+     * @see java.lang.String
+     * @see io.github.nichetoolkit.jts.error.JtsParseException
      */
     public static byte[] parseWkb(String wktString) throws JtsParseException {
         if (GeneralUtils.isNotEmpty(wktString)) {
@@ -268,11 +268,11 @@ public class JtsHelper {
      * <code>parseGeojson</code>
      * <p>The parse geojson method.</p>
      * @param geojson {@link java.lang.String} <p>The geojson parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  org.locationtech.jts.geom.Geometry
-     * @see  io.github.nichetoolkit.jts.error.JtsParseException
-     * @return  {@link org.locationtech.jts.geom.Geometry} <p>The parse geojson return object is <code>Geometry</code> type.</p>
+     * @return {@link org.locationtech.jts.geom.Geometry} <p>The parse geojson return object is <code>Geometry</code> type.</p>
      * @throws JtsParseException {@link io.github.nichetoolkit.jts.error.JtsParseException} <p>The jts parse exception is <code>JtsParseException</code> type.</p>
+     * @see java.lang.String
+     * @see org.locationtech.jts.geom.Geometry
+     * @see io.github.nichetoolkit.jts.error.JtsParseException
      */
     public static Geometry parseGeojson(String geojson) throws JtsParseException {
         if (GeneralUtils.isNotEmpty(geojson)) {

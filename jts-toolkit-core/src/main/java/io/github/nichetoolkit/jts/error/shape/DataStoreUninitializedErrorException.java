@@ -6,10 +6,10 @@ import io.github.nichetoolkit.rest.error.natives.ResourceErrorException;
 /**
  * <code>DataStoreUninitializedErrorException</code>
  * <p>The data store uninitialized error exception class.</p>
- * @see  io.github.nichetoolkit.rest.error.natives.ResourceErrorException
- * @see  java.lang.SuppressWarnings
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rest.error.natives.ResourceErrorException
+ * @see java.lang.SuppressWarnings
+ * @since Jdk17
  */
 @SuppressWarnings("unused")
 public class DataStoreUninitializedErrorException extends ResourceErrorException {
@@ -26,7 +26,7 @@ public class DataStoreUninitializedErrorException extends ResourceErrorException
      * <code>DataStoreUninitializedErrorException</code>
      * <p>Instantiates a new data store uninitialized error exception.</p>
      * @param message {@link java.lang.String} <p>The message parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     public DataStoreUninitializedErrorException(String message) {
         super(JtsErrorStatus.SHAPE_DATA_STORE_UNINITIALIZED_ERROR, message);

@@ -12,15 +12,15 @@ import io.github.nichetoolkit.rest.util.JsonUtils;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.geotools.data.DataStoreFinder;
-import org.geotools.data.FeatureSource;
+import org.geotools.api.data.DataStoreFinder;
 import org.geotools.data.shapefile.ShapefileDataStore;
-import org.geotools.feature.FeatureCollection;
+import org.geotools.data.simple.SimpleFeatureIterator;
+import org.geotools.data.store.ContentFeatureCollection;
+import org.geotools.data.store.ContentFeatureSource;
 import org.geotools.feature.FeatureIterator;
 import org.locationtech.jts.geom.Geometry;
-import org.opengis.feature.Property;
-import org.opengis.feature.simple.SimpleFeature;
-import org.opengis.feature.simple.SimpleFeatureType;
+import org.geotools.api.feature.Property;
+import org.geotools.api.feature.simple.SimpleFeature;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,13 +34,13 @@ import java.util.Map;
 /**
  * <code>SimpleShapeReader</code>
  * <p>The simple shape reader class.</p>
- * @see  io.github.nichetoolkit.jts.shape.ShapeReader
- * @see  lombok.extern.slf4j.Slf4j
- * @see  lombok.Getter
- * @see  lombok.Setter
- * @see  java.lang.SuppressWarnings
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.jts.shape.ShapeReader
+ * @see lombok.extern.slf4j.Slf4j
+ * @see lombok.Getter
+ * @see lombok.Setter
+ * @see java.lang.SuppressWarnings
+ * @since Jdk17
  */
 @Slf4j
 @Getter
@@ -50,25 +50,25 @@ public class SimpleShapeReader extends ShapeReader<SimpleShapefile> {
     /**
      * <code>params</code>
      * {@link java.util.Map} <p>The <code>params</code> field.</p>
-     * @see  java.util.Map
+     * @see java.util.Map
      */
     protected Map<String, Object> params = new HashMap<>();
     /**
      * <code>typeName</code>
      * {@link java.lang.String} <p>The <code>typeName</code> field.</p>
-     * @see  java.lang.String
+     * @see java.lang.String
      */
     protected String typeName;
     /**
      * <code>dataStore</code>
      * {@link org.geotools.data.shapefile.ShapefileDataStore} <p>The <code>dataStore</code> field.</p>
-     * @see  org.geotools.data.shapefile.ShapefileDataStore
+     * @see org.geotools.data.shapefile.ShapefileDataStore
      */
     protected ShapefileDataStore dataStore;
     /**
      * <code>features</code>
      * {@link org.geotools.feature.FeatureIterator} <p>The <code>features</code> field.</p>
-     * @see  org.geotools.feature.FeatureIterator
+     * @see org.geotools.feature.FeatureIterator
      */
     protected FeatureIterator<SimpleFeature> features;
 
@@ -143,12 +143,12 @@ public class SimpleShapeReader extends ShapeReader<SimpleShapefile> {
     public FeatureIterator<SimpleFeature> features(ShapefileDataStore dataStore) throws RestException {
         try {
             String typeName = dataStore.getTypeNames()[0];
-            FeatureSource<SimpleFeatureType, SimpleFeature> source = dataStore.getFeatureSource(typeName);
-            FeatureCollection<SimpleFeatureType, SimpleFeature> featureCollection = source.getFeatures();
-            FeatureIterator<SimpleFeature> features = featureCollection.features();
+            ContentFeatureSource source = dataStore.getFeatureSource(typeName);
+            ContentFeatureCollection featureCollection = source.getFeatures();
+            SimpleFeatureIterator featureIterator = featureCollection.features();
             this.dataStore = dataStore;
             this.typeName = typeName;
-            this.features = features;
+            this.features = featureIterator;
             log.debug("The shape reader obtains features success! size: {}.", featureCollection.size());
             return features;
         } catch (IOException exception) {

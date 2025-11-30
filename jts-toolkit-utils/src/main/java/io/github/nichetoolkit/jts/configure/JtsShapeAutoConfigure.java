@@ -16,12 +16,12 @@ import org.springframework.context.annotation.Configuration;
 /**
  * <code>JtsShapeAutoConfigure</code>
  * <p>The jts shape auto configure class.</p>
- * @see  lombok.extern.slf4j.Slf4j
- * @see  org.springframework.context.annotation.Configuration
- * @see  org.springframework.context.annotation.ComponentScan
- * @see  org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see lombok.extern.slf4j.Slf4j
+ * @see org.springframework.context.annotation.Configuration
+ * @see org.springframework.context.annotation.ComponentScan
+ * @see org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+ * @since Jdk17
  */
 @Slf4j
 @Configuration
@@ -40,11 +40,11 @@ public class JtsShapeAutoConfigure {
      * <code>shapeFactory</code>
      * <p>The shape factory method.</p>
      * @param properties {@link io.github.nichetoolkit.jts.configure.JtsShapeProperties} <p>The properties parameter is <code>JtsShapeProperties</code> type.</p>
-     * @see  io.github.nichetoolkit.jts.configure.JtsShapeProperties
-     * @see  io.github.nichetoolkit.jts.shape.ShapeFactory
-     * @see  org.springframework.context.annotation.Bean
-     * @see  org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
-     * @return  {@link io.github.nichetoolkit.jts.shape.ShapeFactory} <p>The shape factory return object is <code>ShapeFactory</code> type.</p>
+     * @return {@link io.github.nichetoolkit.jts.shape.ShapeFactory} <p>The shape factory return object is <code>ShapeFactory</code> type.</p>
+     * @see io.github.nichetoolkit.jts.configure.JtsShapeProperties
+     * @see io.github.nichetoolkit.jts.shape.ShapeFactory
+     * @see org.springframework.context.annotation.Bean
+     * @see org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
      */
     @Bean
     @ConditionalOnMissingBean(ShapeFactory.class)

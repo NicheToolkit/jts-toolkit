@@ -12,15 +12,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
-import org.geotools.data.FeatureWriter;
-import org.geotools.data.Transaction;
+import org.geotools.api.data.FeatureWriter;
+import org.geotools.api.data.Transaction;
 import org.geotools.data.shapefile.ShapefileDataStore;
 import org.geotools.data.shapefile.ShapefileDataStoreFactory;
 import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
 import org.geotools.geometry.jts.Geometries;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
-import org.opengis.feature.simple.SimpleFeature;
-import org.opengis.feature.simple.SimpleFeatureType;
+import org.geotools.api.feature.simple.SimpleFeature;
+import org.geotools.api.feature.simple.SimpleFeatureType;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,13 +32,13 @@ import java.util.*;
 /**
  * <code>SimpleShapeWriter</code>
  * <p>The simple shape writer class.</p>
- * @see  io.github.nichetoolkit.jts.shape.ShapeWriter
- * @see  lombok.extern.slf4j.Slf4j
- * @see  lombok.Getter
- * @see  lombok.Setter
- * @see  java.lang.SuppressWarnings
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.jts.shape.ShapeWriter
+ * @see lombok.extern.slf4j.Slf4j
+ * @see lombok.Getter
+ * @see lombok.Setter
+ * @see java.lang.SuppressWarnings
+ * @since Jdk17
  */
 @Slf4j
 @Getter
@@ -48,37 +48,37 @@ public class SimpleShapeWriter extends ShapeWriter<SimpleShapefile> {
     /**
      * <code>shapefile</code>
      * {@link java.io.File} <p>The <code>shapefile</code> field.</p>
-     * @see  java.io.File
+     * @see java.io.File
      */
     protected File shapefile;
     /**
      * <code>dataStore</code>
      * {@link org.geotools.data.shapefile.ShapefileDataStore} <p>The <code>dataStore</code> field.</p>
-     * @see  org.geotools.data.shapefile.ShapefileDataStore
+     * @see org.geotools.data.shapefile.ShapefileDataStore
      */
     protected ShapefileDataStore dataStore;
     /**
      * <code>params</code>
      * {@link java.util.Map} <p>The <code>params</code> field.</p>
-     * @see  java.util.Map
+     * @see java.util.Map
      */
     protected Map<String, Serializable> params;
     /**
      * <code>featureWriter</code>
-     * {@link org.geotools.data.FeatureWriter} <p>The <code>featureWriter</code> field.</p>
-     * @see  org.geotools.data.FeatureWriter
+     * {@link org.geotools.api.data.FeatureWriter} <p>The <code>featureWriter</code> field.</p>
+     * @see org.geotools.api.data.FeatureWriter
      */
     protected FeatureWriter<SimpleFeatureType, SimpleFeature> featureWriter;
     /**
      * <code>attributeClassMap</code>
      * {@link java.util.Map} <p>The <code>attributeClassMap</code> field.</p>
-     * @see  java.util.Map
+     * @see java.util.Map
      */
     protected Map<String, Class<?>> attributeClassMap;
     /**
      * <code>typeBuilder</code>
      * {@link org.geotools.feature.simple.SimpleFeatureTypeBuilder} <p>The <code>typeBuilder</code> field.</p>
-     * @see  org.geotools.feature.simple.SimpleFeatureTypeBuilder
+     * @see org.geotools.feature.simple.SimpleFeatureTypeBuilder
      */
     protected SimpleFeatureTypeBuilder typeBuilder;
 

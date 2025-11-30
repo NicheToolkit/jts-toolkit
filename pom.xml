@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.nichetoolkit</groupId>
     <artifactId>jts-toolkit-parent</artifactId>
-    <version>1.1.2-SNAPSHOT</version>
+    <version>4.1.2-SNAPSHOT</version>
 
     <modules>
         <module>jts-toolkit-example</module>
@@ -41,7 +41,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.18</version>
+        <version>4.0.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -86,27 +86,28 @@
     </repositories>
 
     <properties>
-        <java.version>1.8</java.version>
-        <jdk.version>1.8</jdk.version>
+        <java.version>17</java.version>
+        <jdk.version>17</jdk.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
 
-        <spring-boot.version>2.7.18</spring-boot.version>
+        <spring-boot.version>4.0.0</spring-boot.version>
+        <springframework.version>7.0.1</springframework.version>
 
-        <spring-boot-maven-plugin.version>2.7.18</spring-boot-maven-plugin.version>
+        <spring-boot-maven-plugin.version>4.0.0</spring-boot-maven-plugin.version>
         <maven-gpg-plugin.version>3.2.5</maven-gpg-plugin.version>
-        <central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
-        <maven-release-plugin.version>3.1.1</maven-release-plugin.version>
+        <central-publishing-maven-plugin.version>0.9.0</central-publishing-maven-plugin.version>
+        <maven-release-plugin.version>3.2.0</maven-release-plugin.version>
 
-        <rest-toolkit.version>1.1.2-SNAPSHOT</rest-toolkit.version>
-        <jts-toolkit.version>1.1.2-SNAPSHOT</jts-toolkit.version>
+        <rest-toolkit.version>4.1.2-SNAPSHOT</rest-toolkit.version>
+        <jts-toolkit.version>4.1.2-SNAPSHOT</jts-toolkit.version>
 
-        <commons-io.version>2.17.0</commons-io.version>
+        <commons-io.version>2.21.0</commons-io.version>
 
-        <geotools.version>28.5</geotools.version>
+        <geotools.version>34.0</geotools.version>
     </properties>
 
     <dependencyManagement>
@@ -137,6 +138,22 @@
                 <exclusions>
                     <exclusion>
                         <groupId>org.eclipse.emf</groupId>
+                        <artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.eclipse.imagen</groupId>
+                        <artifactId>imagen-core</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.eclipse.imagen</groupId>
+                        <artifactId>iterators</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.eclipse.imagen</groupId>
+                        <artifactId>utilities</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.eclipse.emf</groupId>
                         <artifactId>org.eclipse.emf.ecore</artifactId>
                     </exclusion>
                     <exclusion>
@@ -146,6 +163,14 @@
                     <exclusion>
                         <groupId>org.eclipse.emf</groupId>
                         <artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.ejml</groupId>
+                        <artifactId>ejml-core</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.ejml</groupId>
+                        <artifactId>ejml-ddense</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
@@ -157,11 +182,39 @@
                 <exclusions>
                     <exclusion>
                         <groupId>org.eclipse.emf</groupId>
+                        <artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.eclipse.imagen</groupId>
+                        <artifactId>imagen-core</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.eclipse.imagen</groupId>
+                        <artifactId>iterators</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.eclipse.imagen</groupId>
+                        <artifactId>utilities</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.eclipse.emf</groupId>
                         <artifactId>org.eclipse.emf.ecore</artifactId>
                     </exclusion>
                     <exclusion>
                         <groupId>org.eclipse.emf</groupId>
                         <artifactId>org.eclipse.emf.common</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.eclipse.emf</groupId>
+                        <artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.ejml</groupId>
+                        <artifactId>ejml-core</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.ejml</groupId>
+                        <artifactId>ejml-ddense</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
@@ -299,9 +352,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>utf-8</encoding>
+                    <source>17</source>
+                    <target>17</target>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
         </plugins>

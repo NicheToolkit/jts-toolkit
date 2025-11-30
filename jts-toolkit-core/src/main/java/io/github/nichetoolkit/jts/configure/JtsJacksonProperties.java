@@ -8,22 +8,17 @@ import org.springframework.stereotype.Component;
 /**
  * <code>JtsJacksonProperties</code>
  * <p>The jts jackson properties class.</p>
- * @see  lombok.Setter
- * @see  lombok.Getter
- * @see  org.springframework.stereotype.Component
- * @see  org.springframework.boot.context.properties.ConfigurationProperties
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see lombok.Setter
+ * @see lombok.Getter
+ * @see org.springframework.stereotype.Component
+ * @see org.springframework.boot.context.properties.ConfigurationProperties
+ * @since Jdk17
  */
 @Setter
 @Getter
 @Component
 @ConfigurationProperties(prefix = "nichetoolkit.jts.jackson")
 public class JtsJacksonProperties {
-    /**
-     * <code>enabled</code>
-     * {@link java.lang.Boolean} <p>The <code>enabled</code> field.</p>
-     * @see  java.lang.Boolean
-     */
     private Boolean enabled = true;
 }

@@ -1,6 +1,6 @@
 package io.github.nichetoolkit.jts;
 
-import com.fasterxml.jackson.databind.module.SimpleModule;
+import tools.jackson.databind.module.SimpleModule;
 import io.github.nichetoolkit.jts.parser.*;
 import io.github.nichetoolkit.jts.serialization.GeometrySerializer;
 import io.github.nichetoolkit.jts.serialization.JtsDeserializer;
@@ -9,10 +9,10 @@ import org.locationtech.jts.geom.*;
 /**
  * <code>JtsModule3D</code>
  * <p>The jts module 3 d class.</p>
- * @see  com.fasterxml.jackson.databind.module.SimpleModule
- * @see  java.lang.SuppressWarnings
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see tools.jackson.databind.module.SimpleModule
+ * @see java.lang.SuppressWarnings
+ * @since Jdk17
  */
 @SuppressWarnings("unused")
 public class JtsModule3D extends SimpleModule {
@@ -29,7 +29,7 @@ public class JtsModule3D extends SimpleModule {
      * <code>JtsModule3D</code>
      * <p>Instantiates a new jts module 3 d.</p>
      * @param geometryFactory {@link org.locationtech.jts.geom.GeometryFactory} <p>The geometry factory parameter is <code>GeometryFactory</code> type.</p>
-     * @see  org.locationtech.jts.geom.GeometryFactory
+     * @see org.locationtech.jts.geom.GeometryFactory
      */
     public JtsModule3D(GeometryFactory geometryFactory) {
         super("JtsModule3D", JtsVersion.VERSION);

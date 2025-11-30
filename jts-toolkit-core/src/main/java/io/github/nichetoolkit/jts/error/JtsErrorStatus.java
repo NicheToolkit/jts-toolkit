@@ -7,10 +7,10 @@ import lombok.Getter;
 /**
  * <code>JtsErrorStatus</code>
  * <p>The jts error status enumeration.</p>
- * @see  io.github.nichetoolkit.rest.RestStatus
- * @see  lombok.Getter
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rest.RestStatus
+ * @see lombok.Getter
+ * @since Jdk17
  */
 @Getter
 public enum JtsErrorStatus implements RestStatus {
@@ -105,27 +105,9 @@ public enum JtsErrorStatus implements RestStatus {
     SHAPE_WRITER_FEATURES_ERROR(10724, "It has encountered a features error of shape file writer"),
     ;
 
-    /**
-     * <code>status</code>
-     * {@link java.lang.Integer} <p>The <code>status</code> field.</p>
-     * @see  java.lang.Integer
-     */
     private final Integer status;
-    /**
-     * <code>message</code>
-     * {@link java.lang.String} <p>The <code>message</code> field.</p>
-     * @see  java.lang.String
-     */
     private final String message;
 
-    /**
-     * <code>JtsErrorStatus</code>
-     * <p>Instantiates a new jts error status.</p>
-     * @param status {@link java.lang.Integer} <p>The status parameter is <code>Integer</code> type.</p>
-     * @param message {@link java.lang.String} <p>The message parameter is <code>String</code> type.</p>
-     * @see  java.lang.Integer
-     * @see  java.lang.String
-     */
     JtsErrorStatus(Integer status, String message) {
         this.status = status;
         this.message = message;

@@ -4,16 +4,16 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.nichetoolkit.rest.RestKey;
 import io.github.nichetoolkit.rest.RestValue;
-import org.springframework.lang.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Optional;
 
 /**
  * <code>SpatialType</code>
  * <p>The spatial type enumeration.</p>
- * @see  io.github.nichetoolkit.rest.RestValue
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.rest.RestValue
+ * @since Jdk17
  */
 public enum SpatialType implements RestValue<Integer,String> {
     /**
@@ -43,27 +43,9 @@ public enum SpatialType implements RestValue<Integer,String> {
     COVERS(5,"覆盖"),
             ;
 
-    /**
-     * <code>key</code>
-     * {@link java.lang.Integer} <p>The <code>key</code> field.</p>
-     * @see  java.lang.Integer
-     */
     private final Integer key;
-    /**
-     * <code>value</code>
-     * {@link java.lang.String} <p>The <code>value</code> field.</p>
-     * @see  java.lang.String
-     */
     private final String value;
 
-    /**
-     * <code>SpatialType</code>
-     * <p>Instantiates a new spatial type.</p>
-     * @param key {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
-     * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @see  java.lang.Integer
-     * @see  java.lang.String
-     */
     SpatialType(Integer key, String value) {
         this.key = key;
         this.value = value;
@@ -84,10 +66,10 @@ public enum SpatialType implements RestValue<Integer,String> {
      * <code>parseKey</code>
      * <p>The parse key method.</p>
      * @param key {@link java.lang.Integer} <p>The key parameter is <code>Integer</code> type.</p>
-     * @see  java.lang.Integer
-     * @see  org.springframework.lang.NonNull
-     * @see  com.fasterxml.jackson.annotation.JsonCreator
-     * @return  {@link io.github.nichetoolkit.jts.enums.SpatialType} <p>The parse key return object is <code>SpatialType</code> type.</p>
+     * @return {@link io.github.nichetoolkit.jts.enums.SpatialType} <p>The parse key return object is <code>SpatialType</code> type.</p>
+     * @see java.lang.Integer
+     * @see org.jspecify.annotations.NonNull
+     * @see com.fasterxml.jackson.annotation.JsonCreator
      */
     @JsonCreator
     public static SpatialType parseKey(@NonNull Integer key) {
@@ -99,9 +81,9 @@ public enum SpatialType implements RestValue<Integer,String> {
      * <code>parseValue</code>
      * <p>The parse value method.</p>
      * @param value {@link java.lang.String} <p>The value parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  org.springframework.lang.NonNull
-     * @return  {@link io.github.nichetoolkit.jts.enums.SpatialType} <p>The parse value return object is <code>SpatialType</code> type.</p>
+     * @return {@link io.github.nichetoolkit.jts.enums.SpatialType} <p>The parse value return object is <code>SpatialType</code> type.</p>
+     * @see java.lang.String
+     * @see org.jspecify.annotations.NonNull
      */
     public static SpatialType parseValue(@NonNull String value) {
         SpatialType typeEnum = RestValue.parseValue(SpatialType.class, value);

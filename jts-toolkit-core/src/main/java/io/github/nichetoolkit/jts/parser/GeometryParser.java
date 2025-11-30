@@ -1,6 +1,6 @@
 package io.github.nichetoolkit.jts.parser;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.JsonNode;
 import io.github.nichetoolkit.jts.JtsParser;
 import io.github.nichetoolkit.jts.error.JtsParserErrorException;
 import org.locationtech.jts.geom.Geometry;
@@ -15,24 +15,19 @@ import static io.github.nichetoolkit.jts.JtsGeojson.*;
 /**
  * <code>GeometryParser</code>
  * <p>The geometry parser class.</p>
- * @see  io.github.nichetoolkit.jts.JtsParser
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see io.github.nichetoolkit.jts.JtsParser
+ * @since Jdk17
  */
 public class GeometryParser extends JtsParser<Geometry> {
 
-    /**
-     * <code>parsers</code>
-     * {@link java.util.Map} <p>The <code>parsers</code> field.</p>
-     * @see  java.util.Map
-     */
     private final Map<String, JtsParser<?>> parsers;
 
     /**
      * <code>GeometryParser</code>
      * <p>Instantiates a new geometry parser.</p>
      * @param geometryFactory {@link org.locationtech.jts.geom.GeometryFactory} <p>The geometry factory parameter is <code>GeometryFactory</code> type.</p>
-     * @see  org.locationtech.jts.geom.GeometryFactory
+     * @see org.locationtech.jts.geom.GeometryFactory
      */
     public GeometryParser(GeometryFactory geometryFactory) {
         super(geometryFactory);
@@ -48,7 +43,7 @@ public class GeometryParser extends JtsParser<Geometry> {
 
     @Override
     public Geometry parse(JsonNode node) throws JtsParserErrorException {
-        String typeName = node.get(TYPE).asText();
+        String typeName = node.get(TYPE).asString();
         JtsParser<?> parser = parsers.get(typeName);
         if (parser != null) {
             return parser.parse(node);

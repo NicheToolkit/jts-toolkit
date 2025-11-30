@@ -19,8 +19,8 @@ import org.springframework.http.MediaTypeFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -31,21 +31,16 @@ import java.util.*;
 /**
  * <code>ShapeServiceImpl</code>
  * <p>The shape service class.</p>
- * @see  lombok.extern.slf4j.Slf4j
- * @see  org.springframework.stereotype.Service
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see lombok.extern.slf4j.Slf4j
+ * @see org.springframework.stereotype.Service
+ * @since Jdk17
  */
 @Slf4j
 @Service
 public class ShapeServiceImpl implements ShapeService {
 
-    /**
-     * <code>FILE_CACHE</code>
-     * {@link java.util.Map} <p>The constant <code>FILE_CACHE</code> field.</p>
-     * @see  java.util.Map
-     */
-//TODO use redis
+    //TODO use redis
     private static final Map<String, File> FILE_CACHE = new HashMap<>();
 
     @Override
@@ -91,7 +86,7 @@ public class ShapeServiceImpl implements ShapeService {
             try (FileInputStream inputStream = new FileInputStream(zipFiles);
                  ServletOutputStream outputStream = response.getOutputStream()) {
                 log.debug("file size: {}", zipFiles.length());
-                response.addHeader(FileConstants.CONTENT_DISPOSITION_HEADER, FileConstants.ATTACHMENT_FILENAME_VALUE + URLEncoder.encode(filename, StandardCharsets.UTF_8.name()));
+                response.addHeader(FileConstants.CONTENT_DISPOSITION_HEADER, FileConstants.ATTACHMENT_FILENAME_VALUE + URLEncoder.encode(filename, StandardCharsets.UTF_8));
                 response.addHeader(FileConstants.CONTENT_LENGTH_HEADER, "" + zipFiles.length());
                 response.setCharacterEncoding(StandardCharsets.UTF_8.name());
                 response.setContentType(contentType);

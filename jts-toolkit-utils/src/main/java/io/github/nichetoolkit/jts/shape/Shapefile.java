@@ -1,7 +1,7 @@
 package io.github.nichetoolkit.jts.shape;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import tools.jackson.databind.annotation.JsonDeserialize;
+import tools.jackson.databind.annotation.JsonSerialize;
 import io.github.nichetoolkit.jts.serialization.GeometryDeserializer;
 import io.github.nichetoolkit.jts.serialization.GeometrySerializer;
 import io.github.nichetoolkit.rest.util.GeneralUtils;
@@ -24,7 +24,7 @@ import java.util.Map;
  * @see lombok.Setter
  * @see lombok.experimental.SuperBuilder
  * @see java.lang.SuppressWarnings
- * @since Jdk1.8
+ * @since Jdk17
  */
 @Getter
 @Setter
@@ -53,8 +53,8 @@ public abstract class Shapefile implements Serializable {
      * <code>geometry</code>
      * {@link org.locationtech.jts.geom.Geometry} <p>The <code>geometry</code> field.</p>
      * @see org.locationtech.jts.geom.Geometry
-     * @see com.fasterxml.jackson.databind.annotation.JsonDeserialize
-     * @see com.fasterxml.jackson.databind.annotation.JsonSerialize
+     * @see tools.jackson.databind.annotation.JsonDeserialize
+     * @see tools.jackson.databind.annotation.JsonSerialize
      */
     @JsonDeserialize(using = GeometryDeserializer.class)
     @JsonSerialize(using = GeometrySerializer.class)

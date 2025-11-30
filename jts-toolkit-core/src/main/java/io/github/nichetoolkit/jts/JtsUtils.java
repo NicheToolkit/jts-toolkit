@@ -9,10 +9,10 @@ import org.locationtech.jts.geom.Geometry;
 /**
  * <code>JtsUtils</code>
  * <p>The jts utils class.</p>
- * @see  lombok.extern.slf4j.Slf4j
- * @see  java.lang.SuppressWarnings
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see lombok.extern.slf4j.Slf4j
+ * @see java.lang.SuppressWarnings
+ * @since Jdk17
  */
 @Slf4j
 @SuppressWarnings("unused")
@@ -22,9 +22,9 @@ public class JtsUtils {
      * <code>parseWkt</code>
      * <p>The parse wkt method.</p>
      * @param box {@link io.github.nichetoolkit.jts.JtsBox} <p>The box parameter is <code>JtsBox</code> type.</p>
-     * @see  io.github.nichetoolkit.jts.JtsBox
-     * @see  java.lang.String
-     * @return  {@link java.lang.String} <p>The parse wkt return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The parse wkt return object is <code>String</code> type.</p>
+     * @see io.github.nichetoolkit.jts.JtsBox
+     * @see java.lang.String
      */
     public static String parseWkt(JtsBox box) {
         try {
@@ -40,9 +40,9 @@ public class JtsUtils {
      * <code>parseGeojson</code>
      * <p>The parse geojson method.</p>
      * @param box {@link io.github.nichetoolkit.jts.JtsBox} <p>The box parameter is <code>JtsBox</code> type.</p>
-     * @see  io.github.nichetoolkit.jts.JtsBox
-     * @see  java.lang.String
-     * @return  {@link java.lang.String} <p>The parse geojson return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The parse geojson return object is <code>String</code> type.</p>
+     * @see io.github.nichetoolkit.jts.JtsBox
+     * @see java.lang.String
      */
     public static String parseGeojson(JtsBox box) {
         try {
@@ -58,9 +58,9 @@ public class JtsUtils {
      * <code>parseBox</code>
      * <p>The parse box method.</p>
      * @param wktString {@link java.lang.String} <p>The wkt string parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  io.github.nichetoolkit.jts.JtsBox
-     * @return  {@link io.github.nichetoolkit.jts.JtsBox} <p>The parse box return object is <code>JtsBox</code> type.</p>
+     * @return {@link io.github.nichetoolkit.jts.JtsBox} <p>The parse box return object is <code>JtsBox</code> type.</p>
+     * @see java.lang.String
+     * @see io.github.nichetoolkit.jts.JtsBox
      */
     public static JtsBox parseBox(String wktString) {
         try {
@@ -76,9 +76,9 @@ public class JtsUtils {
      * <code>parseBox</code>
      * <p>The parse box method.</p>
      * @param geometry {@link org.locationtech.jts.geom.Geometry} <p>The geometry parameter is <code>Geometry</code> type.</p>
-     * @see  org.locationtech.jts.geom.Geometry
-     * @see  io.github.nichetoolkit.jts.JtsBox
-     * @return  {@link io.github.nichetoolkit.jts.JtsBox} <p>The parse box return object is <code>JtsBox</code> type.</p>
+     * @return {@link io.github.nichetoolkit.jts.JtsBox} <p>The parse box return object is <code>JtsBox</code> type.</p>
+     * @see org.locationtech.jts.geom.Geometry
+     * @see io.github.nichetoolkit.jts.JtsBox
      */
     public static JtsBox parseBox(Geometry geometry) {
         try {
@@ -94,9 +94,9 @@ public class JtsUtils {
      * <code>parseGeojson</code>
      * <p>The parse geojson method.</p>
      * @param geometry {@link org.locationtech.jts.geom.Geometry} <p>The geometry parameter is <code>Geometry</code> type.</p>
-     * @see  org.locationtech.jts.geom.Geometry
-     * @see  java.lang.String
-     * @return  {@link java.lang.String} <p>The parse geojson return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The parse geojson return object is <code>String</code> type.</p>
+     * @see org.locationtech.jts.geom.Geometry
+     * @see java.lang.String
      */
     public static String parseGeojson(Geometry geometry) {
         try {
@@ -112,8 +112,8 @@ public class JtsUtils {
      * <code>parseGeometry</code>
      * <p>The parse geometry method.</p>
      * @param wkbBytes byte <p>The wkb bytes parameter is <code>byte</code> type.</p>
-     * @return  {@link org.locationtech.jts.geom.Geometry} <p>The parse geometry return object is <code>Geometry</code> type.</p>
-     * @see  org.locationtech.jts.geom.Geometry
+     * @return {@link org.locationtech.jts.geom.Geometry} <p>The parse geometry return object is <code>Geometry</code> type.</p>
+     * @see org.locationtech.jts.geom.Geometry
      */
     public static Geometry parseGeometry(byte[] wkbBytes) {
         try {
@@ -129,8 +129,8 @@ public class JtsUtils {
      * <code>parseWkt</code>
      * <p>The parse wkt method.</p>
      * @param wkbBytes byte <p>The wkb bytes parameter is <code>byte</code> type.</p>
-     * @return  {@link java.lang.String} <p>The parse wkt return object is <code>String</code> type.</p>
-     * @see  java.lang.String
+     * @return {@link java.lang.String} <p>The parse wkt return object is <code>String</code> type.</p>
+     * @see java.lang.String
      */
     public static String parseWkt(byte[] wkbBytes) {
         try {
@@ -146,8 +146,8 @@ public class JtsUtils {
      * <code>parseWkb</code>
      * <p>The parse wkb method.</p>
      * @param geometry {@link org.locationtech.jts.geom.Geometry} <p>The geometry parameter is <code>Geometry</code> type.</p>
-     * @see  org.locationtech.jts.geom.Geometry
      * @return byte <p>The parse wkb return object is <code>byte</code> type.</p>
+     * @see org.locationtech.jts.geom.Geometry
      */
     public static byte[] parseWkb(Geometry geometry) {
         try {
@@ -163,9 +163,9 @@ public class JtsUtils {
      * <code>parseWkt</code>
      * <p>The parse wkt method.</p>
      * @param geometry {@link org.locationtech.jts.geom.Geometry} <p>The geometry parameter is <code>Geometry</code> type.</p>
-     * @see  org.locationtech.jts.geom.Geometry
-     * @see  java.lang.String
-     * @return  {@link java.lang.String} <p>The parse wkt return object is <code>String</code> type.</p>
+     * @return {@link java.lang.String} <p>The parse wkt return object is <code>String</code> type.</p>
+     * @see org.locationtech.jts.geom.Geometry
+     * @see java.lang.String
      */
     public static String parseWkt(Geometry geometry) {
         try {
@@ -181,9 +181,9 @@ public class JtsUtils {
      * <code>parseGeometry</code>
      * <p>The parse geometry method.</p>
      * @param wktString {@link java.lang.String} <p>The wkt string parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  org.locationtech.jts.geom.Geometry
-     * @return  {@link org.locationtech.jts.geom.Geometry} <p>The parse geometry return object is <code>Geometry</code> type.</p>
+     * @return {@link org.locationtech.jts.geom.Geometry} <p>The parse geometry return object is <code>Geometry</code> type.</p>
+     * @see java.lang.String
+     * @see org.locationtech.jts.geom.Geometry
      */
     public static Geometry parseGeometry(String wktString) {
         try {
@@ -199,8 +199,8 @@ public class JtsUtils {
      * <code>parseWkb</code>
      * <p>The parse wkb method.</p>
      * @param wktString {@link java.lang.String} <p>The wkt string parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
      * @return byte <p>The parse wkb return object is <code>byte</code> type.</p>
+     * @see java.lang.String
      */
     public static byte[] parseWkb(String wktString) {
         try {
@@ -216,9 +216,9 @@ public class JtsUtils {
      * <code>parseGeojson</code>
      * <p>The parse geojson method.</p>
      * @param geojson {@link java.lang.String} <p>The geojson parameter is <code>String</code> type.</p>
-     * @see  java.lang.String
-     * @see  org.locationtech.jts.geom.Geometry
-     * @return  {@link org.locationtech.jts.geom.Geometry} <p>The parse geojson return object is <code>Geometry</code> type.</p>
+     * @return {@link org.locationtech.jts.geom.Geometry} <p>The parse geojson return object is <code>Geometry</code> type.</p>
+     * @see java.lang.String
+     * @see org.locationtech.jts.geom.Geometry
      */
     public static Geometry parseGeojson(String geojson) {
         try {

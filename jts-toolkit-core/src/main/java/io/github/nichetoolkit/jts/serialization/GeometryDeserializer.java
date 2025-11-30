@@ -1,33 +1,27 @@
 package io.github.nichetoolkit.jts.serialization;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.JsonNode;
 import io.github.nichetoolkit.jts.JtsParser;
 import io.github.nichetoolkit.jts.parser.GeometryParser;
 import org.locationtech.jts.geom.Geometry;
-
-import java.io.IOException;
+import tools.jackson.databind.ValueDeserializer;
 
 import static io.github.nichetoolkit.jts.JtsGeojson.GEOMETRY_FACTORY;
 
 /**
  * <code>GeometryDeserializer</code>
  * <p>The geometry deserializer class.</p>
- * @see  com.fasterxml.jackson.databind.JsonDeserializer
- * @see  java.lang.SuppressWarnings
  * @author Cyan (snow22314@outlook.com)
- * @since Jdk1.8
+ * @see tools.jackson.databind.ValueDeserializer
+ * @see java.lang.SuppressWarnings
+ * @since Jdk17
  */
 @SuppressWarnings("unused")
-public class GeometryDeserializer extends JsonDeserializer<Geometry> {
+public class GeometryDeserializer extends ValueDeserializer<Geometry> {
 
-    /**
-     * <code>jtsParser</code>
-     * {@link io.github.nichetoolkit.jts.JtsParser} <p>The <code>jtsParser</code> field.</p>
-     * @see  io.github.nichetoolkit.jts.JtsParser
-     */
     private final JtsParser<?> jtsParser;
 
     /**
@@ -39,8 +33,8 @@ public class GeometryDeserializer extends JsonDeserializer<Geometry> {
     }
 
     @Override
-    public Geometry deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
-        JsonNode root = jsonParser.getCodec().readTree(jsonParser);
+    public Geometry deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws JacksonException {
+        JsonNode root = jsonParser.readValueAsTree();
         return jtsParser.parse(root);
     }
 }
