@@ -5,10 +5,10 @@
     <parent>
         <groupId>io.github.nichetoolkit</groupId>
         <artifactId>jts-toolkit-parent</artifactId>
-        <version>1.1.2-SNAPSHOT</version>
+        <version>1.1.2</version>
     </parent>
     <artifactId>jts-toolkit-bom</artifactId>
-    <version>1.1.2-SNAPSHOT</version>
+    <version>1.1.2</version>
     <name>jts-toolkit-bom</name>
     <packaging>pom</packaging>
     <description>Jts toolkit bom project for Spring Boot</description>
@@ -167,7 +167,7 @@
                 <artifactId>central-publishing-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <centralBaseUrl>https://central.sonatype.com/</centralBaseUrl>
+                    <centralBaseUrl>https://central.sonatype.com</centralBaseUrl>
                     <centralSnapshotsUrl>https://central.sonatype.com/repository/maven-snapshots/</centralSnapshotsUrl>
                     <publishingServerId>sonatype-nexus-release</publishingServerId>
                     <autoPublish>true</autoPublish>
